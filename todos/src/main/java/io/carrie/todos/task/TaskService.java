@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import io.carrie.todos.category.Category;
+import io.carrie.todos.category.CategoryRepository;
+
 @Service
 public class TaskService {
 
@@ -18,36 +21,45 @@ public class TaskService {
      * - deleteById >>> `DELETE /tasks/:id`
      */
 
-    // constructor DI
-    private TaskRepository TaskRepository;
+    private TaskRepository taskRepository;
     private ModelMapper modelMapper;
+    private CategoryRepository categoryRepository;
 
-    TaskService(TaskRepository TaskRepository, ModelMapper modelMapper) {
-        this.TaskRepository = TaskRepository;
+    // constructor DI
+    TaskService(TaskRepository taskRepository, ModelMapper modelMapper, CategoryRepository categoryRepository) {
+        this.taskRepository = taskRepository;
         this.modelMapper = modelMapper;
+        this.categoryRepository = categoryRepository;
     }
 
     // return all Tasks in list
     public List<Task> findAll() {
-        return this.TaskRepository.findAll();
+        return this.taskRepository.findAll();
     }
 
-    // TODO - return all Tasks in list with specific Category.name
-    public List<Task> findByCategory(String queryParam) {
-        // return this.TaskRepository.findAll(queryParam);
-        return this.TaskRepository.findAll(); // change this
+    // FIXME - filters list of tasks with specific category name
+    public List<Task> findByCategory(String categoryName) {
+        return this.taskRepository.findByCategories_Name(categoryName);
     }
 
     // create a new Task, add to list
     public Task create(CreateTaskDTO dataFromUser) {
         Task newTask = modelMapper.map(dataFromUser, Task.class);
-        Task savedTask = this.TaskRepository.save(newTask);
+
+        // fetch/create Category entities by name + set them on new Task entity
+        List<Category> categoryEntities = dataFromUser.getCategories().stream()
+                .map(name -> categoryRepository.findByName(name)
+                        .orElseGet(() -> categoryRepository.save(new Category(name))))
+                .toList();
+
+        newTask.setCategories(categoryEntities);
+        Task savedTask = this.taskRepository.save(newTask);
         return savedTask; // user feedback
     }
 
     // find a specific Task
     public Optional<Task> findById(Long id) {
-        return this.TaskRepository.findById(id);
+        return this.taskRepository.findById(id);
     }
 
     // update a specific Task
@@ -61,7 +73,7 @@ public class TaskService {
         Task foundTask = searched.get();
 
         this.modelMapper.map(dataFromUser, foundTask);
-        this.TaskRepository.save(foundTask);
+        this.taskRepository.save(foundTask);
         return Optional.of(foundTask);
     }
 
@@ -70,7 +82,7 @@ public class TaskService {
         Optional<Task> searched = this.findById(id);
         if (searched.isPresent()) {
             Task found = searched.get();
-            this.TaskRepository.delete(found);
+            this.taskRepository.delete(found);
             return true; // successfully deleted
         }
         return false; // not deleted (Task not found)

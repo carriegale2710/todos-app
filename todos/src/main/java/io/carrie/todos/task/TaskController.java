@@ -45,14 +45,16 @@ public class TaskController {
         return new ResponseEntity<>(allTasks, HttpStatus.OK);
     }
 
+    // filter tasks by category
     @GetMapping("?category={categoryName}")
     public ResponseEntity<List<Task>> filter(@RequestParam(required = false) String categoryName) {
+        List<Task> tasks;
         if (categoryName != null) {
-            List<Task> filteredTasks = this.taskService.findByCategory(categoryName);
-            return new ResponseEntity<>(filteredTasks, HttpStatus.OK);
+            tasks = taskService.findByCategory(categoryName);
+        } else {
+            tasks = taskService.findAll();
         }
-        List<Task> allTasks = this.taskService.findAll();
-        return new ResponseEntity<>(allTasks, HttpStatus.OK);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
     @PostMapping

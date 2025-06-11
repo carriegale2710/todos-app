@@ -3,11 +3,13 @@ package io.carrie.todos.task;
 import java.util.Date;
 import java.util.List;
 
+import io.carrie.todos.category.Category;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,10 +27,10 @@ public class Task {
     private String dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
 
     @Column
-    private Boolean isCompleted; // todo = false;
+    private Boolean isCompleted;
 
-    @Column
-    private List<String> categories;
+    @ManyToMany
+    private List<Category> categories;
 
     public Long getId() {
         return id;
@@ -58,11 +60,11 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
-    public List<String> getCategories() {
+    public List<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(List<Category> categories) {
         this.categories = categories;
     }
 
