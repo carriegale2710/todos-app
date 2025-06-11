@@ -1,8 +1,10 @@
 package io.carrie.todos.category;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,24 +41,26 @@ public class CategoryController {
     // }
 
     @GetMapping
-    public ArrayList<String> getCategories() {
-        return categoryService.getCategories();
+    public ResponseEntity<List<Category>> getAll() {
+        List<Category> allCategories = this.categoryService.findAll();
+        return new ResponseEntity<>(allCategories, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<String> addCategory(@Valid @RequestBody CreateCategoryDTO dataFromUser) {
+    public ResponseEntity<Category> create(@Valid @RequestBody CreateCategoryDTO dataFromUser) {
         System.out.println("Calling post method with " + dataFromUser.getName());
-        String savedCategory = this.categoryService.createCategory(dataFromUser);
+        Category savedCategory = this.categoryService.create(dataFromUser);
         return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public String updateCategory(@PathVariable Long id) {
+    public String update(@PathVariable Long id) {
         return "updates a category with id " + id;
+
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCategory(@PathVariable Long id) {
+    public String delete(@PathVariable Long id) {
         return "deletes a category with id " + id;
     }
 

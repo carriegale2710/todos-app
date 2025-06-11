@@ -18,4 +18,18 @@ public class Category {
     @Column
     private String name;
 
+    // getters for Jackson to access id, name
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

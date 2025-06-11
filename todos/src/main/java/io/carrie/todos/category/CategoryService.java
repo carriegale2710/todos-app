@@ -1,7 +1,6 @@
 package io.carrie.todos.category;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -9,33 +8,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
-    public String defaultGreeting() {
-        return "this is the service layer";
+    private CategoryRepository categoryRepository;
+
+    CategoryService(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
-    // let's pretend this is the database
-    ArrayList<String> categoryList = new ArrayList<String>(
-            Arrays.asList("URGENT", "NOT STARTED", "UNI WORK", "PERSONAL"));
-
-    public String createCategory(CreateCategoryDTO dataFromUser) {
-        String upperCaseName = dataFromUser.getName().toUpperCase();
-        this.categoryList.add(upperCaseName);
-        return upperCaseName + " added to categories list";
+    public Category create(CreateCategoryDTO dataFromUser) {
+        // turn categoryDTO into a new Category object
+        Category newCategory = new Category();
+        newCategory.setName(dataFromUser.getName());
+        Category savedCategory = this.categoryRepository.save(newCategory);
+        return savedCategory; // user feedback
     }
 
     // return all categories in list
-    public ArrayList<String> getCategories() {
-        return categoryList;
+    public List<Category> findAll() {
+        return this.categoryRepository.findAll();
     }
 
-    // a way to find something in the array and return if exists or return Optional
-    public String findByCategory(String category) throws Exception {
-        Optional<String> foundCategory = categoryList.stream().filter(c -> c.equals(category.toUpperCase()))
-                .findFirst();
-        if (foundCategory.isPresent()) {
-            return foundCategory.get();
-        }
-        throw new Exception("Name not found");
+    // find a specific category
+    public Optional<Category> findById(Long id) {
+        return this.categoryRepository.findById(id);
     }
 
 }
