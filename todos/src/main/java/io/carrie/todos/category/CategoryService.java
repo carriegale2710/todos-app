@@ -32,4 +32,17 @@ public class CategoryService {
         return this.categoryRepository.findById(id);
     }
 
+    // delete a specific category
+    public boolean deleteById(Long id) {
+        Optional<Category> searchedCategory = this.findById(id);
+        if (searchedCategory.isPresent()) {
+            Category foundCategory = searchedCategory.get();
+            this.categoryRepository.delete(foundCategory);
+            return true; // successfully deleted
+        }
+        return false; // not deleted (category not found)
+    }
+
+    // update a specific category
+
 }
