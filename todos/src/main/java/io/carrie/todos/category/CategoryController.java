@@ -57,7 +57,8 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Category> update(@PathVariable Long id, @Valid @RequestBody UpdateCategoryDTO dataFromUser) {
+    public ResponseEntity<Category> updateById(@PathVariable Long id,
+            @Valid @RequestBody UpdateCategoryDTO dataFromUser) {
         Optional<Category> updated = this.categoryService.updateById(id, dataFromUser);
         if (updated.isPresent()) {
             return new ResponseEntity<>(updated.get(), HttpStatus.OK);

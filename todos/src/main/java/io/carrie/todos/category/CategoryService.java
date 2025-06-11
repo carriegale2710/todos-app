@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
-    private final ModelMapper modelMapper;
-
     private CategoryRepository categoryRepository;
+    private ModelMapper modelMapper;
 
     CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.categoryRepository = categoryRepository;
@@ -20,8 +19,9 @@ public class CategoryService {
 
     public Category create(CreateCategoryDTO dataFromUser) {
         // turn categoryDTO into a new Category object
-        Category newCategory = new Category();
-        newCategory.setName(dataFromUser.getName());
+        // Category newCategory = new Category();
+        // newCategory.setName(dataFromUser.getName());
+        Category newCategory = modelMapper.map(dataFromUser, Category.class);
         Category savedCategory = this.categoryRepository.save(newCategory);
         return savedCategory; // user feedback
     }
@@ -55,10 +55,11 @@ public class CategoryService {
             return searched;
         }
 
-        Category found = searched.get();
-        this.modelMapper.map(dataFromUser, found);
-        this.categoryRepository.save(found);
-        return Optional.of(found);
+        Category foundCategory = searched.get();
+
+        this.modelMapper.map(dataFromUser, foundCategory);
+        this.categoryRepository.save(foundCategory);
+        return Optional.of(foundCategory);
     }
 
 }
