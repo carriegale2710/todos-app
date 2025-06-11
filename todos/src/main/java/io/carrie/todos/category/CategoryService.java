@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
+    // constructor injection
     private CategoryRepository categoryRepository;
     private ModelMapper modelMapper;
 
@@ -17,10 +18,8 @@ public class CategoryService {
         this.modelMapper = modelMapper;
     }
 
+    // turns categoryDTO into a new Category object
     public Category create(CreateCategoryDTO dataFromUser) {
-        // turn categoryDTO into a new Category object
-        // Category newCategory = new Category();
-        // newCategory.setName(dataFromUser.getName());
         Category newCategory = modelMapper.map(dataFromUser, Category.class);
         Category savedCategory = this.categoryRepository.save(newCategory);
         return savedCategory; // user feedback

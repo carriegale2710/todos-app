@@ -21,15 +21,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
-
-    private final CategoryService categoryService;
     /*
-     * TODO - put methods here:
+     * Category methods here:
      * GET /categories
      * POST /categories
      * PUT /categories/:id
      * DELETE /categories/:id
      */
+
+    // constructor dependency injection
+    private CategoryService categoryService;
 
     CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -47,15 +48,6 @@ public class CategoryController {
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
-        boolean deleted = this.categoryService.deleteById(id);
-        if (deleted) {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
-        }
-        throw new NotFoundException();
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateById(@PathVariable Long id,
             @Valid @RequestBody UpdateCategoryDTO dataFromUser) {
@@ -66,4 +58,12 @@ public class CategoryController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
+        boolean deleted = this.categoryService.deleteById(id);
+        if (deleted) {
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+        throw new NotFoundException();
+    }
 }

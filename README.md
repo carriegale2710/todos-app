@@ -12,15 +12,15 @@ Create an API to be integrated with your [todos-ui](../todos-ui/) project, that 
 
 ## MVP
 
+- [x] Categories and Todos should be stored in separate tables
 - [ ] Deleting a task should set an `isArchived` flag in the database instead of deleting the task from the database
 - [ ] Add a filter to the frontend application that allows you to filter tasks by category
-- [x] Categories and Todos should be stored in separate tables
 
 ## Endpoints
 
 - [x] `GET /categories`
 - [x] `POST /categories`
-- [ ] `PUT /categories/:id`
+- [x] `PUT /categories/:id`
 - [x] `DELETE /categories/:id`
 
 - [x] `GET /todos`
@@ -69,7 +69,7 @@ Please don't make your app look like this, make it nicer! This is just a summary
 
 ## MVP
 
-- [x] Must be able to add categories
+- [ ] Must be able to add categories
 - [ ] Must be able to add new tasks tagged with a task category
 - [ ] Must be able to update tasks automatically by changing the task name and the category
 - [ ] Must be able to duplicate tasks

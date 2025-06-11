@@ -1,7 +1,7 @@
 package io.carrie.todos.task;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,12 +22,12 @@ public class Task {
     private String name;
 
     @Column
-    private Date dueDate;
+    private String dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
 
     @Column
-    private Boolean isCompleted;
+    private Boolean isCompleted; // todo = false;
 
     @Column
-    private ArrayList<String> categories;
+    private List<String> categories;
 
 }
