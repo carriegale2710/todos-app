@@ -15,7 +15,6 @@ public class UpdateTaskDTO {
 
     private String dueDate;
 
-    @NotBlank
     private Boolean isCompleted;
 
     private List<String> categories;

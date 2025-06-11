@@ -46,7 +46,7 @@ public class TaskController {
     }
 
     @GetMapping("?category={categoryName}")
-    public ResponseEntity<List<Task>> find(@RequestParam(required = false) String categoryName) {
+    public ResponseEntity<List<Task>> filter(@RequestParam(required = false) String categoryName) {
         if (categoryName != null) {
             List<Task> filteredTasks = this.taskService.findByCategory(categoryName);
             return new ResponseEntity<>(filteredTasks, HttpStatus.OK);

@@ -11,13 +11,14 @@ public class TaskService {
 
     /*
      * TODO - TaskService Methods >>> TaskController Endpoints here:
-     * - getAll >>> `GET /todos`
-     * - filterByCategory >>> `GET /todos?Task={}` query parameters
-     * - create >> `POST /todos`
-     * - updateById >>> `PUT /todos/:id`
-     * - deleteById >>> `DELETE /todos/:id`
+     * - findAll >>> `GET /tasks`
+     * - findByCategory >>> `GET /tasks?category={}` query parameters
+     * - create >> `POST /tasks`
+     * - updateById >>> `PUT /tasks/:id`
+     * - deleteById >>> `DELETE /tasks/:id`
      */
 
+    // constructor DI
     private TaskRepository TaskRepository;
     private ModelMapper modelMapper;
 
@@ -26,20 +27,15 @@ public class TaskService {
         this.modelMapper = modelMapper;
     }
 
-    // TODO - return all Tasks in list with specific Category.name
-    public List<Task> findByCategory(String queryParam) {
-        // return this.TaskRepository.findAll(queryParam);
-        return this.TaskRepository.findAll(); // change this
-    }
-
     // return all Tasks in list
     public List<Task> findAll() {
         return this.TaskRepository.findAll();
     }
 
-    // find a specific Task
-    public Optional<Task> findById(Long id) {
-        return this.TaskRepository.findById(id);
+    // TODO - return all Tasks in list with specific Category.name
+    public List<Task> findByCategory(String queryParam) {
+        // return this.TaskRepository.findAll(queryParam);
+        return this.TaskRepository.findAll(); // change this
     }
 
     // create a new Task, add to list
@@ -47,6 +43,11 @@ public class TaskService {
         Task newTask = modelMapper.map(dataFromUser, Task.class);
         Task savedTask = this.TaskRepository.save(newTask);
         return savedTask; // user feedback
+    }
+
+    // find a specific Task
+    public Optional<Task> findById(Long id) {
+        return this.TaskRepository.findById(id);
     }
 
     // update a specific Task

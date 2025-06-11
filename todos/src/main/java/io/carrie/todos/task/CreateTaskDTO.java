@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.NotBlank;
 
 public class CreateTaskDTO {
@@ -15,7 +14,6 @@ public class CreateTaskDTO {
 
     private String dueDate;
 
-    @NotBlank
     private Boolean isCompleted;
 
     private List<String> categories;

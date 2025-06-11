@@ -9,13 +9,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class CategoryService {
 
-    // constructor injection
+    /*
+     * DONE - TaskService Methods >>> TaskController Endpoints here:
+     * - findAll >>> `GET /categories`
+     * - create >> `POST /categories`
+     * - updateById >>> `PUT /categories/:id`
+     * - deleteById >>> `DELETE /categories/:id`
+     */
+
+    // constructor DI
     private CategoryRepository categoryRepository;
     private ModelMapper modelMapper;
 
     CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.categoryRepository = categoryRepository;
         this.modelMapper = modelMapper;
+    }
+
+    // return all categories in list
+    public List<Category> findAll() {
+        return this.categoryRepository.findAll();
     }
 
     // turns categoryDTO into a new Category object
@@ -25,25 +38,9 @@ public class CategoryService {
         return savedCategory; // user feedback
     }
 
-    // return all categories in list
-    public List<Category> findAll() {
-        return this.categoryRepository.findAll();
-    }
-
     // find a specific category
     public Optional<Category> findById(Long id) {
         return this.categoryRepository.findById(id);
-    }
-
-    // delete a specific category
-    public boolean deleteById(Long id) {
-        Optional<Category> searched = this.findById(id);
-        if (searched.isPresent()) {
-            Category found = searched.get();
-            this.categoryRepository.delete(found);
-            return true; // successfully deleted
-        }
-        return false; // not deleted (category not found)
     }
 
     // update a specific category
@@ -61,4 +58,14 @@ public class CategoryService {
         return Optional.of(foundCategory);
     }
 
+    // delete a specific category
+    public boolean deleteById(Long id) {
+        Optional<Category> searched = this.findById(id);
+        if (searched.isPresent()) {
+            Category found = searched.get();
+            this.categoryRepository.delete(found);
+            return true; // successfully deleted
+        }
+        return false; // not deleted (category not found)
+    }
 }
