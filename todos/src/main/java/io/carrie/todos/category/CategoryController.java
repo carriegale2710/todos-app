@@ -1,18 +1,16 @@
 package io.carrie.todos.category;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpClientErrorException.NotFound;
 
 import jakarta.validation.Valid;
 
@@ -45,9 +43,8 @@ public class CategoryController {
 
     @PostMapping
     public ResponseEntity<Category> create(@Valid @RequestBody CreateCategoryDTO dataFromUser) {
-        System.out.println("Calling post method with " + dataFromUser.getName());
-        Category savedCategory = this.categoryService.create(dataFromUser);
-        return new ResponseEntity<>(savedCategory, HttpStatus.CREATED);
+        Category created = this.categoryService.create(dataFromUser);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
@@ -60,9 +57,12 @@ public class CategoryController {
     }
 
     @PutMapping("/{id}")
-    public String update(@PathVariable Long id) {
-        return "updates a category with id " + id;
-
+    public ResponseEntity<Category> update(@PathVariable Long id, @Valid @RequestBody UpdateCategoryDTO dataFromUser) {
+        Optional<Category> updated = this.categoryService.updateById(id, dataFromUser);
+        if (updated.isPresent()) {
+            return new ResponseEntity<>(updated.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }

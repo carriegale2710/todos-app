@@ -3,15 +3,19 @@ package io.carrie.todos.category;
 import java.util.List;
 import java.util.Optional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CategoryService {
 
+    private final ModelMapper modelMapper;
+
     private CategoryRepository categoryRepository;
 
-    CategoryService(CategoryRepository categoryRepository) {
+    CategoryService(CategoryRepository categoryRepository, ModelMapper modelMapper) {
         this.categoryRepository = categoryRepository;
+        this.modelMapper = modelMapper;
     }
 
     public Category create(CreateCategoryDTO dataFromUser) {
@@ -34,15 +38,27 @@ public class CategoryService {
 
     // delete a specific category
     public boolean deleteById(Long id) {
-        Optional<Category> searchedCategory = this.findById(id);
-        if (searchedCategory.isPresent()) {
-            Category foundCategory = searchedCategory.get();
-            this.categoryRepository.delete(foundCategory);
+        Optional<Category> searched = this.findById(id);
+        if (searched.isPresent()) {
+            Category found = searched.get();
+            this.categoryRepository.delete(found);
             return true; // successfully deleted
         }
         return false; // not deleted (category not found)
     }
 
     // update a specific category
+    public Optional<Category> updateById(Long id, UpdateCategoryDTO dataFromUser) {
+        Optional<Category> searched = this.findById(id);
+
+        if (searched.isEmpty()) {
+            return searched;
+        }
+
+        Category found = searched.get();
+        this.modelMapper.map(dataFromUser, found);
+        this.categoryRepository.save(found);
+        return Optional.of(found);
+    }
 
 }
