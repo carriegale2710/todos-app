@@ -1,82 +1,123 @@
-# Todos Spring App Project
+# Todos Spring Boot API
+
+Welcome! Here are some brief notes and links to running this app.
+
+## 1. Project Brief
+
+### Backend MVP (Spring API)
 
 ---
 
-# Todos Spring API
-
----
-
-## Overview
-
-Create an API to be integrated with your [todos-ui](../todos-ui/) project, that allows you to store and retrieve tasks from a database.
-
-## MVP
+Create an API to be integrated with your [todos-ui](frontend/README.md) project, that allows you to store and retrieve tasks from a database.
 
 - [x] Categories and Todos should be stored in separate tables
 - [ ] Deleting a task should set an `isArchived` flag in the database instead of deleting the task from the database
-- [ ] Add a filter to the frontend application that allows you to filter tasks by category
+- [/] Add a filter to the frontend application that allows you to filter tasks by category
 
-## Endpoints
+### Todos Table
+
+```json
+todo
+{
+    "name": "Create a Spring project", //String
+    "dueDate": "2025-06-01", //Date
+    "isCompleted": true, //Boolean
+    "categories": ["coding", "backend"] //String ArrayList
+}
+```
+
+Endpoints:
+
+- [x] `GET /todos`
+- [/] `GET /todos?category={}` //query parameters
+- [x] `POST /todos`
+- [/] `PUT /todos/:id` //fix categories
+- [x] `DELETE /todos/:id`
+
+### Categories Table
+
+```json
+category
+{
+    "name": "coding" //String
+}
+```
+
+Endpoints:
 
 - [x] `GET /categories`
 - [x] `POST /categories`
 - [x] `PUT /categories/:id`
 - [x] `DELETE /categories/:id`
 
-- [x] `GET /todos`
-- [ ] `GET /todos?category={}` query parameters
-- [ ] `POST /todos`
-- [ ] `PUT /todos/:id`
-- [ ] `DELETE /todos/:id`
-
-## Todos
-
-- Name: String
-- Due Date: Date
-- Completed: Boolean
-- Categories: String ArrayList
-
-```json
-todo
-{
-    "name": "Create a Spring project",
-    "dueDate": "2025-06-01",
-    "isCompleted": true,
-    "categories": ["coding", "backend"]
-}
-```
-
-## Categories
-
-- Name: String
-
-```json
-category
-{
-    "name": "coding",
-}
-```
-
-# Todos React UI
+## 2. API Build Documentation
 
 ---
 
-## Overview
+### Backend Functionality
 
-Your task is to create an application that allows you to track, add, and delete tasks as well as manage categories of tasks.
+| Features Built                | CRUD Actions                  |
+| ----------------------------- | ----------------------------- | --- |
+| Add/delete **categories**     | ✅ Create, ❌ (Bonus: Delete) |
+| Add/update/delete **tasks**   | ✅ Full CRUD                  |
+| Tag tasks with **categories** | ✅ Relationship               |
+| Duplicate tasks               | ✅ Bonus-style logic          |     |
 
-Please don't make your app look like this, make it nicer! This is just a summary of what the frontend should be doing: ![Todos UI Example](assets/todos_app.PNG)
+---
 
-## MVP
+### CRUD API Endpoints
 
-- [ ] Must be able to add categories
-- [ ] Must be able to add new tasks tagged with a task category
-- [ ] Must be able to update tasks automatically by changing the task name and the category
-- [ ] Must be able to duplicate tasks
-- [ ] Must be able to delete tasks
-- [ ] You must add your own styling
+| Method | Endpoint                | Purpose                         |
+| ------ | ----------------------- | ------------------------------- |
+| GET    | `/tasks`                | Get all tasks                   |
+| POST   | `/tasks`                | Create a new task               |
+| PUT    | `/tasks/{id}`           | Update task name/category       |
+| DELETE | `/tasks/{id}`           | Delete task                     |
+| POST   | `/tasks/{id}/duplicate` | Duplicate a task (custom logic) |
 
-## Bonus
+### Database Flow Chart
 
-- Come up with a feature that allows us to delete and update task categories
-- Create a summary section that lists how many of each type of task there are
+![Database Flow Diagram](assets/DB_Diagram.png)
+
+#### 1. Categories:
+
+```
+- id INT PRIMARY KEY
+- name VARCHAR
+```
+
+#### 2. Tasks:
+
+```
+- id INT PRIMARY KEY
+- name VARCHAR
+- due_date DATE
+- is_completed BOOLEAN
+- is_archived BOOLEAN
+- categories JSON or String[]
+```
+
+---
+
+---
+
+## 🧠 BONUS IDEAS
+
+### ✅ Task Duplication Logic (in backend)
+
+- [ ] GET task by ID
+- [ ] Copy its name & category_id
+- [ ] Save as new task
+
+```java
+@PostMapping("/tasks/{id}/duplicate")
+public Task duplicateTask(@PathVariable Long id) {
+    Task original = taskRepo.findById(id).orElseThrow();
+    Task copy = new Task(original.getName(), original.getCategory());
+    return taskRepo.save(copy);
+}
+```
+
+## REFERENCES
+
+- [Spring Framework Diagram](assets/spring_framework.png)

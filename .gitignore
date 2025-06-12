@@ -35,4 +35,8 @@ build/
 .env
 .env.properties
 
-Chicago-spring.drawio.png
+frontend.md
+backend.md
+presentation.md
+axios.md
+.gitignore
