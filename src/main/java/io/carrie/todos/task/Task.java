@@ -27,10 +27,10 @@ public class Task {
     private Date dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
 
     @Column
-    private boolean isCompleted;
+    private Boolean isCompleted;
 
     @Column
-    private boolean isArchived; // TODO - make this a virtual property
+    private Boolean isArchived; // TODO - make this a virtual property
 
     @ManyToMany
     private List<Category> categories;
