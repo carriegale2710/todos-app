@@ -18,16 +18,19 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto generates unique id for each todo in DB
-    private Long id;
+    private long id;
 
     @Column
     private String name;
 
     @Column
-    private String dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
+    private Date dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
 
     @Column
-    private Boolean isCompleted;
+    private boolean isCompleted;
+
+    @Column
+    private boolean isArchived; // TODO - make this a virtual property
 
     @ManyToMany
     private List<Category> categories;
@@ -44,11 +47,11 @@ public class Task {
         this.name = name;
     }
 
-    public String getDueDate() {
+    public Date getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(String dueDate) {
+    public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -58,6 +61,14 @@ public class Task {
 
     public void setIsCompleted(Boolean isCompleted) {
         this.isCompleted = isCompleted;
+    }
+
+    public Boolean getIsArchived() {
+        return isArchived;
+    }
+
+    public void setIsArchived(Boolean isArchived) {
+        this.isArchived = isArchived;
     }
 
     public List<Category> getCategories() {

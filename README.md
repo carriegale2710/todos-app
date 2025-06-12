@@ -1,6 +1,6 @@
 # Todos Spring Boot API
 
-Welcome! Here are some brief notes and links to running this app.
+Welcome to my first full-stack App project! Here are some notes how I built this app, how to run it and more details on how it works.
 
 ## 1. Project Brief
 
@@ -30,7 +30,7 @@ Endpoints:
 
 - [x] `GET /todos`
 - [/] `GET /todos?category={}` //query parameters
-- [x] `POST /todos`
+- [x] `POST /todos` //also use for duplication
 - [/] `PUT /todos/:id` //fix categories
 - [x] `DELETE /todos/:id`
 
@@ -50,34 +50,27 @@ Endpoints:
 - [x] `PUT /categories/:id`
 - [x] `DELETE /categories/:id`
 
+---
+
 ## 2. API Build Documentation
 
 ---
 
 ### Backend Functionality
 
-| Features Built                | CRUD Actions                  |
-| ----------------------------- | ----------------------------- | --- |
-| Add/delete **categories**     | ✅ Create, ❌ (Bonus: Delete) |
-| Add/update/delete **tasks**   | ✅ Full CRUD                  |
-| Tag tasks with **categories** | ✅ Relationship               |
-| Duplicate tasks               | ✅ Bonus-style logic          |     |
+| Features Built                | CRUD Actions         |
+| ----------------------------- | -------------------- |
+| Add/delete **categories**     | ✅ Create, Delete    |
+| Add/update/delete **tasks**   | ✅ Full CRUD         |
+| Tag tasks with **categories** | ✅ Relationship      |
+| Duplicate tasks               | ✅ Bonus-style logic |
 
 ---
-
-### CRUD API Endpoints
-
-| Method | Endpoint                | Purpose                         |
-| ------ | ----------------------- | ------------------------------- |
-| GET    | `/tasks`                | Get all tasks                   |
-| POST   | `/tasks`                | Create a new task               |
-| PUT    | `/tasks/{id}`           | Update task name/category       |
-| DELETE | `/tasks/{id}`           | Delete task                     |
-| POST   | `/tasks/{id}/duplicate` | Duplicate a task (custom logic) |
 
 ### Database Flow Chart
 
 ![Database Flow Diagram](assets/DB_Diagram.png)
+[Link](https://dbdiagram.io/d/To-do-App-684ae6371dff20a534caf9d8)
 
 #### 1. Categories:
 
