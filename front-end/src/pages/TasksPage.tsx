@@ -4,14 +4,16 @@ import TaskCard from "../components/TaskCard";
 
 const TasksPage = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+
   useEffect(() => {
     getAllTasks()
-      .then((res) => {
-        console.log(res, " tasks from API");
-        setTasks(res);
+      .then((result) => {
+        console.log(result, " tasks from API");
+        setTasks(result);
       })
       .catch(console.warn);
   }, []);
+
   return (
     <div>
       {tasks.map((task: Task) => {
