@@ -50,20 +50,22 @@ public class CategoryController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateById(@PathVariable Long id,
-            @Valid @RequestBody UpdateCategoryDTO dataFromUser) {
+            @Valid @RequestBody UpdateCategoryDTO dataFromUser)
+            throws io.carrie.todos.common.exceptions.NotFoundException {
         Optional<Category> updated = this.categoryService.updateById(id, dataFromUser);
         if (updated.isPresent()) {
             return new ResponseEntity<>(updated.get(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new io.carrie.todos.common.exceptions.NotFoundException("Category with id " + id + " does not exist");
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id)
+            throws io.carrie.todos.common.exceptions.NotFoundException {
         boolean deleted = this.categoryService.deleteById(id);
         if (deleted) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
-        throw new NotFoundException();
+        throw new io.carrie.todos.common.exceptions.NotFoundException("Category with id " + id + " does not exist");
     }
 }

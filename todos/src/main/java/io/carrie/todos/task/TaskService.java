@@ -72,6 +72,7 @@ public class TaskService {
 
         Task foundTask = searched.get();
 
+        // FIXME - does not properly update categories List when edited
         this.modelMapper.map(dataFromUser, foundTask);
         this.taskRepository.save(foundTask);
         return Optional.of(foundTask);

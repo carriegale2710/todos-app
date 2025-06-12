@@ -64,21 +64,24 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
+    public ResponseEntity<String> deleteById(@PathVariable Long id)
+            throws io.carrie.todos.common.exceptions.NotFoundException {
         boolean deleted = this.taskService.deleteById(id);
         if (deleted) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
-        throw new NotFoundException();
+        throw new io.carrie.todos.common.exceptions.NotFoundException("Book with id " + id + " does not exist");
     }
 
+    // FIXME - fix in Service layer: does not properly remove previous categories
+    // List when updating
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateById(@PathVariable Long id,
-            @Valid @RequestBody UpdateTaskDTO dataFromUser) {
+            @Valid @RequestBody UpdateTaskDTO dataFromUser) throws io.carrie.todos.common.exceptions.NotFoundException {
         Optional<Task> updated = this.taskService.updateById(id, dataFromUser);
         if (updated.isPresent()) {
             return new ResponseEntity<>(updated.get(), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        throw new io.carrie.todos.common.exceptions.NotFoundException("Task with id " + id + " does not exist");
     }
 }
