@@ -10,6 +10,7 @@ import io.carrie.todos.common.exceptions.NotFoundException;
 @ControllerAdvice
 public class GlobalExceptionHandler {
     // this global handler takes care of any errors thrown in our app (safety net)
+    // pros: no need to try-catch everywhere on the app
 
     // handle any missing ID errors thrown for any controller method
     // (deleting/creating by ID)
@@ -17,4 +18,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleNotFoundException(NotFoundException error) {
         return new ResponseEntity<>(error.getMessage(), HttpStatus.NOT_FOUND); // 404 status send back
     }
+
+    // TODO - Think of other exceptions that may occur
 }

@@ -11,12 +11,16 @@ public class UpdateTaskDTO {
 
     @NotBlank
     @Length(min = 2)
+    // todo -maybe max length of 20 words?
     private String name;
 
+    // todo - need to validate its in correct date format YYYY-MM-DD
     private String dueDate;
 
+    // should default be false on creation?
     private Boolean isCompleted;
 
+    // todo - should this be changed to List<Category> ? to fix category updates?
     private List<String> categories;
 
     public String getName() {
