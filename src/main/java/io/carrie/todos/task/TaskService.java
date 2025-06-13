@@ -12,37 +12,50 @@ import io.carrie.todos.category.CategoryRepository;
 @Service
 public class TaskService {
 
+    private TaskRepository taskRepository;
+    private CategoryRepository categoryRepository;
+    private ModelMapper modelMapper;
+
+    // constructor Dependency Injection
+    TaskService(TaskRepository taskRepository, CategoryRepository categoryRepository, ModelMapper modelMapper) {
+        this.taskRepository = taskRepository;
+        this.categoryRepository = categoryRepository;
+        this.modelMapper = modelMapper; // Model Mapper helps reduce boilerplate code, needed to manually get and set
+                                        // each property for a new task entity
+    }
+
     /*
-     * TODO - TaskService Methods >>> TaskController Endpoints here:
-     * - findAll >>> `GET /tasks`
-     * - findByCategory >>> `GET /tasks?category={}` query parameters
+     * TaskService Methods >>> TaskController Endpoints here:
+     * - findAll
+     * - findByCategory >>>
      * - create >> `POST /tasks`
      * - updateById >>> `PUT /tasks/:id`
      * - deleteById >>> `DELETE /tasks/:id`
      */
 
-    private TaskRepository taskRepository;
-    private ModelMapper modelMapper;
-    private CategoryRepository categoryRepository;
+    // SECTION - FINDING DATA in DB
 
-    // constructor DI
-    TaskService(TaskRepository taskRepository, ModelMapper modelMapper, CategoryRepository categoryRepository) {
-        this.taskRepository = taskRepository;
-        this.modelMapper = modelMapper;
-        this.categoryRepository = categoryRepository;
-    }
-
-    // return all Tasks in list
+    // NOTE FIND ALL tasks in list >>> `GET /tasks`
     public List<Task> findAll() {
         return this.taskRepository.findAll();
     }
 
-    // FIXME - filters list of tasks with specific category name
-    public List<Task> findByCategory(String categoryName) {
-        return this.taskRepository.findByCategories_Name(categoryName);
+    // NOTE FIND ONE TASK BY ID - find a specific Task
+    public Optional<Task> findById(Long id) {
+        Optional<Task> foundTask = this.taskRepository.findById(id);
+        return foundTask;
     }
 
-    // create a new Task, add to list
+    // NOTE - FILTER TASKS LIST BY CATEGORY NAME `GET /tasks?category={}`
+    public List<Task> findByCategory(String categoryName) {
+        List<Task> filteredTasks = this.taskRepository.findByCategories_Name(categoryName);
+        return filteredTasks;
+        // query parameters -> filter the list by matching `name` property //FIXME
+    }
+
+    // SECTION - EDITING DB
+
+    // NOTE - CREATE a new Task, add to list
     public Task create(CreateTaskDTO dataFromUser) {
         Task newTask = modelMapper.map(dataFromUser, Task.class);
 
@@ -57,12 +70,7 @@ public class TaskService {
         return savedTask; // user feedback
     }
 
-    // find a specific Task
-    public Optional<Task> findById(Long id) {
-        return this.taskRepository.findById(id);
-    }
-
-    // update a specific Task
+    // NOTE -UPDATE a specific Task
     public Optional<Task> updateById(Long id, UpdateTaskDTO dataFromUser) {
         Optional<Task> searched = this.findById(id);
 
@@ -78,12 +86,13 @@ public class TaskService {
         return Optional.of(foundTask);
     }
 
-    // delete a specific Task
+    // NOTE - DELETE a specific Task
     public boolean deleteById(Long id) {
         Optional<Task> searched = this.findById(id);
+
         if (searched.isPresent()) {
             Task found = searched.get();
-            this.taskRepository.delete(found);
+            this.taskRepository.;
             return true; // successfully deleted
         }
         return false; // not deleted (Task not found)

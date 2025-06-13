@@ -24,17 +24,20 @@ public class Task {
     private String name;
 
     @Column
-    private Date dueDate; // todo - format dueDate as YYYY-MM-DD //could use toString()
+    private Date dueDate;
+
+    // TODO - think if either of these can be a virtual property
 
     @Column
-    private Boolean isCompleted;
+    private Boolean isCompleted; // TODO - business logic: archive if completed automatically
 
     @Column
-    private Boolean isArchived; // TODO - make this a virtual property
+    private Boolean isArchived;
 
     @ManyToMany
     private List<Category> categories;
 
+    // getters an setters needed to access properties
     public Long getId() {
         return id;
     }

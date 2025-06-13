@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import type { Task } from "../services/tasks";
+import type { Task } from "../../services/tasks";
 
 interface TaskCardProps {
   task: Task;
@@ -11,7 +11,11 @@ const TaskCard = ({ task }: TaskCardProps) => {
       <Link to={`/tasks/${task.id}`}>
         <h2>{task.name}</h2>
       </Link>
-      <p>{task.dueDate.toISOString()}</p>
+      <p>
+        Due on {task.dueDate.toString()},
+        {/* {task.dueDate.getDate()}/{task.dueDate.getMonth()}/{task.dueDate.getFullYear()} */}
+      </p>
+      <p>Completed: {task.isCompleted}</p>
     </div>
   );
 };

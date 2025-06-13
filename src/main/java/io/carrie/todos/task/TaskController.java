@@ -2,12 +2,12 @@ package io.carrie.todos.task;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import io.carrie.todos.common.exceptions.NotFoundException;
 import jakarta.validation.Valid;
 
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,11 +25,12 @@ public class TaskController {
 
     /*
      * TODO - Task Methods here:
-     * - `GET /todos`
-     * - `GET /todos?category={}` query parameters
-     * - `POST /todos`
-     * - `PUT /todos/:id`
-     * - `DELETE /todos/:id`
+     * - `GET /tasks`
+     * - `GET /tasks/:id`
+     * - `GET /tasks?category={}` query parameters
+     * - `POST /tasks`
+     * - `PUT /tasks/:id`
+     * - `DELETE /tasks/:id`
      */
 
     // constructor dependency injection
@@ -39,13 +40,28 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    // SECTION - FETCHING DATA FROM DATABASE
+
+    // GET ALL TASKS IN DB
     @GetMapping
     public ResponseEntity<List<Task>> find() {
         List<Task> allTasks = this.taskService.findAll();
         return new ResponseEntity<>(allTasks, HttpStatus.OK);
     }
 
-    // filter tasks by category
+    // GET TASK BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<String> findById(@PathVariable Long id)
+            throws NotFoundException {
+        Optional<Task> foundTask = this.taskService.findById(id);
+        System.out.println(foundTask.toString());
+        if (foundTask.isEmpty()) {
+            throw new NotFoundException("Task", id);
+        }
+        return new ResponseEntity<>("Task found", HttpStatus.NO_CONTENT);
+    }
+
+    // FILTER TASKS BY CATEGORY
     @GetMapping("?category={categoryName}")
     public ResponseEntity<List<Task>> filter(@RequestParam(required = false) String categoryName) {
         List<Task> tasks;
@@ -57,31 +73,35 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 
+    // SECTION - EDITING THE DATABASE
+
+    // ADD NEW TASK
     @PostMapping
     public ResponseEntity<Task> create(@Valid @RequestBody CreateTaskDTO dataFromUser) {
         Task created = this.taskService.create(dataFromUser);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
+    // DELETE A TASK
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id)
-            throws io.carrie.todos.common.exceptions.NotFoundException {
+            throws NotFoundException {
         boolean deleted = this.taskService.deleteById(id);
-        if (deleted) {
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        if (!deleted) {
+            throw new NotFoundException("Task", id);
         }
-        throw new io.carrie.todos.common.exceptions.NotFoundException("Book with id " + id + " does not exist");
+        return new ResponseEntity<>("Task deleted", HttpStatus.NO_CONTENT);
     }
 
-    // FIXME - fix in Service layer: does not properly remove previous categories
-    // List when updating
+    // EDIT A TASK
+    // FIXME - fix in Service layer: does not first remove previous categories
     @PutMapping("/{id}")
     public ResponseEntity<Task> updateById(@PathVariable Long id,
-            @Valid @RequestBody UpdateTaskDTO dataFromUser) throws io.carrie.todos.common.exceptions.NotFoundException {
+            @Valid @RequestBody UpdateTaskDTO dataFromUser) throws NotFoundException {
         Optional<Task> updated = this.taskService.updateById(id, dataFromUser);
-        if (updated.isPresent()) {
-            return new ResponseEntity<>(updated.get(), HttpStatus.OK);
+        if (updated.isEmpty()) {
+            throw new NotFoundException("Task", id);
         }
-        throw new io.carrie.todos.common.exceptions.NotFoundException("Task with id " + id + " does not exist");
+        return new ResponseEntity<>(updated.get(), HttpStatus.OK);
     }
 }

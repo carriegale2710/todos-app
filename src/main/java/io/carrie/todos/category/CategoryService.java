@@ -26,24 +26,26 @@ public class CategoryService {
         this.modelMapper = modelMapper;
     }
 
-    // return all categories in list
+    // FIND BY CATEGORY ID: find a specific category - use this in other methods
+    // too!
+    public Optional<Category> findById(Long id) {
+        Optional<Category> foundCategory = this.categoryRepository.findById(id)
+        return foundCategory;
+    }
+
+    // FIND ALL - return all categories in list
     public List<Category> findAll() {
         return this.categoryRepository.findAll();
     }
 
-    // turns categoryDTO into a new Category object
+    // CREATE - turns categoryDTO into a new Category object
     public Category create(CreateCategoryDTO dataFromUser) {
         Category newCategory = modelMapper.map(dataFromUser, Category.class);
         Category savedCategory = this.categoryRepository.save(newCategory);
-        return savedCategory; // user feedback
+        return savedCategory; // NOTE user feedback - sent back to user to confirm details
     }
 
-    // find a specific category
-    public Optional<Category> findById(Long id) {
-        return this.categoryRepository.findById(id);
-    }
-
-    // update a specific category
+    // UPDATE a specific category
     public Optional<Category> updateById(Long id, UpdateCategoryDTO dataFromUser) {
         Optional<Category> searched = this.findById(id);
 
@@ -58,7 +60,7 @@ public class CategoryService {
         return Optional.of(foundCategory);
     }
 
-    // delete a specific category
+    // DELETE a specific category
     public boolean deleteById(Long id) {
         Optional<Category> searched = this.findById(id);
         if (searched.isPresent()) {
@@ -67,5 +69,7 @@ public class CategoryService {
             return true; // successfully deleted
         }
         return false; // not deleted (category not found)
+        // NOTE - used a boolean as better for user feedback
+        // TODO - should add some front end logic to confirm a deletion
     }
 }

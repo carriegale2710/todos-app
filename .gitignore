@@ -39,4 +39,7 @@ frontend.md
 backend.md
 presentation.md
 axios.md
+
+/presentation/
+
 .gitignore

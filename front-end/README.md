@@ -1,10 +1,76 @@
-# Todos App UI
+# Todos App - Frontend UI
 
-- React + Typescript
+- This Todos App front end UI was made with React (Vite) + Typescript.
 
-## 📋 Project Scope
+---
 
-Task: Create an application in React that allows you to track, add, and delete tasks as well as manage categories of tasks.
+## 🚀 Getting Started: Frontend React App UI
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+ recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- The backend Spring Boot API running (see backend README for setup)
+
+### 1. Clone the Repository
+
+```sh
+git clone https://github.com/carriegale2710/todos-app.git
+cd todos-app/front-end
+```
+
+### 2. Install Dependencies
+
+```sh
+npm install
+# or
+yarn install
+```
+
+### 3. Configure API Endpoint (if needed)
+
+- By default, the frontend expects the backend API at `http://localhost:8080`.
+- If your backend runs on a different port or host, update the API URLs in your frontend code (usually in a `services` or `config` file).
+
+### 4. Run the Frontend App
+
+```sh
+npm start
+# or
+yarn start
+```
+
+- The app will open at [http://localhost:3000](http://localhost:3000) by default.
+
+### 5. Using the App
+
+- Make sure your backend API is running and accessible.
+- You can now add, edit, delete, and filter tasks and categories through the UI.
+- Use [Postman](https://www.postman.com/) or your browser’s dev tools to inspect API requests and responses.
+
+---
+
+**Troubleshooting:**
+
+- If you see errors about failing to fetch data, ensure the backend API is running and CORS is configured if accessing from a different host/port.
+- For port conflicts, change the frontend port in `package.json` or with the `PORT` environment variable.
+
+---
+
+Congrats!
+You can no develop and test the React frontend with your Spring Boot backend :D
+
+---
+
+---
+
+# PROJECT DOCUMENTATION
+
+---
+
+## 📋 Project Scope - React UI MVP
+
+MVP: Create an application in React that allows you to track, add, and delete tasks as well as manage categories of tasks.
 
 ### Front-end Features
 
@@ -50,9 +116,9 @@ Techstack: React + TypeScript
 App.tsx              → main layout + data
 CategoryForm.tsx     → add category
 CategoryList.tsx     → show categories
-TodoForm.tsx         → add task
-TodoList.tsx         → render tasks
-TodoItem.tsx         → edit, duplicate, delete task
+TaskForm.tsx         → add task
+TaskList.tsx         → render tasks
+TaskItem.tsx         → edit, duplicate, delete task
 (Optional) CategoryFilter.tsx
 (Optional) SummaryBar.tsx
 ```
@@ -65,9 +131,9 @@ TodoItem.tsx         → edit, duplicate, delete task
 
 ### Tasks
 
-- `TodoForm`: Add task (name + category dropdown)
-- `TodoList`: Displays tasks (supports filtering)
-- `TodoItem`:
+- `TaskForm`: Add task (name + category dropdown)
+- `TaskList`: Displays tasks (supports filtering)
+- `TaskItem`:
 
   - Editable name & category
   - Complete checkbox
