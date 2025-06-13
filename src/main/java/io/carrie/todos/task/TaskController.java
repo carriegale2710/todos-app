@@ -42,16 +42,16 @@ public class TaskController {
 
     // SECTION - FETCHING DATA FROM DATABASE
 
-    // GET ALL TASKS IN DB
+    // NOTE GET ALL TASKS IN DB
     @GetMapping
-    public ResponseEntity<List<Task>> find() {
+    public ResponseEntity<List<Task>> findAll() {
         List<Task> allTasks = this.taskService.findAll();
         return new ResponseEntity<>(allTasks, HttpStatus.OK);
     }
 
-    // GET TASK BY ID
+    // NOTE GET TASK BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<String> findById(@PathVariable Long id)
+    public ResponseEntity<String> findTaskById(@PathVariable Long id)
             throws NotFoundException {
         Optional<Task> foundTask = this.taskService.findById(id);
         System.out.println(foundTask.toString());
@@ -61,28 +61,42 @@ public class TaskController {
         return new ResponseEntity<>("Task found", HttpStatus.NO_CONTENT);
     }
 
-    // FILTER TASKS BY CATEGORY
-    @GetMapping("?category={categoryName}")
-    public ResponseEntity<List<Task>> filter(@RequestParam(required = false) String categoryName) {
-        List<Task> tasks;
-        if (categoryName != null) {
-            tasks = taskService.findByCategory(categoryName);
-        } else {
-            tasks = taskService.findAll();
+    // NOTE FILTER TASKS BY CATEGORY
+    // @GetMapping("?category={categoryName}")
+    // public ResponseEntity<List<Task>> findbyCategory(
+    // @RequestParam(required = false, name = "category") String categoryName) {
+    // List<Task> tasks;
+    // if (categoryName != null) {
+    // tasks = taskService.findByCategory(categoryName);
+    // System.out.println("Tasks filtered by category: " + tasks);
+    // return new ResponseEntity<>(tasks, HttpStatus.OK);
+    // }
+    // return new ResponseEntity<>(List.of(), HttpStatus.BAD_REQUEST);
+
+    // }
+
+    @GetMapping("/categories/{id}")
+    public ResponseEntity<List<Task>> findAllTasksbyCategoryIs(@PathVariable Long id) {
+        List<Task> allTasks = this.taskService.findAll();
+        if (allTasks != null) {
+            List<Task> filteredTasks = taskService.findByCategory(id);
+            System.out.println("Tasks filtered by category: " + filteredTasks);
+            return new ResponseEntity<>(filteredTasks, HttpStatus.OK);
         }
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+        return new ResponseEntity<>(List.of(), HttpStatus.BAD_REQUEST);
+
     }
 
     // SECTION - EDITING THE DATABASE
 
-    // ADD NEW TASK
+    // NOTE ADD NEW TASK
     @PostMapping
     public ResponseEntity<Task> create(@Valid @RequestBody CreateTaskDTO dataFromUser) {
         Task created = this.taskService.create(dataFromUser);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
-    // DELETE A TASK
+    // NOTE DELETE A TASK
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteById(@PathVariable Long id)
             throws NotFoundException {
@@ -93,10 +107,10 @@ public class TaskController {
         return new ResponseEntity<>("Task deleted", HttpStatus.NO_CONTENT);
     }
 
-    // EDIT A TASK
+    // NOTE UPDATE A TASK
     // FIXME - fix in Service layer: does not first remove previous categories
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateById(@PathVariable Long id,
+    public ResponseEntity<Task> updateById(/* @Valid */ @PathVariable Long id,
             @Valid @RequestBody UpdateTaskDTO dataFromUser) throws NotFoundException {
         Optional<Task> updated = this.taskService.updateById(id, dataFromUser);
         if (updated.isEmpty()) {

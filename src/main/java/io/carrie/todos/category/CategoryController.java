@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.carrie.todos.common.exceptions.NotFoundException;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,21 +51,21 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateById(@PathVariable Long id,
             @Valid @RequestBody UpdateCategoryDTO dataFromUser)
-            throws io.carrie.todos.common.exceptions.NotFoundException {
+            throws NotFoundException {
         Optional<Category> updated = this.categoryService.updateById(id, dataFromUser);
         if (updated.isPresent()) {
             return new ResponseEntity<>(updated.get(), HttpStatus.OK);
         }
-        throw new io.carrie.todos.common.exceptions.NotFoundException("Category with id " + id + " does not exist");
+        throw new NotFoundException("Category", id);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id)
-            throws io.carrie.todos.common.exceptions.NotFoundException {
+            throws NotFoundException {
         boolean deleted = this.categoryService.deleteById(id);
         if (deleted) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
-        throw new io.carrie.todos.common.exceptions.NotFoundException("Category with id " + id + " does not exist");
+        throw new NotFoundException("Category", id);
     }
 }

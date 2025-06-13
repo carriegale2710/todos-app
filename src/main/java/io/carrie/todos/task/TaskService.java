@@ -48,9 +48,9 @@ public class TaskService {
 
     // NOTE - FILTER TASKS LIST BY CATEGORY NAME `GET /tasks?category={}`
     public List<Task> findByCategory(String categoryName) {
-        List<Task> filteredTasks = this.taskRepository.findByCategories_Name(categoryName);
-        return filteredTasks;
-        // query parameters -> filter the list by matching `name` property //FIXME
+        return this.taskRepository.findByCategories_Name(categoryName);
+        // query parameters -> filter the list by matching `name` property
+        // FIXME - filters list of tasks with specific category name
     }
 
     // SECTION - EDITING DB
@@ -92,7 +92,7 @@ public class TaskService {
 
         if (searched.isPresent()) {
             Task found = searched.get();
-            this.taskRepository.;
+            this.taskRepository.delete(found);
             return true; // successfully deleted
         }
         return false; // not deleted (Task not found)
