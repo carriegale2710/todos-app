@@ -16,6 +16,10 @@ const TaskCard = ({ task }: TaskCardProps) => {
         {/* {task.dueDate.getDate()}/{task.dueDate.getMonth()}/{task.dueDate.getFullYear()} */}
       </p>
       <p>Completed: {task.isCompleted}</p>
+      <p>
+        Categories:{" "}
+        {task.categories.map((category) => category.name.toUpperCase())}
+      </p>
     </div>
   );
 };
