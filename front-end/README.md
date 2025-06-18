@@ -57,8 +57,7 @@ yarn start
 
 ---
 
-Congrats!
-You can no develop and test the React frontend with your Spring Boot backend :D
+You can now develop and test the React frontend with the Spring Boot backend :D
 
 ---
 
@@ -76,7 +75,7 @@ MVP: Create an application in React that allows you to track, add, and delete ta
 
 This is just a summary of what the frontend should be doing:
 
-![Todos UI Example](assets/todo_UI_req.png)
+![Todos UI Example](mockups/todo_UI_req.png)
 
 #### MVP
 
@@ -150,7 +149,18 @@ TaskItem.tsx         → edit, duplicate, delete task
 
 ### UI MoodBoard
 
-![collage of UI app images](assets/todo_UI_moodboard.png)
+![collage of UI app images](mockups/todo_UI_moodboard.png)
+
+### Mockups
+
+CRUD Diagram:
+![CRUD](mockups/CRUD.png)
+
+TaskCard Component:
+![Task Card Component mockup](mockups/TaskCard_UI_mockup.png)
+
+User Flow:
+![User Flow](mockups/user_flow.png)
 
 ## 🧠 BONUS IDEAS
 
