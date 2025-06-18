@@ -9,8 +9,7 @@ function App() {
       <h1>Todos App</h1>
       <BrowserRouter>
         <Routes>
-          <Route path="/tasks" element={<TasksPage />} />
-          <Route path="/tasks/:id" element={<TaskPage />} />
+          <Route path="/" element={<TasksPage />} />
         </Routes>
       </BrowserRouter>
     </>

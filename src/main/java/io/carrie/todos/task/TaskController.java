@@ -75,17 +75,18 @@ public class TaskController {
 
     // }
 
-    @GetMapping("/categories/{id}")
-    public ResponseEntity<List<Task>> findAllTasksbyCategoryIs(@PathVariable Long id) {
-        List<Task> allTasks = this.taskService.findAll();
-        if (allTasks != null) {
-            List<Task> filteredTasks = taskService.findByCategory(id);
-            System.out.println("Tasks filtered by category: " + filteredTasks);
-            return new ResponseEntity<>(filteredTasks, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(List.of(), HttpStatus.BAD_REQUEST);
+    // @GetMapping("/categories/{id}")
+    // public ResponseEntity<List<Task>> findAllTasksbyCategoryIs(@PathVariable Long
+    // id) {
+    // List<Task> allTasks = this.taskService.findAll();
+    // if (allTasks != null) {
+    // List<Task> filteredTasks = taskService.findByCategory(id);
+    // System.out.println("Tasks filtered by category: " + filteredTasks);
+    // return new ResponseEntity<>(filteredTasks, HttpStatus.OK);
+    // }
+    // return new ResponseEntity<>(List.of(), HttpStatus.BAD_REQUEST);
 
-    }
+    // }
 
     // SECTION - EDITING THE DATABASE
 
