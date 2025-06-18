@@ -115,6 +115,8 @@ MVP: Create an API to be integrated with your [todos-ui](frontend/README.md) pro
 
 ---
 
+![CRUD](assets/CRUD.png)
+
 #### Tasks Endpoints:
 
     - [x] `GET /tasks`

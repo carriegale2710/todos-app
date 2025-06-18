@@ -153,9 +153,6 @@ TaskItem.tsx         → edit, duplicate, delete task
 
 ### Mockups
 
-CRUD Diagram:
-![CRUD](mockups/CRUD.png)
-
 TaskCard Component:
 ![Task Card Component mockup](mockups/TaskCard_UI_mockup.png)
 
