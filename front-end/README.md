@@ -156,6 +156,9 @@ TaskItem.tsx         → edit, duplicate, delete task
 TaskCard Component:
 ![Task Card Component mockup](mockups/TaskCard_UI_mockup.png)
 
+Smaller Components:
+![delete button, category select dropdown, checkbox and task label, duplicate task button](mockups/smaller-components.png)
+
 User Flow:
 ![User Flow](mockups/user_flow.png)
 
