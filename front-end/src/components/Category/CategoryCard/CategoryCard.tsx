@@ -1,4 +1,4 @@
-import type { Category } from "../../services/tasks";
+import type { Category } from "../../../services/tasks";
 
 interface CategoryCardProps {
   category: Category;

@@ -1,9 +1,7 @@
-const Button = () => {
-  return (
-    <div>
-      <p>Button</p>
-    </div>
-  );
+import classes from "./Button.module.scss";
+
+const Button = ({ children }) => {
+  return <button className={classes.btn}>{children}</button>;
 };
 
 export default Button;

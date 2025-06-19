@@ -1,5 +1,7 @@
 .container {
-  border: 1px solid red;
+  // border: 1px solid red;
+  border-radius: 0.5em;
+  background-color: rgba(151, 151, 151, 0.149);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -7,6 +9,11 @@
   padding: 1em;
   gap: 1em;
   margin: 1em;
+  max-width: 600px;
+  justify-self: center;
+  &_row {
+    flex-direction: row;
+  }
 }
 
 .taskData {
