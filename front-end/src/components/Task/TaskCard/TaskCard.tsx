@@ -9,6 +9,7 @@ interface TaskCardProps {
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const handleDelete = () => {
+    console.log("deleted button clicked");
     task.isArchived = false; //call backend - update this boolean
   };
   return (

@@ -7,4 +7,10 @@
   font-size: 16px;
   border-radius: 0.5em;
   margin: 1em;
+  &:hover {
+    // transform: scale(1.1); //10% larger
+    // transition: transform 0.2s;
+    background-color: black;
+    color: aliceblue;
+  }
 }

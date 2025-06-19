@@ -1,15 +1,15 @@
 import classes from "./Header.module.scss";
 
 interface HeaderProps {
-  homeHeading: string;
+  heading: string;
   userName?: string; // optional
 }
 
-const Header = ({ homeHeading, userName }: HeaderProps) => {
+const Header = ({ heading, userName }: HeaderProps) => {
   return (
     <section>
       <h1>
-        {homeHeading} {userName}!
+        {heading} {userName}!
       </h1>
       <div className={classes.divider}></div>
     </section>

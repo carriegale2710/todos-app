@@ -8,7 +8,7 @@ const TaskList = () => {
 
   return (
     <section>
-      <Header homeHeading="Today's Tasks" />
+      <Header heading="Today's Tasks" />
       {!taskList || taskList.length == 0 ? (
         <p>Values for TaskList are not found</p>
       ) : (

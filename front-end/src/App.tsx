@@ -7,11 +7,11 @@ import Header from "./components/Header/Header";
 
 function App() {
   const userName = "Carrie";
-  const homeHeading = "Adventure Awaits";
+  const homeScreenHeading = "Adventure Awaits";
   return (
     <>
       <BrowserRouter>
-        <Header homeHeading={homeHeading} userName={userName} />
+        <Header heading={homeScreenHeading} userName={userName} />
         <TaskListContextProvider>
           <CategoryListContextProvider>
             <Routes>

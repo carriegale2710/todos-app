@@ -168,18 +168,20 @@ User Flow:
 
 ### Daily Quotes API Bonus Feature
 
-- [ ] Use this free [Zenquotes API](https://zenquotes.io/) to show a random quote when you open the app:
+- [ ] Use this free [Zenquotes API](https://zenquotes.io/) to show a random quote when you open the app: [Guide](https://docs.zenquotes.io/zenquotes-documentation/)
 
-## REFERENCES
+## REFERENCES & RESOURCES
 
 ---
-
-### Daily Quotes API Bonus Feature
-
-- https://zenquotes.io/
-- https://docs.zenquotes.io/zenquotes-documentation/
 
 ### Typography & Fonts
 
 - [Google Fonts API](https://developers.google.com/fonts/docs/css2)
 - [Using Variables Fonts on Web](https://fonts.google.com/knowledge/using_type/loading_variable_fonts_on_the_web)
+
+### Icons
+
+- [Google Material Symbols & Icons](https://fonts.google.com/icons)
+- [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons)
+
+- [Ditto Icon](https://www.flaticon.com/free-icon/avatar_1752681?term=pokemon&page=1&position=1&origin=tag&related_id=1752681)
