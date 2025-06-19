@@ -1,5 +1,8 @@
 package io.carrie.todos.config;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.CommandLineRunner;
@@ -33,24 +36,31 @@ public class DataSeeder implements CommandLineRunner {
         System.out.println("tasks:" + taskRepository.count());
         System.out.println("categories:" + categoryRepository.count());
 
+        if (categoryRepository.count() == 0) {
+            for (int i = 0; i < 3; i++) {
+                Category newCategory = new Category();
+                newCategory.setName(faker.pokemon().name()); // taskname
+                this.categoryRepository.save(newCategory);
+            }
+        }
+
         if (taskRepository.count() == 0) {
-            for (int i = 0; i < 20; i++) {
+            for (int i = 0; i < 10; i++) {
                 Task newTask = new Task();
                 newTask.setName(faker.lorem().sentence(3)); // taskname
                 newTask.setIsCompleted(faker.bool().bool()); // random bool
                 newTask.setIsArchived(faker.bool().bool());
                 newTask.setDueDate(faker.date().future(20, TimeUnit.DAYS));
+                List<Category> categoryList = new ArrayList<>();
+                Optional<Category> category = categoryRepository.findById(faker.number().numberBetween(1L, 3L));
+                if (category.isPresent()) {
+                    categoryList.add(category.get());
+                }
+                newTask.setCategories(categoryList);
                 this.taskRepository.save(newTask);
             }
         }
 
-        if (categoryRepository.count() == 0) {
-            for (int i = 0; i < 20; i++) {
-                Category newCategory = new Category();
-                newCategory.setName(faker.food().fruit()); // taskname
-                this.categoryRepository.save(newCategory);
-            }
-        }
     }
 
 }
