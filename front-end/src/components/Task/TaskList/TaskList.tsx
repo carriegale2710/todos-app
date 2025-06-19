@@ -1,5 +1,6 @@
 import { useTaskListContext } from "../../../context/TaskListContextProvider";
 import type { Task } from "../../../services/tasks";
+import Header from "../../Header/Header";
 import TaskCard from "../TaskCard/TaskCard";
 
 const TaskList = () => {
@@ -7,7 +8,7 @@ const TaskList = () => {
 
   return (
     <section>
-      <h2>Today's Tasks</h2>
+      <Header homeHeading="Today's Tasks" />
       {!taskList || taskList.length == 0 ? (
         <p>Values for TaskList are not found</p>
       ) : (

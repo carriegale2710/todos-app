@@ -1,7 +1,6 @@
 import type { Task } from "../../../services/tasks";
 import Button from "../../Button/Button";
 import CategoryCard from "../../Category/CategoryCard/CategoryCard";
-import CategoryList from "../../Category/CategoryList/CategoryList";
 import classes from "./TaskCard.module.scss";
 
 interface TaskCardProps {
