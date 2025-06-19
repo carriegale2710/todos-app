@@ -1,11 +1,13 @@
 const apiKey = import.meta.env.VITE_API_KEY;
 
 export interface Quote {
-  fact: String;
+  quote: String;
+  author: String;
+  category: String;
 }
 
 export const getOneQuote = async (): Promise<Quote[]> => {
-  const response = await fetch("https://api.api-ninjas.com/v1/facts", {
+  const response = await fetch("https://api.api-ninjas.com/v1/quotes", {
     method: "GET", // or 'POST', etc.
     headers: {
       "X-Api-Key": apiKey, // or use another header name if required
