@@ -1,6 +1,7 @@
 import type { Task } from "../../../services/tasks";
 import Button from "../../Button/Button";
 import CategoryCard from "../../Category/CategoryCard/CategoryCard";
+import CategoryList from "../../Category/CategoryList/CategoryList";
 import classes from "./TaskCard.module.scss";
 
 interface TaskCardProps {
@@ -18,12 +19,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
           Due on {task.dueDate.toString().slice(0, 10).split("-").join("/")}
         </p>
         <p>Completed: {task.isCompleted.toString()}</p>
-        <span className={classes.categories}>
-          <p>Categories:</p>
-          {task.categories.map((category) => (
-            <CategoryCard category={category} key={category.id} />
-          ))}
-        </span>
+        <CategoryList categoryList={task.categories} />
       </div>
       <div className={classes.container_row}>
         <Button>Delete</Button>

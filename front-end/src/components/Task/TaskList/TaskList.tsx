@@ -1,5 +1,5 @@
-import type { Task } from "../../../../services/tasks";
-import TaskCard from "../TaskCard";
+import type { Task } from "../../../services/tasks";
+import TaskCard from "../TaskCard/TaskCard";
 
 const TaskList = ({ tasks }: { tasks: Task[] }) => {
   return (

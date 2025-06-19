@@ -1,4 +1,5 @@
 import type { Category } from "../../../services/tasks";
+import classes from "./CategoryCard.module.scss";
 
 interface CategoryCardProps {
   category: Category;
@@ -6,7 +7,7 @@ interface CategoryCardProps {
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
-    <div>
+    <div className={classes.div}>
       <p>{category.name}</p>
     </div>
   );

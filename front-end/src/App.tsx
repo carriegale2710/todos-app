@@ -1,6 +1,6 @@
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router";
-import TasksPage from "./pages/TasksPage";
+import TasksPage from "./pages/TasksPage/TasksPage";
 
 function App() {
   return (
