@@ -1,26 +1,29 @@
-import { Link } from "react-router-dom";
 import type { Task } from "../../services/tasks";
+import CategoryCard from "../CategoryCard/CategoryCard";
+import classes from "./TaskCard.module.scss";
 
 interface TaskCardProps {
   task: Task;
 }
+//TODO - display as date only
 
 const TaskCard = ({ task }: TaskCardProps) => {
   return (
-    <div>
-      <Link to={`/tasks/${task.id}`}>
-        <h2>{task.name}</h2>
-      </Link>
-      <p>
-        Due on {task.dueDate.toString()},
-        {/* {task.dueDate.getDate()}/{task.dueDate.getMonth()}/{task.dueDate.getFullYear()} */}
-      </p>
-      <p>Completed: {task.isCompleted}</p>
-      <p>
-        Categories:{" "}
-        {task.categories.map((category) => category.name.toUpperCase())}
-      </p>
-    </div>
+    <section className={classes.container}>
+      <h3>{task.name}</h3>
+      <div className={classes.taskData}>
+        <p>
+          Due on {task.dueDate.toString().slice(0, 10).split("-").join("/")}
+        </p>
+        <p>Completed: {task.isCompleted.toString()}</p>
+        <div className={classes.categories}>
+          <p>Categories:</p>
+          {task.categories.map((category) => (
+            <CategoryCard category={category} key={category.id} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

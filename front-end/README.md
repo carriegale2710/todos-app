@@ -168,11 +168,18 @@ User Flow:
 
 ### Daily Quotes API Bonus Feature
 
-- [ ] Use this free API to show a random quote when you open the app:
-
-- https://zenquotes.io/
-- https://docs.zenquotes.io/zenquotes-documentation/
+- [ ] Use this free [Zenquotes API](https://zenquotes.io/) to show a random quote when you open the app:
 
 ## REFERENCES
 
 ---
+
+### Daily Quotes API Bonus Feature
+
+- https://zenquotes.io/
+- https://docs.zenquotes.io/zenquotes-documentation/
+
+### Typography & Fonts
+
+- [Google Fonts API](https://developers.google.com/fonts/docs/css2)
+- [Using Variables Fonts on Web](https://fonts.google.com/knowledge/using_type/loading_variable_fonts_on_the_web)

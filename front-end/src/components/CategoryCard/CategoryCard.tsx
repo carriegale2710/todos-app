@@ -1,13 +1,13 @@
 import type { Category } from "../../services/tasks";
 
 interface CategoryCardProps {
-  Category: Category;
+  category: Category;
 }
 
-const CategoryCard = ({ Category }: CategoryCardProps) => {
+const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
     <div>
-      <h2>{Category.name}</h2>
+      <p>{category.name}</p>
     </div>
   );
 };
