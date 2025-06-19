@@ -9,7 +9,7 @@ interface TaskCardProps {
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const handleDelete = () => {
-    task.isArchived = false;
+    task.isArchived = false; //call backend - update this boolean
   };
   return (
     <section className={classes.container}>

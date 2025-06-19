@@ -36,7 +36,7 @@ const TasksPage = () => {
       <p>Tasks: {taskList.length}</p>
       <p>Categories: {categories.length}</p>
       <CategoryList categoryList={categories} />
-      <TaskList tasks={taskList} />
+      <TaskList />
     </section>
   );
 };

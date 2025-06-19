@@ -3,6 +3,7 @@ package io.carrie.todos.config;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.boot.CommandLineRunner;
@@ -24,22 +25,31 @@ public class DataSeeder implements CommandLineRunner {
     private final TaskRepository taskRepository;
     private final CategoryRepository categoryRepository;
     private final Faker faker = new Faker();
+    private final Random random = new Random();
 
     DataSeeder(TaskRepository taskRepository, CategoryRepository categoryRepository) {
         this.taskRepository = taskRepository;
         this.categoryRepository = categoryRepository;
     }
 
+    private static final String[] pokemonTypes = {
+            "Fire", "Water", "Grass", "Electric", "Psychic",
+            "Fairy", "Ghost", "Dragon", "Steel", "Dark",
+            "Fighting", "Flying"
+    };
+
+    private static final String[] pokemonTasks = {
+            "Catch Pikachu", "Battle Gym Leader", "Hatch Egg",
+            "Find Rare Candy", "Complete Pokedex Entry",
+            "Train Charmander", "Evolve Eevee", "Explore Safari Zone"
+    };
+
     @Override
     public void run(String... args) throws Exception {
-        // check number of tasks in your db
-        System.out.println("tasks:" + taskRepository.count());
-        System.out.println("categories:" + categoryRepository.count());
-
         if (categoryRepository.count() == 0) {
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 5; i++) {
                 Category newCategory = new Category();
-                newCategory.setName(faker.pokemon().name()); // taskname
+                newCategory.setName(pokemonTypes[random.nextInt(pokemonTypes.length)]); // taskname
                 this.categoryRepository.save(newCategory);
             }
         }
@@ -47,12 +57,12 @@ public class DataSeeder implements CommandLineRunner {
         if (taskRepository.count() == 0) {
             for (int i = 0; i < 10; i++) {
                 Task newTask = new Task();
-                newTask.setName(faker.lorem().sentence(3)); // taskname
+                newTask.setName(pokemonTasks[random.nextInt(pokemonTasks.length)]); // taskname
                 newTask.setIsCompleted(faker.bool().bool()); // random bool
                 newTask.setIsArchived(faker.bool().bool());
                 newTask.setDueDate(faker.date().future(20, TimeUnit.DAYS));
                 List<Category> categoryList = new ArrayList<>();
-                Optional<Category> category = categoryRepository.findById(faker.number().numberBetween(1L, 3L));
+                Optional<Category> category = categoryRepository.findById(faker.number().numberBetween(1L, 5L));
                 if (category.isPresent()) {
                     categoryList.add(category.get());
                 }
@@ -61,6 +71,9 @@ public class DataSeeder implements CommandLineRunner {
             }
         }
 
+        // check number of tasks in your db
+        System.out.println("tasks:" + taskRepository.count());
+        System.out.println("categories:" + categoryRepository.count());
     }
 
 }

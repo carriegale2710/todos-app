@@ -1,4 +1,9 @@
-import { useState, createContext, type PropsWithChildren } from "react";
+import {
+  useState,
+  createContext,
+  type PropsWithChildren,
+  useContext,
+} from "react";
 import type { Task } from "../services/tasks";
 
 interface TaskListContextType {
@@ -21,3 +26,13 @@ const TaskListContextProvider = ({ children }: PropsWithChildren) => {
 };
 
 export default TaskListContextProvider;
+
+export function useTaskListContext() {
+  const context = useContext(TaskListContext);
+  if (!context) {
+    throw new Error(
+      "useTaskListContext must be used within a TaskListContextProvider"
+    );
+  }
+  return context;
+}
