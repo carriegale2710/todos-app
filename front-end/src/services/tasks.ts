@@ -1,7 +1,4 @@
-export interface Category {
-  id: number;
-  name: string;
-}
+import type { Category } from "./categories";
 
 export interface Task {
   id: number;

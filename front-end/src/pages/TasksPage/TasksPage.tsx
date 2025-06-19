@@ -1,17 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { getAllTasks, type Task } from "../../services/tasks";
-import { type Category } from "../../services/tasks";
+import { getAllCategories, type Category } from "../../services/categories";
 import TaskList from "../../components/Task/TaskList/TaskList";
-import { getAllCategories } from "../../services/categories";
 import CategoryList from "../../components/Category/CategoryList/CategoryList";
-import classes from "./TasksPage.module.scss";
 import { TaskListContext } from "../../context/TaskListContextProvider";
+import { CategoryListContext } from "../../context/CategoryListContextProvider";
+import classes from "./TasksPage.module.scss";
 
 const TasksPage = () => {
-  // const [tasks, setTasks] = useState<Task[]>([]);
   const { taskList, setTaskList } = useContext(TaskListContext);
-
-  const [categories, setCategories] = useState<Category[]>([]);
+  const { categoryList, setCategoryList } = useContext(CategoryListContext);
 
   useEffect(() => {
     getAllTasks()
@@ -26,7 +24,7 @@ const TasksPage = () => {
     getAllCategories()
       .then((result) => {
         console.log(result, "All Categories from API: ");
-        setCategories(result);
+        setCategoryList(result);
       })
       .catch(console.warn);
   }, []);
@@ -34,8 +32,8 @@ const TasksPage = () => {
   return (
     <section className={classes.page}>
       <p>Tasks: {taskList.length}</p>
-      <p>Categories: {categories.length}</p>
-      <CategoryList categoryList={categories} />
+      <p>Categories: {categoryList.length}</p>
+      <CategoryList />
       <TaskList />
     </section>
   );
