@@ -6,11 +6,10 @@ import classes from "./TaskCard.module.scss";
 interface TaskCardProps {
   task: Task;
 }
-//TODO - display as date only
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const handleDelete = () => {
-    task.
+    task.isArchived = false;
   };
   return (
     <section className={classes.container}>
@@ -23,7 +22,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
         <CategoryList categoryList={task.categories} />
       </div>
       <div className={classes.container_row}>
-        <Button>Delete</Button>
+        <Button onClick={() => handleDelete}>Delete</Button>
         <Button>Duplicate</Button>
       </div>
     </section>

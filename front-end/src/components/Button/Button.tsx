@@ -1,7 +1,14 @@
 import classes from "./Button.module.scss";
 
-const Button = ({ children }) => {
-  return <button className={classes.btn}>{children}</button>;
-};
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => (
+  <button className={classes.btn} onClick={onClick}>
+    {children}
+  </button>
+);
 
 export default Button;
