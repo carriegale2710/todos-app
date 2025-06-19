@@ -5,14 +5,18 @@ export interface Category {
 
 export const getAllCategories = async (): Promise<Category[]> => {
   const response = await fetch("http://localhost:8080/categories");
-  const Categories = await response.json();
-  return Categories;
+  if (!response.ok) {
+    throw new Error("Could not fetch categories");
+  }
+  const categories = await response.json();
+  return categories;
 };
 
 export const getCategoryById = async (id: string): Promise<Category> => {
   const response = await fetch("http://localhost:8080/categories/" + id);
   if (!response.ok) {
-    throw new Error("Could not fetch data");
+    throw new Error("Could not fetch category with id " + id);
   }
-  return await response.json();
+  const category = await response.json();
+  return category;
 };

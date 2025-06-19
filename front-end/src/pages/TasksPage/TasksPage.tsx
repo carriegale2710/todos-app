@@ -14,7 +14,7 @@ const TasksPage = () => {
   useEffect(() => {
     getAllTasks()
       .then((result) => {
-        console.log(result, "All tasks from API: ");
+        console.log("All tasks from API: ", result);
         setTaskList(result);
       })
       .catch(console.warn);
@@ -23,7 +23,7 @@ const TasksPage = () => {
   useEffect(() => {
     getAllCategories()
       .then((result) => {
-        console.log(result, "All Categories from API: ");
+        console.log("All Categories from API: ", result);
         setCategoryList(result);
       })
       .catch(console.warn);

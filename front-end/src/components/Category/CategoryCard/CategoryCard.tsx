@@ -1,4 +1,4 @@
-import type { Category } from "../../../services/tasks";
+import type { Category } from "../../../services/categories";
 import classes from "./CategoryCard.module.scss";
 
 interface CategoryCardProps {
