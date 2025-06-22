@@ -6,15 +6,23 @@ import { CategoryListContext } from "../../context/CategoryListContextProvider";
 import classes from "./TasksPage.module.scss";
 
 const TasksPage = () => {
-  const { taskList } = useContext(TaskListContext);
-  const { categoryList } = useContext(CategoryListContext);
+  // const { taskList } = useContext(TaskListContext);
+  const taskList = [];
+  // const { categoryList } = useContext(CategoryListContext);
+  const categoryList = [];
 
   return (
     <section className={classes.page}>
       <p>Tasks: {taskList.length}</p>
       <p>Categories: {categoryList.length}</p>
-      <CategoryList />
-      <TaskList />
+      {categoryList.length !== 0 && <CategoryList />}
+      {taskList.length !== 0 ? (
+        <TaskList />
+      ) : (
+        <div className={classes.message}>
+          <h3>You have no tasks yet! Add some :)</h3>
+        </div>
+      )}
     </section>
   );
 };
