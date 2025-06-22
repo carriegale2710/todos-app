@@ -2,21 +2,26 @@ import { useEffect, useState } from "react";
 import { getOneQuote, type Quote } from "../../services/quotes";
 
 const QuoteCard = () => {
-  const [quotes, setQuotes] = useState<Quote[]>([]);
+  const [quote, setQuote] = useState<Quote[]>([]);
 
   useEffect(() => {
     getOneQuote()
       .then((result) => {
+        if (!result || result.toString() == "") {
+          throw new Error("Fetched quote data is empty.");
+        }
         console.log("Random quotes: ", result);
-        setQuotes(result);
+        setQuote(result);
       })
       .catch(console.warn);
   }, []);
 
+  console.log(quote);
+
   return (
     <div>
-      <p>{quotes[0].quote}</p>
-      <p> - {quotes[0].author}</p>
+      <p>{quote[0].quote}</p>
+      <p> - {quote[0].author}</p>
     </div>
   );
 };

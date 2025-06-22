@@ -4,7 +4,7 @@ import TasksPage from "./pages/TasksPage/TasksPage";
 import TaskListContextProvider from "./context/TaskListContextProvider";
 import CategoryListContextProvider from "./context/CategoryListContextProvider";
 import Header from "./components/Header/Header";
-import QuoteCard from "./components/QuoteCard/QuoteCard";
+// import QuoteCard from "./components/QuoteCard/QuoteCard";
 
 function App() {
   const userName = "Carrie";
@@ -13,7 +13,7 @@ function App() {
     <>
       <BrowserRouter>
         <Header heading={homeScreenHeading} userName={userName} />
-        <QuoteCard />
+        {/* <QuoteCard /> //FIXME - not fetching properly */}
         <TaskListContextProvider>
           <CategoryListContextProvider>
             <Routes>

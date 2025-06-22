@@ -168,7 +168,7 @@ User Flow:
 
 ### Daily Quotes API Bonus Feature
 
-- [ ] Use this free [Zenquotes API](https://zenquotes.io/) to show a random quote when you open the app: [Guide](https://docs.zenquotes.io/zenquotes-documentation/)
+- [ ] Use a free API to show a random quote when you open the app: https://api-ninjas.com/api/quotes
 
 ## REFERENCES & RESOURCES
 

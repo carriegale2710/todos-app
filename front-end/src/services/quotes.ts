@@ -7,6 +7,12 @@ export interface Quote {
 }
 
 export const getOneQuote = async (): Promise<Quote[]> => {
+  console.log("HERE");
+  if (!apiKey) {
+    throw new Error(
+      "API key is missing. Please set VITE_API_KEY in your environment."
+    );
+  }
   const response = await fetch("https://api.api-ninjas.com/v1/quotes", {
     method: "GET", // or 'POST', etc.
     headers: {
@@ -14,10 +20,12 @@ export const getOneQuote = async (): Promise<Quote[]> => {
       "Content-Type": "application/json",
     },
   });
-  if (!response.ok || response == undefined) {
+  if (!response.ok) {
     throw new Error("Could not fetch quote from API");
   }
-  const quotes = await response.json();
-  console.log(quotes);
-  return quotes;
+  console.log("response: ", response);
+  const quote = await response.json();
+  console.log("fetched quote: ", quote);
+
+  return quote;
 };
