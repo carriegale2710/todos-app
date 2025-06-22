@@ -3,8 +3,9 @@ import {
   createContext,
   type PropsWithChildren,
   useContext,
+  useEffect,
 } from "react";
-import type { Category } from "../services/categories";
+import { getAllCategories, type Category } from "../services/categories";
 
 interface CategoryListContextType {
   categoryList: Category[];
@@ -18,6 +19,17 @@ export const CategoryListContext = createContext<CategoryListContextType>({
 
 const CategoryListContextProvider = ({ children }: PropsWithChildren) => {
   const [categoryList, setCategoryList] = useState<Category[]>([]);
+
+  useEffect(() => {
+    getAllCategories()
+      .then((result) => {
+        // console.log("All Categories from API: ", result);
+        setCategoryList(result);
+        console.log("categoryList updated");
+      })
+      .catch(console.warn);
+  }, []);
+
   return (
     <CategoryListContext.Provider value={{ categoryList, setCategoryList }}>
       {children}

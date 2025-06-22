@@ -3,8 +3,9 @@ import {
   createContext,
   type PropsWithChildren,
   useContext,
+  useEffect,
 } from "react";
-import type { Task } from "../services/tasks";
+import { getAllTasks, type Task } from "../services/tasks";
 
 interface TaskListContextType {
   taskList: Task[];
@@ -18,6 +19,17 @@ export const TaskListContext = createContext<TaskListContextType>({
 
 const TaskListContextProvider = ({ children }: PropsWithChildren) => {
   const [taskList, setTaskList] = useState<Task[]>([]);
+
+  useEffect(() => {
+    getAllTasks()
+      .then((result) => {
+        // console.log("All tasks from API: ", result);
+        setTaskList(result);
+        console.log("taskList updated");
+      })
+      .catch(console.warn);
+  }, []);
+
   return (
     <TaskListContext.Provider value={{ taskList, setTaskList }}>
       {children}

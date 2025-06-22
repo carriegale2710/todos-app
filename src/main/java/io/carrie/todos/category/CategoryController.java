@@ -36,18 +36,33 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    // NOTE GET FULL CATEGORY ARRAYLIST
     @GetMapping
     public ResponseEntity<List<Category>> getAll() {
         List<Category> allCategories = this.categoryService.findAll();
         return new ResponseEntity<>(allCategories, HttpStatus.OK);
     }
 
+    // NOTE GET AN EXISTING CATEGORY BY ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Category> findCategoryById(@PathVariable Long id)
+            throws NotFoundException {
+        Optional<Category> foundCategory = this.categoryService.findById(id);
+        System.out.println(foundCategory.toString());
+        if (foundCategory.isEmpty()) {
+            throw new NotFoundException("Category id not found: ", id);
+        }
+        return new ResponseEntity<>(foundCategory.get(), HttpStatus.OK);
+    }
+
+    // NOTE CREATE A NEW CATEGORY
     @PostMapping
     public ResponseEntity<Category> create(@Valid @RequestBody CreateCategoryDTO dataFromUser) {
         Category created = this.categoryService.create(dataFromUser);
         return new ResponseEntity<>(created, HttpStatus.CREATED);
     }
 
+    // NOTE UPDATE AN EXISTING CATEGORY
     @PutMapping("/{id}")
     public ResponseEntity<Category> updateById(@PathVariable Long id,
             @Valid @RequestBody UpdateCategoryDTO dataFromUser)
@@ -59,9 +74,10 @@ public class CategoryController {
         throw new NotFoundException("Category", id);
     }
 
+    // NOTE DELETE AN EXISTING CATEGORY
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id)
-            throws NotFoundException {
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) throws NotFoundException {
+        // FIXME - needs to soft delete (update isArchived ) note deleted permanently
         boolean deleted = this.categoryService.deleteById(id);
         if (deleted) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);

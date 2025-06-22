@@ -51,14 +51,14 @@ public class TaskController {
 
     // NOTE GET TASK BY ID
     @GetMapping("/{id}")
-    public ResponseEntity<String> findTaskById(@PathVariable Long id)
+    public ResponseEntity<Task> findTaskById(@PathVariable Long id)
             throws NotFoundException {
         Optional<Task> foundTask = this.taskService.findById(id);
         System.out.println(foundTask.toString());
         if (foundTask.isEmpty()) {
             throw new NotFoundException("Task", id);
         }
-        return new ResponseEntity<>("Task found", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(foundTask.get(), HttpStatus.OK);
     }
 
     // NOTE FILTER TASKS BY CATEGORY
@@ -105,7 +105,7 @@ public class TaskController {
         if (!deleted) {
             throw new NotFoundException("Task", id);
         }
-        return new ResponseEntity<>("Task deleted", HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>("Task deleted", HttpStatus.OK);
     }
 
     // NOTE UPDATE A TASK

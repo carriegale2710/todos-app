@@ -26,16 +26,16 @@ public class CategoryService {
         this.modelMapper = modelMapper;
     }
 
+    // FIND ALL - return all categories in list
+    public List<Category> findAll() {
+        return this.categoryRepository.findAll();
+    }
+
     // FIND BY CATEGORY ID: find a specific category - use this in other methods
     // too!
     public Optional<Category> findById(Long id) {
         Optional<Category> foundCategory = this.categoryRepository.findById(id);
         return foundCategory;
-    }
-
-    // FIND ALL - return all categories in list
-    public List<Category> findAll() {
-        return this.categoryRepository.findAll();
     }
 
     // CREATE - turns categoryDTO into a new Category object
