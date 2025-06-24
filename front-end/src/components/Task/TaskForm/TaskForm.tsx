@@ -3,8 +3,9 @@ import { useCategoryListContext } from "../../../context/CategoryListContextProv
 import Button from "../../Button/Button";
 import classes from "./TaskForm.module.scss";
 import { createNewTask, type NewTaskData } from "../../../services/tasks";
+import Header from "../../Header/Header";
 
-const TaskForm = () => {
+const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const { categoryList } = useCategoryListContext();
 
   const defaultTaskValues: NewTaskData = {
@@ -43,49 +44,57 @@ const TaskForm = () => {
   };
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit}>
-      <label htmlFor="nameInput">Task Name</label>
-      <input
-        type="text"
-        id="nameInput"
-        name="name"
-        placeholder="Task Name"
-        onChange={onInputChange}
-      />
-      <br />
+    <section className={classes.modal}>
+      <div className={classes.modal_content}>
+        <Header heading="Create New Task" />
 
-      <label htmlFor="dueDateInput">Due Date</label>
-      {/* //todo - use date picker library later on? */}
-      <input
-        type="date"
-        id="dueDateInput"
-        name="dueDate"
-        placeholder="DD-MM-YYYY"
-        onChange={onInputChange}
-      />
-      <br />
+        <form className={classes.form} onSubmit={handleSubmit}>
+          <label htmlFor="nameInput">Task Name</label>
+          <input
+            type="text"
+            id="nameInput"
+            name="name"
+            placeholder="Task Name"
+            onChange={onInputChange}
+          />
+          <br />
 
-      <label htmlFor="categorySelect">Category</label>
-      <select
-        id="categorySelect"
-        name="categories"
-        value={selectedCategory}
-        onChange={onSelectChange}
-      >
-        <option value={""} disabled selected>
-          Select
-        </option>
-        {categoryList.map((category) => (
-          <option key={category.id} value={category.name}>
-            {category.name}
-          </option>
-        ))}
-      </select>
-      <br />
+          <label htmlFor="dueDateInput">Due Date</label>
+          {/* //todo - use date picker library later on? */}
+          <input
+            type="date"
+            id="dueDateInput"
+            name="dueDate"
+            placeholder="DD-MM-YYYY"
+            onChange={onInputChange}
+          />
+          <br />
 
-      <Button type="submit">Create</Button>
-      {/* <Button>Cancel</Button> //todo - this should close the modal */}
-    </form>
+          <label htmlFor="categorySelect">Category</label>
+          <select
+            id="categorySelect"
+            name="categories"
+            value={selectedCategory}
+            onChange={onSelectChange}
+          >
+            <option value={""} disabled selected>
+              Select
+            </option>
+            {categoryList.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+          <br />
+
+          <Button type="submit">Create</Button>
+          <Button type="button" onClick={onClose}>
+            Cancel
+          </Button>
+        </form>
+      </div>
+    </section>
   );
 };
 
