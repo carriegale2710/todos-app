@@ -28,10 +28,12 @@ public class CreateTaskDTO {
     private List<String> categories;
 
     @NotEmpty
+    @NotBlank
     public String getName() {
         return name;
     }
 
+    // TODO - add @Optional somehow - a task does not need a dueDate
     public String getDueDate() {
         return dueDate;
     }

@@ -14,23 +14,15 @@ interface TaskCardProps {
 }
 
 const TaskCard = ({ task }: TaskCardProps) => {
+  const [isCompleted, setIsCompleted] = useState(false);
   //TODO - add useEffect or useState
 
-  const [isCompleted, setIsCompleted] = useState(false);
-
-  const checkboxStyle = !isCompleted
-    ? check_box_outline_blank
-    : check_box_checked;
-
-  const taskNameStyle = isCompleted ? classes.strike : "";
-
-  const dueDateDisplay = task.dueDate
-    .toString()
-    .slice(0, 10)
-    .split("-")
-    .join("/");
-
   //SECTION - BUTTON HANDLERS
+
+  const handleDuplicate = () => {
+    // console.log("duplicate data: " + JSON.stringify(task, null, 2));
+    duplicateTask(task);
+  };
 
   const handleCheckbox = () => {
     setIsCompleted(!isCompleted);
@@ -42,30 +34,28 @@ const TaskCard = ({ task }: TaskCardProps) => {
 
   const handleDelete = () => {
     console.log("deleted button clicked");
-    // //todo call on backend - update isArchived boolean in DB (task.isArchived = true)
-  };
-
-  const handleDuplicate = () => {
-    console.log(
-      "duplicate button clicked, copied data: " + JSON.stringify(task, null, 2)
-    );
-    //todo - like add new task + copy data -> POST to DB
-    duplicateTask(task);
+    //todo -  call updateTask() from services  - update isArchived boolean in DB (task.isArchived = true)
   };
 
   return (
     <section className={classes.container}>
       <div className={classes.container_row}>
         <Button onClick={handleCheckbox} className={classes.checkbox}>
-          <img src={checkboxStyle} />
+          <img
+            src={!isCompleted ? check_box_outline_blank : check_box_checked}
+          />
         </Button>
 
-        <h3 className={taskNameStyle}>{task.name}</h3>
+        <h3 className={isCompleted ? classes.strike : ""}>{task.name}</h3>
       </div>
 
       <div className={classes.taskData}>
         <p>Task id: {task.id}</p>
-        <p>Due on {dueDateDisplay}</p>
+        {task.dueDate && (
+          <p>
+            Due on {task.dueDate.toString().slice(0, 10).split("-").join("/")}
+          </p>
+        )}
         <p>Completed: {task?.isCompleted.toString() || ""}</p>
         <p>isArchived: {task?.isArchived.toString() || ""}</p>
         <CategoryCard category={task.categories[0]} />
