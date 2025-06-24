@@ -86,15 +86,17 @@ public class TaskService {
         return Optional.of(foundTask);
     }
 
-    // NOTE - DELETE a specific Task
-    public boolean deleteById(Long id) {
+    // NOTE - SOFT DELETE a specific Task by setting isArchived to true
+    public Optional<Task> deleteById(Long id) {
         Optional<Task> searched = this.findById(id);
 
-        if (searched.isPresent()) {
-            Task found = searched.get();
-            this.taskRepository.delete(found);
-            return true; // successfully deleted
+        if (searched.isEmpty()) {
+            return searched;
         }
-        return false; // not deleted (Task not found)
+
+        Task foundTask = searched.get();
+
+        foundTask.setIsArchived(true);
+        return Optional.of(foundTask);
     }
 }

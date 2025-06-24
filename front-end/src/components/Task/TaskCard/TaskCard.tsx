@@ -1,4 +1,4 @@
-import type { Task } from "../../../services/tasks";
+import { type Task } from "../../../services/tasks";
 import Button from "../../Button/Button";
 import CategoryCard from "../../Category/CategoryCard/CategoryCard";
 import classes from "./TaskCard.module.scss";
@@ -14,14 +14,9 @@ interface TaskCardProps {
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const [isCompleted, setIsCompleted] = useState(false);
-  const { duplicateTask } = useTasks();
+  const { duplicateTask, removeTask } = useTasks();
 
   //SECTION - BUTTON HANDLERS
-
-  const handleDuplicate = () => {
-    // console.log("duplicate data: " + JSON.stringify(task, null, 2));
-    duplicateTask(task);
-  };
 
   const handleCheckbox = () => {
     setIsCompleted(!isCompleted);
@@ -31,8 +26,13 @@ const TaskCard = ({ task }: TaskCardProps) => {
     );
   };
 
+  const handleDuplicate = () => {
+    duplicateTask(task);
+  };
+
   const handleDelete = () => {
     console.log("deleted button clicked");
+    removeTask(task.id);
     //todo -  call updateTask() from services  - update isArchived boolean in DB (task.isArchived = true)
   };
 

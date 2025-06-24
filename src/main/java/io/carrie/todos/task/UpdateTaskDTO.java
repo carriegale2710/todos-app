@@ -18,11 +18,18 @@ public class UpdateTaskDTO {
     // should default be false on creation?
     private Boolean isCompleted;
 
+    // virtual field? - for now testing with random bool
+    private Boolean isArchived;
+
     // todo - should this be changed to List<Category> ? to fix category updates?
     private List<String> categories;
 
     public String getName() {
         return name;
+    }
+
+    public Boolean getIsArchived() {
+        return isArchived;
     }
 
     public String getDueDate() {

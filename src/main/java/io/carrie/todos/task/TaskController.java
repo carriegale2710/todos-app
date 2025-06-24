@@ -99,13 +99,13 @@ public class TaskController {
 
     // NOTE DELETE A TASK
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id)
+    public ResponseEntity<Task> deleteById(@PathVariable Long id)
             throws NotFoundException {
-        boolean deleted = this.taskService.deleteById(id);
-        if (!deleted) {
+        Optional<Task> deleted = this.taskService.deleteById(id);
+        if (deleted.isEmpty()) {
             throw new NotFoundException("Task", id);
         }
-        return new ResponseEntity<>("Task deleted", HttpStatus.OK);
+        return new ResponseEntity<>(deleted.get(), HttpStatus.OK);
     }
 
     // NOTE UPDATE A TASK

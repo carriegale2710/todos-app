@@ -15,7 +15,7 @@ const TaskList = () => {
           <p>Values for TaskList are not found</p>
         ) : (
           taskList.map((task: Task) => {
-            return <TaskCard task={task} key={task.id} />;
+            return !task.isArchived && <TaskCard task={task} key={task.id} />;
           })
         )}
       </div>

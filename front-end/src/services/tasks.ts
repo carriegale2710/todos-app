@@ -87,5 +87,15 @@ export const duplicate = async (taskDataCopy: Task) => {
 
 //NOTE - DELETE
 //TODO - DeleteTaskById
+export const deleteTaskById = async (id: number): Promise<Task> => {
+  const response = await fetch("http://localhost:8080/tasks/" + id, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    throw new Error("Could not delete task with id " + id);
+  }
+  const deletedTask = await response.json();
+  return deletedTask;
+};
 
 //use UpdateTaskById but just update isArchived = true;

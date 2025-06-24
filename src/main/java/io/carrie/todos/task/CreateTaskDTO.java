@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
 public class CreateTaskDTO {
 
@@ -27,8 +25,6 @@ public class CreateTaskDTO {
     // todo - should check for any duplicate categories too
     private List<String> categories;
 
-    @NotEmpty
-    @NotBlank
     public String getName() {
         return name;
     }
@@ -38,12 +34,10 @@ public class CreateTaskDTO {
         return dueDate;
     }
 
-    @NotNull
     public Boolean getIsCompleted() {
         return isCompleted;
     }
 
-    @NotNull
     public Boolean getIsArchived() {
         return isArchived;
     }

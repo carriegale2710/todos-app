@@ -1,5 +1,10 @@
 import { useEffect } from "react";
-import { getAllTasks, create, duplicate } from "../services/tasks";
+import {
+  getAllTasks,
+  create,
+  duplicate,
+  deleteTaskById,
+} from "../services/tasks";
 import type { Task, NewTaskData } from "../services/tasks";
 import { useTaskListContext } from "../context/TaskListContextProvider";
 
@@ -43,15 +48,15 @@ export function useTasks() {
     }
   };
 
+  const removeTask = async (id: number) => {
+    await deleteTaskById(id);
+    setTaskList((prev) => prev.filter((t) => t.id !== id));
+  };
+
   //   const editTask = async (updatedTask: Task) => {
   //     const task = await updateTask(updatedTask);
   //     setTaskList(prev => prev.map(t => t.id === task.id ? task : t));
   //   };
 
-  //   const removeTask = async (id: number) => {
-  //     await deleteTask(id);
-  //     setTaskList(prev => prev.filter(t => t.id !== id));
-  //   };
-
-  return { taskList, setTaskList, addTask, duplicateTask };
+  return { taskList, setTaskList, addTask, duplicateTask, removeTask };
 }
