@@ -4,6 +4,7 @@ import Button from "../../Button/Button";
 import classes from "./TaskForm.module.scss";
 import { createNewTask, type NewTaskData } from "../../../services/tasks";
 import Header from "../../Header/Header";
+import { validateForm } from "./validator";
 
 const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const { categoryList } = useCategoryListContext();
@@ -16,14 +17,22 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
     isArchived: false,
   };
 
-  const [taskValues, setTaskValues] = useState(defaultTaskValues);
+  const [taskValues, setTaskValues] = useState<NewTaskData>(defaultTaskValues);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isValidInput, setIsValidInput] = useState(false);
+  const { errors } = validateForm(taskValues);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setTaskValues({
-      ...taskValues,
-      [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
+    setTaskValues((prevValues) => {
+      const newValues = {
+        ...prevValues,
+        [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
+      };
+      const result = validateForm(newValues);
+      console.log("result.isValid: " + JSON.stringify(result.isValid));
+      setIsValidInput(result.isValid);
+      return newValues;
     });
   };
 
@@ -36,11 +45,12 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(taskValues);
-    createNewTask(taskValues);
-
+    console.log("taskValues: " + JSON.stringify(taskValues));
+    isValidInput && createNewTask(taskValues);
     //reset values after submission
     setTaskValues(defaultTaskValues);
+    setSelectedCategory("");
+    setIsValidInput(false);
   };
 
   return (
@@ -87,8 +97,10 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
             ))}
           </select>
           <br />
-
-          <Button type="submit">Create</Button>
+          {!isValidInput && <p>{errors.name}</p>}
+          <Button type="submit" disabled={!isValidInput}>
+            Create
+          </Button>
           <Button type="button" onClick={onClose}>
             Cancel
           </Button>
