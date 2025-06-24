@@ -1,5 +1,4 @@
 import type { Category } from "./categories";
-import type { NewTaskData } from "../components/Task/TaskForm/TaskForm";
 
 export interface Task {
   id: number;
@@ -8,6 +7,14 @@ export interface Task {
   isCompleted: boolean;
   isArchived: boolean;
   categories: Category[];
+}
+
+export interface NewTaskData {
+  name: string;
+  dueDate: Date;
+  isCompleted: boolean;
+  isArchived: boolean;
+  categories: string[];
 }
 
 //SECTION - CRUD OPERATIONS
@@ -34,20 +41,38 @@ export const getTaskById = async (id: number): Promise<Task> => {
 };
 
 //NOTE - CREATE
-//TODO CreateNewTask
 
-export const createNewTask = async (taskData: NewTaskData): Promise<Task[]> => {
+export const createNewTask = async (
+  newTaskData: NewTaskData
+): Promise<Task[]> => {
+  console.log("taskData received in DB: ", newTaskData);
   const response = await fetch("http://localhost:8080/tasks", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(taskData),
+    body: JSON.stringify(newTaskData),
   });
   if (!response.ok) {
     throw new Error("Could not create new task");
   }
   const task = await response.json();
-  console.log("task created in DB: ", task);
+  console.log("New task created in DB: ", task);
   return task;
+};
+
+export const duplicateTask = async (taskDataCopy: Task) => {
+  const t = taskDataCopy;
+  const duplicateTaskData: NewTaskData = {
+    name: t.name,
+    dueDate: t.dueDate,
+    isCompleted: t.isCompleted,
+    isArchived: t.isArchived,
+    categories: t.categories.map((c) => c.name),
+  };
+  console.log(
+    `duplicateTaskData copied from task.id: ${t.id} - ${t.name}: `,
+    duplicateTaskData
+  );
+  createNewTask(duplicateTaskData);
 };
 
 //NOTE - UPDATE
@@ -65,24 +90,3 @@ export const createNewTask = async (taskData: NewTaskData): Promise<Task[]> => {
 //TODO - DeleteTaskById
 
 //use UpdateTaskById but just update isArchived = true;
-
-//SECTION - BUTTON HANDLERS
-
-export const handleIsCompleted = async (taskId: number) => {
-  console.log("checkbox clicked");
-  console.log("task.id: " + taskId);
-  const taskToUpdate: Task = await getTaskById(taskId);
-  taskToUpdate.isCompleted = !taskToUpdate.isCompleted;
-  console.log("updated isComplete: ", taskToUpdate);
-  //todo - update isCompleted boolean in DB (isCompleted = !isCompleted)
-};
-
-export const handleDelete = () => {
-  console.log("deleted button clicked");
-  // //todo call on backend - update isArchived boolean in DB (task.isArchived = true)
-};
-
-export const handleDuplicate = () => {
-  console.log("duplicate button clicked");
-  //todo - like add new task + copy data -> POST to DB
-};

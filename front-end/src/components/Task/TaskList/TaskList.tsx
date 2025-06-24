@@ -8,7 +8,7 @@ const TaskList = () => {
   const { taskList } = useTaskListContext();
 
   return (
-    <section>
+    <section className={classes.taskList}>
       <Header heading="Today's Tasks" />
       <div>
         {!taskList || taskList.length == 0 ? (

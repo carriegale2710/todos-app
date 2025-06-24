@@ -2,16 +2,7 @@ import { useState } from "react";
 import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
 import Button from "../../Button/Button";
 import classes from "./TaskForm.module.scss";
-import { createNewTask } from "../../../services/tasks";
-import type { Category } from "../../../services/categories";
-
-export interface NewTaskData {
-  name: string;
-  dueDate: Date;
-  categories: Category[];
-  isCompleted: boolean;
-  isArchived: boolean;
-}
+import { createNewTask, type NewTaskData } from "../../../services/tasks";
 
 const TaskForm = () => {
   const { categoryList } = useCategoryListContext();
