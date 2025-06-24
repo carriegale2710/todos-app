@@ -22,7 +22,7 @@ const TaskForm = () => {
     const { name, value } = e.target;
     setTaskValues({
       ...taskValues,
-      [name]: name === "dueDate" ? new Date(value) : value,
+      [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
     });
   };
 
