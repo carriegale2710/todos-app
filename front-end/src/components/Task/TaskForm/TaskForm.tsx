@@ -1,0 +1,101 @@
+import { useState } from "react";
+import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
+import Button from "../../Button/Button";
+import classes from "./TaskForm.module.scss";
+import { createNewTask } from "../../../services/tasks";
+import type { Category } from "../../../services/categories";
+
+export interface NewTaskData {
+  name: string;
+  dueDate: Date;
+  categories: Category[];
+  isCompleted: boolean;
+  isArchived: boolean;
+}
+
+const TaskForm = () => {
+  const { categoryList } = useCategoryListContext();
+
+  const defaultTaskValues: NewTaskData = {
+    name: "",
+    dueDate: new Date(),
+    categories: [],
+    isCompleted: false,
+    isArchived: false,
+  };
+
+  const [taskValues, setTaskValues] = useState(defaultTaskValues);
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setTaskValues({
+      ...taskValues,
+      [name]: name === "dueDate" ? new Date(value) : value,
+    });
+  };
+
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setSelectedCategory(value);
+    const category = [value];
+    setTaskValues({ ...taskValues, [name]: category });
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(taskValues);
+    createNewTask(taskValues);
+
+    //reset values after submission
+    setTaskValues(defaultTaskValues);
+  };
+
+  return (
+    <form className={classes.form} onSubmit={handleSubmit}>
+      <label htmlFor="nameInput">Task Name</label>
+      <input
+        type="text"
+        id="nameInput"
+        name="name"
+        placeholder="Task Name"
+        onChange={onInputChange}
+      />
+      <br />
+
+      <label htmlFor="dueDateInput">Due Date</label>
+      {/* //todo - use date picker library later on? */}
+      <input
+        type="date"
+        id="dueDateInput"
+        name="dueDate"
+        placeholder="DD-MM-YYYY"
+        onChange={onInputChange}
+      />
+      <br />
+
+      <label htmlFor="categorySelect">Category</label>
+      <select
+        id="categorySelect"
+        name="categories"
+        value={selectedCategory}
+        onChange={onSelectChange}
+      >
+        <option value={""} disabled selected>
+          Select
+        </option>
+        {categoryList.map((category) => (
+          <option key={category.id} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
+      <br />
+
+      <Button type="submit">Create</Button>
+      {/* <Button>Cancel</Button> //todo - this should close the modal */}
+    </form>
+  );
+};
+
+export default TaskForm;

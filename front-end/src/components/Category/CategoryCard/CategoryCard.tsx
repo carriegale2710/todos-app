@@ -6,9 +6,16 @@ interface CategoryCardProps {
 }
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
+  try {
+    if (!category) {
+      throw new Error("category is undefined/null");
+    }
+  } catch (e) {
+    console.warn(e);
+  }
   return (
     <div className={classes.div}>
-      <p>{category.name}</p>
+      <p>{category?.name}</p>
     </div>
   );
 };

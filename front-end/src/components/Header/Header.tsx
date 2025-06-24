@@ -9,7 +9,7 @@ const Header = ({ heading, userName }: HeaderProps) => {
   return (
     <section>
       <h1>
-        {heading} {userName}!
+        {heading} {userName}
       </h1>
       <div className={classes.divider}></div>
     </section>

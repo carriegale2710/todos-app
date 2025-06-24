@@ -1,0 +1,8 @@
+@use "../../../scss/partials/mixins" as mixins;
+
+.form {
+  @include mixins.wrapper;
+  width: fit-content;
+  justify-content: center;
+  align-self: center;
+}

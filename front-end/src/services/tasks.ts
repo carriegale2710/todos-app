@@ -1,9 +1,5 @@
-import { useContext } from "react";
-import {
-  TaskListContext,
-  useTaskListContext,
-} from "../context/TaskListContextProvider";
 import type { Category } from "./categories";
+import type { NewTaskData } from "../components/Task/TaskForm/TaskForm";
 
 export interface Task {
   id: number;
@@ -15,9 +11,6 @@ export interface Task {
 }
 
 //SECTION - CRUD OPERATIONS
-
-//NOTE - CREATE
-//TODO CreateNewTask
 
 //NOTE - READ
 
@@ -37,6 +30,23 @@ export const getTaskById = async (id: number): Promise<Task> => {
   }
   const task = await response.json();
   console.log("task found in DB: ", task);
+  return task;
+};
+
+//NOTE - CREATE
+//TODO CreateNewTask
+
+export const createNewTask = async (taskData: NewTaskData): Promise<Task[]> => {
+  const response = await fetch("http://localhost:8080/tasks", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(taskData),
+  });
+  if (!response.ok) {
+    throw new Error("Could not create new task");
+  }
+  const task = await response.json();
+  console.log("task created in DB: ", task);
   return task;
 };
 

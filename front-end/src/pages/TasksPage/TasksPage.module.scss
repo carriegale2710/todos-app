@@ -1,15 +1,13 @@
+@import "../../scss/partials/mixins"; // Adjust the path as needed to where your mixins are defined
+
 .page {
-  max-width: 100%;
-  justify-content: center;
-  justify-self: center;
+  @include page;
 }
 
 .message {
-  max-width: 100%;
-  width: fit-content;
-  padding: 20px;
-  border: 5px dashed red;
-  border-radius: 2px;
-  justify-self: center;
-  margin: 50px;
+  @include message;
+}
+
+.wrapper {
+  @include wrapper;
 }
