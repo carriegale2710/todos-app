@@ -23,7 +23,6 @@ const TaskListContextProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     getAllTasks()
       .then((result) => {
-        // console.log("All tasks from API: ", result);
         setTaskList(result);
         console.log("taskList updated");
       })

@@ -42,9 +42,7 @@ export const getTaskById = async (id: number): Promise<Task> => {
 
 //NOTE - CREATE
 
-export const createNewTask = async (
-  newTaskData: NewTaskData
-): Promise<Task[]> => {
+export const create = async (newTaskData: NewTaskData): Promise<Task[]> => {
   console.log("taskData received in DB: ", newTaskData);
   const response = await fetch("http://localhost:8080/tasks", {
     method: "POST",
@@ -56,10 +54,11 @@ export const createNewTask = async (
   }
   const task = await response.json();
   console.log("New task created in DB: ", task);
+
   return task;
 };
 
-export const duplicateTask = async (taskDataCopy: Task) => {
+export const duplicate = async (taskDataCopy: Task) => {
   const t = taskDataCopy;
   const duplicateTaskData: NewTaskData = {
     name: t.name,
@@ -72,7 +71,7 @@ export const duplicateTask = async (taskDataCopy: Task) => {
     `duplicateTaskData copied from task.id: ${t.id} - ${t.name}: `,
     duplicateTaskData
   );
-  createNewTask(duplicateTaskData);
+  create(duplicateTaskData);
 };
 
 //NOTE - UPDATE

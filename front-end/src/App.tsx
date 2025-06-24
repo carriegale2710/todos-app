@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 
 function App() {
   const userName = "Carrie";
-  const homeScreenHeading = "Adventure Awaits";
+  const homeScreenHeading = "Adventure Awaits, ";
   return (
     <>
       <BrowserRouter>

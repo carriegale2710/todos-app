@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
+import Header from "../../Header/Header";
 import Button from "../../Button/Button";
 import classes from "./TaskForm.module.scss";
-import { createNewTask, type NewTaskData } from "../../../services/tasks";
-import Header from "../../Header/Header";
+import { type NewTaskData } from "../../../services/tasks";
+import { useTasks } from "../../../hooks/useTasks";
 import { validateForm } from "./validator";
 
 const TaskForm = ({ onClose }: { onClose?: () => void }) => {
@@ -21,6 +22,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isValidInput, setIsValidInput] = useState(false);
   const { errors } = validateForm(taskValues);
+  const { addTask } = useTasks();
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -46,7 +48,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("taskValues: " + JSON.stringify(taskValues));
-    isValidInput && createNewTask(taskValues);
+    isValidInput && addTask(taskValues);
     //reset values after submission
     setTaskValues(defaultTaskValues);
     setSelectedCategory("");

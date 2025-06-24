@@ -3,11 +3,10 @@ import Button from "../../Button/Button";
 import CategoryCard from "../../Category/CategoryCard/CategoryCard";
 import classes from "./TaskCard.module.scss";
 
-import { duplicateTask } from "../../../services/tasks";
-
 import check_box_outline_blank from "../../../assets/icons/check_box_outline_blank.svg";
 import check_box_checked from "../../../assets/icons/check_box.svg";
 import { useState } from "react";
+import { useTasks } from "../../../hooks/useTasks";
 
 interface TaskCardProps {
   task: Task;
@@ -15,7 +14,7 @@ interface TaskCardProps {
 
 const TaskCard = ({ task }: TaskCardProps) => {
   const [isCompleted, setIsCompleted] = useState(false);
-  //TODO - add useEffect or useState
+  const { duplicateTask } = useTasks();
 
   //SECTION - BUTTON HANDLERS
 
