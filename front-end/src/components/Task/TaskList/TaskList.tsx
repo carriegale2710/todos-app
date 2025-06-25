@@ -23,7 +23,6 @@ const TaskList = () => {
       setFilterActive(false);
       console.log("filter is off");
     }
-    console.log(`categoryFilter list: ${JSON.stringify(categoryFilter)}`);
     categoryFilterIdList =
       categoryFilter.length > 0 ? categoryFilter.map((c) => c.id) : [];
   }, [categoryFilter]);

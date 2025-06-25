@@ -8,7 +8,7 @@ import { useContext } from "react";
 import { CategoryListContext } from "../../../context/CategoryListContextProvider";
 
 interface CategoryFormProps {
-  setcategoryFormVisible: (visible: boolean) => void;
+  setcategoryFormVisible?: (visible: boolean) => void;
 }
 
 const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {

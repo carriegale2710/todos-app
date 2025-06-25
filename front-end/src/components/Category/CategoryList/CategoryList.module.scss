@@ -10,13 +10,3 @@
   margin: 1em;
   overflow: scroll;
 }
-
-.form {
-  @include mixins.wrapper_row;
-  margin: 10px;
-}
-
-.btn {
-  @include mixins.minimalBtn;
-  font-size: smaller;
-}
