@@ -49,7 +49,10 @@ const TaskList = () => {
           <p>TaskList not found or empty</p>
         ) : (
           displayedTaskList.map((task: Task) => {
-            return !task.isArchived && <TaskCard task={task} key={task.id} />;
+            return (
+              task &&
+              !task?.isArchived && <TaskCard task={task} key={task.id} />
+            );
           })
         )}
       </div>

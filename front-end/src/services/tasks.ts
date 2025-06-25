@@ -87,15 +87,6 @@ export const deleteTaskById = async (id: number): Promise<Task> => {
 };
 
 //NOTE - UPDATE
-//TODO - UpdateTaskById
-
-//endpoint = task.id
-//method = POST
-//prepare data - serialise to JSON
-//set up fetch request
-//integrate with state management
-//handle errors and edge cases
-//test integration
 
 export const updateTaskById = async (
   id: number,
