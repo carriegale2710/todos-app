@@ -74,19 +74,7 @@ export const duplicate = async (taskDataCopy: Task) => {
   create(duplicateTaskData);
 };
 
-//NOTE - UPDATE
-//TODO - UpdateTaskById
-
-//endpoint = task.id
-//method = POST
-//prepare data - serialise to JSON
-//set up fetch request
-//integrate with state management
-//handle errors and edge cases
-//test integration
-
 //NOTE - DELETE
-//TODO - DeleteTaskById
 export const deleteTaskById = async (id: number): Promise<Task> => {
   const response = await fetch("http://localhost:8080/tasks/" + id, {
     method: "DELETE",
@@ -98,4 +86,31 @@ export const deleteTaskById = async (id: number): Promise<Task> => {
   return deletedTask;
 };
 
-//use UpdateTaskById but just update isArchived = true;
+//NOTE - UPDATE
+//TODO - UpdateTaskById
+
+//endpoint = task.id
+//method = POST
+//prepare data - serialise to JSON
+//set up fetch request
+//integrate with state management
+//handle errors and edge cases
+//test integration
+
+export const updateTaskById = async (
+  id: number,
+  newTaskData: NewTaskData
+): Promise<Task> => {
+  console.log("taskData received: ", newTaskData);
+  const response = await fetch("http://localhost:8080/tasks/" + id, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newTaskData),
+  });
+  if (!response.ok) {
+    throw new Error("Could not update task with id " + id);
+  }
+  const updatedTask = await response.json();
+  console.log("Task update in DB: ", updatedTask);
+  return updatedTask;
+};
