@@ -45,7 +45,7 @@ const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
     //reset values after submission
     setCategoryValues(defaultCategoryValues);
     setIsValidInput(false);
-    setcategoryFormVisible(false);
+    setcategoryFormVisible && setcategoryFormVisible(false);
   };
 
   return (

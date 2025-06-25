@@ -25,6 +25,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const [isValidInput, setIsValidInput] = useState(false);
   const { errors } = validateTaskForm(taskValues);
   const { addTask } = useTasks();
+  const [showMessage, setShowMessage] = useState(false);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -102,10 +103,15 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
           </select>
           <br />
 
-          <AddCategoryWidget />
+          {/* <AddCategoryWidget /> //FIXME - refreshes on saves depsite e.preventDefault()*/}
 
           {!isValidInput && <p>{errors.name}</p>}
-          <Button type="submit" disabled={!isValidInput}>
+          {showMessage && <p>Task added!</p>}
+          <Button
+            type="submit"
+            disabled={!isValidInput}
+            onClick={() => setShowMessage(true)}
+          >
             Create
           </Button>
           <Button type="button" onClick={onClose}>
