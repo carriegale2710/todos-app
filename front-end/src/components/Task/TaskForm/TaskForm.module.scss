@@ -26,7 +26,4 @@
 
 .form {
   @include mixins.wrapper;
-  width: fit-content;
-  justify-content: center;
-  align-self: center;
 }

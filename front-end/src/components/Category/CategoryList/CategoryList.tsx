@@ -1,7 +1,7 @@
 import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
 import type { Category } from "../../../services/categories";
 import Header from "../../Header/Header";
-import CategoryCard from "../CategoryCard/CategoryCard";
+import CategoryTag from "../CategoryTag/CategoryTag";
 import classes from "./CategoryList.module.scss";
 
 const CategoryList = () => {
@@ -15,7 +15,7 @@ const CategoryList = () => {
           <p> Values for CategoryList are not found</p>
         ) : (
           categoryList.map((category: Category) => {
-            return <CategoryCard category={category} key={category.id} />;
+            return <CategoryTag category={category} key={category.id} />;
           })
         )}
       </div>

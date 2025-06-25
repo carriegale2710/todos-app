@@ -30,7 +30,6 @@ export function useTasks() {
       ]);
     } catch (error) {
       console.error("Failed to create task:", error);
-      // Optionally, notify the user here (e.g., with a toast or alert)
       alert(`Failed to create task: ${error}`);
     }
   };
@@ -43,7 +42,6 @@ export function useTasks() {
       );
     } catch (error) {
       console.error("Failed to duplicate task:", error);
-      // Optionally, notify the user here (e.g., with a toast or alert)
       alert(`Failed to duplicate task: ${error}`);
     }
   };
@@ -52,11 +50,6 @@ export function useTasks() {
     await deleteTaskById(id);
     setTaskList((prev) => prev.filter((t) => t.id !== id));
   };
-
-  //   const editTask = async (updatedTask: Task) => {
-  //     const task = await updateTask(updatedTask);
-  //     setTaskList(prev => prev.map(t => t.id === task.id ? task : t));
-  //   };
 
   return { taskList, setTaskList, addTask, duplicateTask, removeTask };
 }

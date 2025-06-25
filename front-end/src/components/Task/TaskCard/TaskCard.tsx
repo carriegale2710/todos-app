@@ -1,6 +1,6 @@
 import { type Task } from "../../../services/tasks";
 import Button from "../../Button/Button";
-import CategoryCard from "../../Category/CategoryCard/CategoryCard";
+import CategoryTag from "../../Category/CategoryTag/CategoryTag";
 import classes from "./TaskCard.module.scss";
 
 import check_box_outline_blank from "../../../assets/icons/check_box_outline_blank.svg";
@@ -57,7 +57,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
         )}
         <p>Completed: {task?.isCompleted.toString() || ""}</p>
         <p>isArchived: {task?.isArchived.toString() || ""}</p>
-        <CategoryCard category={task.categories[0]} />
+        <CategoryTag category={task.categories[0]} />
       </div>
 
       <div className={classes.container_row}>
