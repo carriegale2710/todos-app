@@ -42,9 +42,9 @@ const TaskList = () => {
   }, [categoryFilter]);
 
   return (
-    <section className={classes.taskList}>
+    <section>
       <Header heading="Today's Tasks" />
-      <div>
+      <div className={classes.taskList}>
         {!taskList || taskList.length == 0 ? (
           <p>TaskList not found or empty</p>
         ) : (

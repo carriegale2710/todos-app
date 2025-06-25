@@ -49,14 +49,14 @@ const TaskCard = ({ task }: TaskCardProps) => {
       </div>
 
       <div className={classes.taskData}>
-        <p>Task id: {task.id}</p>
+        {/* <p>Task id: {task.id}</p> */}
         {task.dueDate && (
           <p>
-            Due on {task.dueDate.toString().slice(0, 10).split("-").join("/")}
+            Due on: {task.dueDate.toString().slice(0, 10).split("-").join("/")}
           </p>
         )}
-        <p>Completed: {task?.isCompleted.toString() || ""}</p>
-        <p>isArchived: {task?.isArchived.toString() || ""}</p>
+        {/* <p>Completed: {task?.isCompleted.toString() || ""}</p> */}
+        {/* <p>isArchived: {task?.isArchived.toString() || ""}</p> */}
         <CategoryTag category={task.categories[0]} />
       </div>
 

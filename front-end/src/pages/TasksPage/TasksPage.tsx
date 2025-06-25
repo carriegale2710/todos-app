@@ -18,7 +18,9 @@ const TasksPage = () => {
         <p>Tasks: {taskList.length}</p>
         <p>Categories: {categoryList.length}</p>
       </div>
-      <Button onClick={() => setShowModal(true)}>Add new Task</Button>
+      <Button className={classes.btn} onClick={() => setShowModal(true)}>
+        Add new Task
+      </Button>
       {showModal && <TaskForm onClose={() => setShowModal(false)} />}
       {categoryList.length !== 0 && <CategoryList />}
       {taskList.length !== 0 ? (

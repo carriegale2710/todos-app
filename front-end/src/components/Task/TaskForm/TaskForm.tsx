@@ -105,7 +105,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
 
           {/* <AddCategoryWidget /> //FIXME - refreshes on saves depsite e.preventDefault()*/}
 
-          {!isValidInput && <p>{errors.name}</p>}
+          {!isValidInput && <p className={classes.errors}>{errors.name}</p>}
           {showMessage && <p>Task added!</p>}
           <Button
             type="submit"

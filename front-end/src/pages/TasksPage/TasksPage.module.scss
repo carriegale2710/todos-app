@@ -1,13 +1,21 @@
-@import "../../scss/partials/mixins"; // Adjust the path as needed to where your mixins are defined
+@use "../../scss/partials/mixins" as mixins; // Adjust the path as needed to where your mixins are defined
 
 .page {
-  @include page;
+  @include mixins.page;
 }
 
 .message {
-  @include message;
+  @include mixins.message;
 }
 
 .wrapper_row {
-  @include wrapper_row;
+  @include mixins.wrapper_row;
+}
+
+.btn {
+  position: fixed;
+  bottom: 24px; // Adjust as needed for spacing from the top
+  right: 20px; // Adjust as needed for spacing from the right
+  left: auto;
+  transform: none;
 }

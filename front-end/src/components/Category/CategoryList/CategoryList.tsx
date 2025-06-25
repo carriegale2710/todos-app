@@ -11,7 +11,7 @@ const CategoryList = () => {
   const { categoryFilter } = useCategoryFilterContext();
 
   return (
-    <section>
+    <section className={classes.wrapper}>
       <Header heading="Categories" />
       {categoryFilter.length > 0 && (
         <p>Filters: {categoryFilter.map((c) => `${c.name}  `)}</p>
