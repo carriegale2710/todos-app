@@ -1,0 +1,33 @@
+@use "../../../scss/partials/mixins" as mixins;
+
+.form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn {
+  @include mixins.minimalBtn;
+  font-size: smaller;
+}
+
+.input {
+  border: 0px;
+  padding: 5px;
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  height: auto;
+}
+
+.label {
+  color: transparent;
+  visibility: hidden;
+  position: absolute;
+}

@@ -5,7 +5,7 @@ import Button from "../../Button/Button";
 import classes from "./TaskForm.module.scss";
 import { type NewTaskData } from "../../../services/tasks";
 import { useTasks } from "../../../hooks/useTasks";
-import { validateForm } from "./validator";
+import { validateTaskForm } from "./task-validator";
 
 const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const { categoryList } = useCategoryListContext();
@@ -21,7 +21,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const [taskValues, setTaskValues] = useState<NewTaskData>(defaultTaskValues);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [isValidInput, setIsValidInput] = useState(false);
-  const { errors } = validateForm(taskValues);
+  const { errors } = validateTaskForm(taskValues);
   const { addTask } = useTasks();
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +31,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
         ...prevValues,
         [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
       };
-      const result = validateForm(newValues);
+      const result = validateTaskForm(newValues);
       console.log("result.isValid: " + JSON.stringify(result.isValid));
       setIsValidInput(result.isValid);
       return newValues;

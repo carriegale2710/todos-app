@@ -1,6 +1,6 @@
 import type { NewTaskData } from "../../../services/tasks";
 
-export const validateForm = (taskValues: NewTaskData) => {
+export const validateTaskForm = (taskValues: NewTaskData) => {
   let isValid = true;
   const errors: { name: string; dueDate: string; categories: string } = {
     name: "",

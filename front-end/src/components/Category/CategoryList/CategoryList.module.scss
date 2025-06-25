@@ -1,3 +1,5 @@
+@use "../../../scss/partials/mixins" as mixins;
+
 .categories {
   // border: 1px solid rgba(255, 0, 0, 0.188);
   display: flex;
@@ -7,4 +9,14 @@
   padding-right: 1em;
   margin: 1em;
   overflow: scroll;
+}
+
+.form {
+  @include mixins.wrapper_row;
+  margin: 10px;
+}
+
+.btn {
+  @include mixins.minimalBtn;
+  font-size: smaller;
 }
