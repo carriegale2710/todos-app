@@ -33,9 +33,9 @@ const CategoryList = () => {
 
   return (
     <section className={classes.wrapper}>
-      <div className={classes.categories}>
+      <div>
         {categoryList && categoryList.length > 0 && (
-          <div>
+          <div className={classes.categories}>
             <label htmlFor="categoryFilter">Filter by category</label>
             <select
               onChange={onChange}

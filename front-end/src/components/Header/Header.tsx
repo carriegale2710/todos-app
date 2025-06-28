@@ -8,7 +8,7 @@ interface HeaderProps {
 const Header = ({ heading, userName }: HeaderProps) => {
   return (
     <section>
-      <h1 className={classes.text}>
+      <h1>
         {heading} {userName}
       </h1>
       <div className={classes.divider}></div>
