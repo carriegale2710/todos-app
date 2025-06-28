@@ -23,13 +23,7 @@ const TasksPage = () => {
       </Button>
       {showModal && <TaskForm onClose={() => setShowModal(false)} />}
       {categoryList.length !== 0 && <CategoryList />}
-      {taskList.length !== 0 ? (
-        <TaskList />
-      ) : (
-        <div className={classes.message}>
-          <h3>You have no tasks yet!</h3>
-        </div>
-      )}
+      <TaskList />
     </section>
   );
 };

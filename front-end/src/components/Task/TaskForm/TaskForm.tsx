@@ -6,8 +6,6 @@ import classes from "./TaskForm.module.scss";
 import { type NewTaskData } from "../../../services/tasks";
 import { useTasks } from "../../../hooks/useTasks";
 import { validateTaskForm } from "./task-validator";
-import CategoryForm from "../../Category/CategoryForm/CategoryForm";
-import AddCategoryWidget from "../../Category/AddCategoryWidget/AddCategoryWidget";
 
 const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   const { categoryList } = useCategoryListContext();

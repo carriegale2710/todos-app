@@ -45,14 +45,11 @@ const TaskList = () => {
     <section>
       <Header heading="Today's Tasks" />
       <div className={classes.taskList}>
-        {!taskList || taskList.length == 0 ? (
-          <p>TaskList not found or empty</p>
+        {taskList.length === 0 ? (
+          <p>You have no tasks yet!</p>
         ) : (
           displayedTaskList.map((task: Task) => {
-            return (
-              task &&
-              !task?.isArchived && <TaskCard task={task} key={task.id} />
-            );
+            return !task.isArchived && <TaskCard task={task} key={task.id} />;
           })
         )}
       </div>
