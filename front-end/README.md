@@ -79,10 +79,10 @@ This is just a summary of what the frontend should be doing:
 
 #### MVP
 
-- [ ] Must be able to add categories
-- [ ] Must be able to add new tasks tagged with a task category
+- [x] Must be able to add categories
+- [x] Must be able to add new tasks tagged with a task category
 - [ ] Must be able to update tasks automatically by changing the task name and the category
-- [ ] Must be able to duplicate tasks
+- [x] Must be able to duplicate tasks
 - [ ] Must be able to delete tasks
 - [ ] You must add your own styling
 
@@ -147,27 +147,24 @@ TaskItem.tsx         → edit, duplicate, delete task
 
 ## Design Documentation
 
+### UI MoodBoard
+
+![collage of UI app images](ui-design/ideation/todo_UI_moodboard.png)
+
 ### Wireframes
 
+Feature requirements
 ![Feature requirements](ui-design/wireframes/todo_UI_req.png)
 
 28/06/25 - Home Page (App.tsx)
 ![HomePage wireframe](ui-design/wireframes/HomePage.png)
 
-### UI MoodBoard
-
-![collage of UI app images](ui-design/ideation/todo_UI_moodboard.png)
-
 ### Mockups
 
-TaskCard Component:
-![Task Card Component mockup](ui-design/mockups/TaskCard_UI_mockup.png)
+Basic User Flow :
+![User Flow](ui-design/mockups/mockups_28-06-2025.png)
 
-Smaller Components:
-![delete button, category select dropdown, checkbox and task label, duplicate task button](ui-design/mockups/smaller-components.png)
-
-User Flow:
-![User Flow](ui-design/mockups/user_flow.png)
+[View the interactive Figma prototype here.](https://www.figma.com/proto/4txnsEYq1FF7TvHc0vqp8O/Todos-App?page-id=18%3A122&node-id=54-6624&p=f&viewport=-8623%2C-2162%2C1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=54%3A2287)
 
 ## 🧠 BONUS IDEAS
 
@@ -175,7 +172,8 @@ User Flow:
 
 ### Daily Quotes API Bonus Feature
 
-- [ ] Use a free API to show a random quote when you open the app: https://api-ninjas.com/api/quotes
+- [x] Use a free API to show a random quote when you open the app: https://api-ninjas.com/api/quotes
+  - [ ] Move this to backend
 
 ## REFERENCES & RESOURCES
 
