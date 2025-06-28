@@ -147,20 +147,27 @@ TaskItem.tsx         → edit, duplicate, delete task
 
 ## Design Documentation
 
+### Wireframes
+
+![Feature requirements](ui-design/wireframes/todo_UI_req.png)
+
+28/06/25 - Home Page (App.tsx)
+![HomePage wireframe](ui-design/wireframes/HomePage.png)
+
 ### UI MoodBoard
 
-![collage of UI app images](mockups/todo_UI_moodboard.png)
+![collage of UI app images](ui-design/ideation/todo_UI_moodboard.png)
 
 ### Mockups
 
 TaskCard Component:
-![Task Card Component mockup](mockups/TaskCard_UI_mockup.png)
+![Task Card Component mockup](ui-design/mockups/TaskCard_UI_mockup.png)
 
 Smaller Components:
-![delete button, category select dropdown, checkbox and task label, duplicate task button](mockups/smaller-components.png)
+![delete button, category select dropdown, checkbox and task label, duplicate task button](ui-design/mockups/smaller-components.png)
 
 User Flow:
-![User Flow](mockups/user_flow.png)
+![User Flow](ui-design/mockups/user_flow.png)
 
 ## 🧠 BONUS IDEAS
 
