@@ -77,19 +77,19 @@ This is just a summary of what the frontend should be doing:
 
 ![Todos UI Example](mockups/todo_UI_req.png)
 
-#### MVP
+#### MVP Progress
 
+- [ ] Must be able to delete tasks
+- [ ] Must be able to update tasks automatically by changing the task name and the category
+- [ ] You must add your own styling
+- [x] Must be able to duplicate tasks
 - [x] Must be able to add categories
 - [x] Must be able to add new tasks tagged with a task category
-- [ ] Must be able to update tasks automatically by changing the task name and the category
-- [x] Must be able to duplicate tasks
-- [ ] Must be able to delete tasks
-- [ ] You must add your own styling
 
 #### Bonus
 
-- [ ] Come up with a feature that allows us to delete and update task categories
 - [ ] Create a summary section that lists how many of each type of task there are
+- [ ] Come up with a feature that allows us to delete and update task categories
 
 ## UI Developer Documentation
 
