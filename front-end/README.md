@@ -1,10 +1,173 @@
-# Todos App - Frontend UI
-
-- This Todos App front end UI was made with React (Vite) + Typescript.
+# Todos App - Frontend UI Documentation
 
 ---
 
-## 🚀 Getting Started: Frontend React App UI
+Note: Please refer to `Getting Started` guide at bottom of the page for running this app in your local browser.
+
+## 📋 Project Overview
+
+Goal: Create an application in React that allows you to track, add, and delete tasks as well as manage categories of tasks
+
+Feature requirements
+![Feature requirements](ui-design/wireframes/todo_UI_req.png)
+
+### MVP Features
+
+- [ ] Must be able to delete tasks
+- [ ] Must be able to update tasks automatically by changing the task name and the category
+- [ ] You must add your own styling
+- [x] Must be able to duplicate tasks
+- [x] Must be able to add categories
+- [x] Must be able to add new tasks tagged with a task category
+
+### Bonus Features
+
+- [ ] Create a summary section that lists how many of each type of task there are
+- [ ] Come up with a feature that allows us to delete and update task categories
+- [x] Use a free API to show a random quote when you open the app: https://api-ninjas.com/api/quotes
+  - [ ] Move this to backend for better security
+- [ ] Implement 'Advanced filter' feature that lets you filter by more than one category
+
+## React Components
+
+### Categories
+
+- [x] `CategoryForm`: Add category (input + button)
+- [x] `CategoryList`: Show all categories
+      _(Bonus: edit/delete options)_
+
+### Tasks
+
+- [x] `TaskForm`: Add task (name + category dropdown)
+- [x] `TaskList`: Displays tasks (supports filtering)
+- [] `Task`:
+
+  - [ ] Editable name & category
+  - [ ] Complete checkbox
+  - [ ] Buttons:
+        [ ] **Duplicate**,
+        [ ] **Delete**
+
+### Bonus
+
+- [x] `CategoryFilter`: Dropdown to filter by category
+- [ ] `SummaryBar`: Shows “Work: 3, Study: 2” etc.
+
+## User Flows + Side Effects 🧭
+
+### TASKS
+
+```
+1. View list of tasks:
+
+-> Navigate to TasksPage ->  TaskList
+-> taskData is fetched on first mount + if changes occur
+-> list of TaskCards with taskData displayed
+
+```
+
+```
+2. Add a new task:
+
+-> Click 'add task' button in Tasks/Home Page
+-> Opens Modal with a TaskForm
+  -> enter task name
+  -> pick category (or add new one)
+  -> submit
+-> taskData sent to DB
+-> DB re-fetched + synced to Tasklist context
+```
+
+```
+3. Edit a task:
+
+Enter new name/category change -> submit
+```
+
+```
+4. Delete/Archive a task:
+
+-> click delete/archive button
+-> (opt): user warning
+  -> click yes
+→ set isArchived = true
+```
+
+```
+5. Duplicate a task:
+
+-> click on 'Duplicate' button on the task's TaskCard
+-> implement `2. Add a new task` but with copied data
+
+```
+
+### CATEGORIES
+
+```
+1. View list of all categories:
+
+-> Navigate to TasksPage ->  CategoryList
+-> categoryData is fetched on first mount + if changes occur
+-> list of CategoryTags with categoryData displayed
+
+  1.a. bonus: (Adv) filter by category:
+  -> click on the "CategoryTag" button
+  -> taskList updates to show only those with that category
+  -> click again
+
+  1.b bonus: task counts per category:
+  -> automatically updates number when changes occur
+```
+
+```
+2. Add new category:
+
+-> click on "New Category button"
+-> Enter category name
+-> click submit
+-> user comfirmation message
+-> new category appears in CategoryList
+```
+
+---
+
+## UX/UI Design Process
+
+### UI MoodBoard
+
+![collage of UI app images](ui-design/ideation/todo_UI_moodboard.png)
+
+### Wireframes
+
+28/06/25 - Home Page (App.tsx)
+![HomePage wireframe](ui-design/wireframes/HomePage.png)
+
+### Prototypes
+
+[View the interactive Figma prototype here.](https://www.figma.com/proto/4txnsEYq1FF7TvHc0vqp8O/Todos-App?page-id=18%3A122&node-id=54-6624&p=f&viewport=-8623%2C-2162%2C1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=54%3A2287)
+
+Lofi Mockups :
+![User Flow](ui-design/mockups/mockups_28-06-2025.png)
+
+## RESOURCES USED
+
+### Typography & Fonts
+
+- [Google Fonts API](https://developers.google.com/fonts/docs/css2)
+- [Using Variables Fonts on Web](https://fonts.google.com/knowledge/using_type/loading_variable_fonts_on_the_web)
+
+### Icons
+
+- [Google Material Symbols & Icons](https://fonts.google.com/icons)
+- [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons)
+
+- [Ditto Icon](https://www.flaticon.com/free-icon/avatar_1752681?term=pokemon&page=1&position=1&origin=tag&related_id=1752681)
+
+---
+
+## 🚀 Getting Started: Running App in Local Browser
+
+- This Todos App front end UI was made in a VS Code IDE with React (Vite) + Typescript.
 
 ### Prerequisites
 
@@ -56,137 +219,3 @@ yarn start
 - For port conflicts, change the frontend port in `package.json` or with the `PORT` environment variable.
 
 ---
-
-You can now develop and test the React frontend with the Spring Boot backend :D
-
----
-
----
-
-# PROJECT DOCUMENTATION
-
----
-
-## 📋 Project Scope - React UI MVP
-
-MVP: Create an application in React that allows you to track, add, and delete tasks as well as manage categories of tasks.
-
-### Front-end Features
-
-This is just a summary of what the frontend should be doing:
-
-![Todos UI Example](mockups/todo_UI_req.png)
-
-#### MVP Progress
-
-- [ ] Must be able to delete tasks
-- [ ] Must be able to update tasks automatically by changing the task name and the category
-- [ ] You must add your own styling
-- [x] Must be able to duplicate tasks
-- [x] Must be able to add categories
-- [x] Must be able to add new tasks tagged with a task category
-
-#### Bonus
-
-- [ ] Create a summary section that lists how many of each type of task there are
-- [ ] Come up with a feature that allows us to delete and update task categories
-
-## UI Developer Documentation
-
-Techstack: React + TypeScript
-
-### Interactive Flow 🧭
-
-```plaintext
-1. View tasks (optional: filter by category)
-2. Add task → enter name, pick category, submit
-3. Edit task → inline name/category change
-4. Delete task → set isArchived = true
-5. Duplicate task → clone task
-6. Manage categories → add (bonus: edit/delete)
-7. (Bonus) View summary of task counts per category
-```
-
-## 🧱 React Components
-
-**Start with these components:**
-
-```plaintext
-App.tsx              → main layout + data
-CategoryForm.tsx     → add category
-CategoryList.tsx     → show categories
-TaskForm.tsx         → add task
-TaskList.tsx         → render tasks
-TaskItem.tsx         → edit, duplicate, delete task
-(Optional) CategoryFilter.tsx
-(Optional) SummaryBar.tsx
-```
-
-### Categories
-
-- `CategoryForm`: Add category (input + button)
-- `CategoryList`: Show all categories
-  _(Bonus: edit/delete options)_
-
-### Tasks
-
-- `TaskForm`: Add task (name + category dropdown)
-- `TaskList`: Displays tasks (supports filtering)
-- `TaskItem`:
-
-  - Editable name & category
-  - Complete checkbox
-  - Buttons: **Duplicate**, **Delete**
-
-### Bonus
-
-- `CategoryFilter`: Dropdown to filter by category
-- `SummaryBar`: Shows “Work: 3, Study: 2” etc.
-
----
-
-## Design Documentation
-
-### UI MoodBoard
-
-![collage of UI app images](ui-design/ideation/todo_UI_moodboard.png)
-
-### Wireframes
-
-Feature requirements
-![Feature requirements](ui-design/wireframes/todo_UI_req.png)
-
-28/06/25 - Home Page (App.tsx)
-![HomePage wireframe](ui-design/wireframes/HomePage.png)
-
-### Mockups
-
-Basic User Flow :
-![User Flow](ui-design/mockups/mockups_28-06-2025.png)
-
-[View the interactive Figma prototype here.](https://www.figma.com/proto/4txnsEYq1FF7TvHc0vqp8O/Todos-App?page-id=18%3A122&node-id=54-6624&p=f&viewport=-8623%2C-2162%2C1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=54%3A2287)
-
-## 🧠 BONUS IDEAS
-
----
-
-### Daily Quotes API Bonus Feature
-
-- [x] Use a free API to show a random quote when you open the app: https://api-ninjas.com/api/quotes
-  - [ ] Move this to backend
-
-## REFERENCES & RESOURCES
-
----
-
-### Typography & Fonts
-
-- [Google Fonts API](https://developers.google.com/fonts/docs/css2)
-- [Using Variables Fonts on Web](https://fonts.google.com/knowledge/using_type/loading_variable_fonts_on_the_web)
-
-### Icons
-
-- [Google Material Symbols & Icons](https://fonts.google.com/icons)
-- [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons)
-
-- [Ditto Icon](https://www.flaticon.com/free-icon/avatar_1752681?term=pokemon&page=1&position=1&origin=tag&related_id=1752681)
