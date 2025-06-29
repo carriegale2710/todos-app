@@ -1,4 +1,33 @@
-$black: #030303ff;
+//Palettes
+
+//Palette 1
 $reseda-green: #6c7352ff;
 $moss-green: #8a956dff;
 $sage: #c3cfa1ff;
+
+//Palette 2
+$green: #9bbc0f;
+$charcoal: #2e2e2e;
+$soft-gray: #888888;
+$faded-green: #b0c987;
+
+//Brand
+$primary: #9bbc0f;
+$secondary: rgb(60, 60, 224);
+
+//Text
+$text-light: #030303ff;
+$text-dark: #dddddd;
+$text-emphasis: $secondary;
+$text-warning: none;
+
+//Background
+$bg-light: #c3cfa1ff;
+$bg-dark: #030303ff;
+
+//Button
+$default: $soft-gray;
+$emphasis: $secondary;
+$border: #dddddd;
+$hover: #222222;
+$warning: rgb(235, 68, 68);

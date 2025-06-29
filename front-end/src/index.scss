@@ -6,8 +6,8 @@
   line-height: 1.5;
 
   color-scheme: light dark;
-  color: C.$sage;
-  background-color: C.$black;
+  color: C.$text-dark;
+  background-color: C.$bg-dark;
 
   box-sizing: border-box;
 }
@@ -16,9 +16,9 @@
   font-family: T.$heading;
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
-    color: C.$black;
-    background-color: C.$sage;
+    color: C.$text-light;
+    background-color: C.$bg-light;
   }
 }
