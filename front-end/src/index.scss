@@ -1,22 +1,24 @@
 @use "./scss/partials/typography" as T;
+@use "./scss/partials/colors" as C;
 
 :root {
   font-family: T.$text;
   line-height: 1.5;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: C.$sage;
+  background-color: C.$black;
 
   box-sizing: border-box;
-  .h1 {
-    font-family: T.$heading;
-  }
+}
+
+.h1 {
+  font-family: T.$heading;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: C.$black;
+    background-color: C.$sage;
   }
 }
