@@ -152,6 +152,10 @@ Lofi Mockups :
 
 ## RESOURCES USED
 
+# Colors
+
+- [Coolors Palette Generator](https://coolors.co/1b1d10-c4cda0-88926d-c4cda4-4f5341)
+
 ### Typography & Fonts
 
 - [Google Fonts API](https://developers.google.com/fonts/docs/css2)

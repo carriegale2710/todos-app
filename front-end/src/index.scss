@@ -1,28 +1,17 @@
+@use "./scss/partials/typography" as T;
+
 :root {
-  font-family: "Inconsolata", monospace, system-ui, Avenir, Helvetica, Arial,
-    sans-serif;
+  font-family: T.$text;
   line-height: 1.5;
-  font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   box-sizing: border-box;
-}
-
-// todo @use "./scss/partials/typography" as T;
-
-.h1 {
-  font-size: 24px;
-  font-family: Inconsolata;
-  font-weight: 400;
-  word-wrap: break-word;
+  .h1 {
+    font-family: T.$heading;
+  }
 }
 
 @media (prefers-color-scheme: light) {
