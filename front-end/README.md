@@ -8,19 +8,20 @@ Note: Please refer to `Getting Started` guide at bottom of the page for running 
 
 Goal: Create an application in React that allows you to track, add, and delete tasks as well as manage categories of tasks
 
-Feature requirements
+### Feature requirements
+
 ![Feature requirements](ui-design/wireframes/todo_UI_req.png)
 
-### MVP Features
+#### MVP Features
 
-- [ ] Must be able to delete tasks
-- [ ] Must be able to update tasks automatically by changing the task name and the category
-- [ ] You must add your own styling
 - [x] Must be able to duplicate tasks
 - [x] Must be able to add categories
 - [x] Must be able to add new tasks tagged with a task category
+- [ ] Must be able to delete tasks
+- [ ] Must be able to update tasks automatically by changing the task name and the category
+- [ ] You must add your own styling (In Progress)
 
-### Bonus Features
+#### Bonus Features
 
 - [ ] Create a summary section that lists how many of each type of task there are
 - [ ] Come up with a feature that allows us to delete and update task categories
