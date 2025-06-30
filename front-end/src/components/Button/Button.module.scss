@@ -1,3 +1,5 @@
+@use "../../scss/partials/colors" as C;
+
 .btn {
   border: none;
   padding: 10px;
@@ -8,9 +10,14 @@
   border-radius: 0.5em;
   margin: 1em;
   &:hover {
-    // transform: scale(1.1); //10% larger
-    // transition: transform 0.2s;
-    background-color: black;
-    color: aliceblue;
+    border: 2px, solid, C.$border;
   }
+}
+
+.tag {
+  padding: 0px 10px;
+  background-color: none;
+  border: 2px, solid, C.$border;
+  font-size: 14px;
+  margin: 0.5em;
 }

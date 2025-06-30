@@ -65,7 +65,7 @@ const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
             onChange={onInputChange}
           />
         </div>
-        <Button type="submit" disabled={!isValidInput} className={classes.btn}>
+        <Button type="submit" disabled={!isValidInput}>
           Save
         </Button>
       </form>

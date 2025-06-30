@@ -12,10 +12,7 @@ const AddCategoryWidget = () => {
         <CategoryForm setcategoryFormVisible={setcategoryFormVisible} />
       )}
 
-      <Button
-        className={classes.btn}
-        onClick={() => setcategoryFormVisible(!categoryFormVisible)}
-      >
+      <Button onClick={() => setcategoryFormVisible(!categoryFormVisible)}>
         {categoryFormVisible ? "X" : "New Category"}
       </Button>
     </div>

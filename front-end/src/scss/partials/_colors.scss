@@ -1,4 +1,4 @@
-//Palettes
+//SECTION 1 - Palettes / Themes
 
 //Palette 1
 $reseda-green: #6c7352ff;
@@ -11,9 +11,17 @@ $charcoal: #2e2e2e;
 $soft-gray: #888888;
 $faded-green: #b0c987;
 
+//Palette 3 - https://coolors.co/526514-1a1e61-961e54-bfc0bb-000000
+$penn-blue: #1a1e61ff;
+$murrey: #961e54ff;
+$silver: #bfc0bbff;
+$black: #000000ff;
+
+//SECTION 2 - Variables in use
+
 //Brand
-$primary: #9bbc0f;
-$secondary: rgb(60, 60, 224);
+$primary: $moss-green;
+$secondary: $penn-blue;
 
 //Text
 $text-light: #030303ff;

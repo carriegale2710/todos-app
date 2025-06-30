@@ -3,8 +3,6 @@ import Button from "../../Button/Button";
 import CategoryTag from "../../Category/CategoryTag/CategoryTag";
 import classes from "./TaskCard.module.scss";
 
-import check_box_outline_blank from "../../../assets/icons/check_box_outline_blank.svg";
-import check_box_checked from "../../../assets/icons/check_box.svg";
 import { useState } from "react";
 import { useTasks } from "../../../hooks/useTasks";
 
@@ -39,12 +37,7 @@ const TaskCard = ({ task }: TaskCardProps) => {
   return (
     <section className={classes.container}>
       <div className={classes.container_row}>
-        <Button onClick={handleCheckbox} className={classes.checkbox}>
-          <img
-            src={!isCompleted ? check_box_outline_blank : check_box_checked}
-          />
-        </Button>
-
+        <input type="checkbox" onClick={handleCheckbox} />
         <h3 className={isCompleted ? classes.strike : ""}>{task.name}</h3>
       </div>
 
