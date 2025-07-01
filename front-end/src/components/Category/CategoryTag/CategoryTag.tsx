@@ -7,14 +7,16 @@ interface CategoryTagProps {
 }
 
 const CategoryTag = ({ category }: CategoryTagProps) => {
-  const [hoverDisplay, setHoverDisplay] = useState(`${category?.name}`);
-  const handleHover = () => {
-    setHoverDisplay("Edit");
-  };
+  const [hoverOn, setHoverOn] = useState(false);
+
   return (
     category && (
-      <Button variants={["btn_tag"]} onHover={() => handleHover}>
-        {hoverDisplay}
+      <Button
+        variants={["tag"]}
+        onMouseEnter={() => setHoverOn(true)}
+        onMouseLeave={() => setHoverOn(false)}
+      >
+        {hoverOn ? "Edit" : `${category?.name}`}
       </Button>
     )
   );

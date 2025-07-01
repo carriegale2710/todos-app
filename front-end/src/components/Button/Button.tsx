@@ -2,9 +2,10 @@ import classes from "./Button.module.scss";
 
 interface ButtonProps {
   children: React.ReactNode; //allows any valid React content, including icons
-  //button functions
+  //button events
   onClick?: () => void;
-  onHover?: () => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
   variants?: string[]; //custom styling with CSS props
   type?: "button" | "submit" | "reset"; //for forms
   disabled?: boolean; //disabling button if form inputs invalid
