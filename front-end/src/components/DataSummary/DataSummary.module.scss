@@ -1,0 +1,6 @@
+@use "../../scss/partials/mixins" as M;
+
+.row {
+  @include M.wrapper(row);
+  gap: 1em;
+}
