@@ -5,7 +5,7 @@
   border: 1px solid red;
   border-radius: 10px;
   box-shadow: 5px 5px 8px 1px #88888832;
-  background-color: darkblue;
+  background-color: rgb(102, 102, 228);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -34,4 +34,6 @@
 
 .errors {
   color: red;
+  text-shadow: 3px;
+  font-weight: bold;
 }

@@ -1,12 +1,14 @@
 import classes from "./TaskList.module.scss";
 import { useTaskListContext } from "../../../context/TaskListContextProvider";
 import type { Task } from "../../../services/tasks";
-import Header from "../../Header/Header";
 import TaskCard from "../TaskCard/TaskCard";
 import { useCategoryFilterContext } from "../../../context/CategoryFilterContextProvider";
 import { useEffect, useState } from "react";
+import Button from "../../Button/Button";
 
 const TaskList = () => {
+  const [layoutView, setlayoutView] = useState("Grid");
+
   const { taskList } = useTaskListContext();
   const { categoryFilter } = useCategoryFilterContext();
   const [filterActive, setFilterActive] = useState(false);
@@ -18,10 +20,8 @@ const TaskList = () => {
   useEffect(() => {
     if (categoryFilter.length > 0) {
       setFilterActive(true);
-      console.log("filter is on");
     } else {
       setFilterActive(false);
-      console.log("filter is off");
     }
     categoryFilterIdList =
       categoryFilter.length > 0 ? categoryFilter.map((c) => c.id) : [];
@@ -41,10 +41,14 @@ const TaskList = () => {
     setFilteredTaskList(filtered);
   }, [categoryFilter]);
 
+  const onClick = () => {
+    layoutView === "Grid" ? setlayoutView("List") : setlayoutView("Grid");
+  };
+
   return (
     <section>
-      <Header heading="Today's Tasks" />
-      <div className={classes.taskList}>
+      <Button onClick={onClick}>{layoutView}</Button>
+      <div className={layoutView === "Grid" ? classes.grid : classes.list}>
         {taskList.length === 0 ? (
           <p>You have no tasks yet!</p>
         ) : (

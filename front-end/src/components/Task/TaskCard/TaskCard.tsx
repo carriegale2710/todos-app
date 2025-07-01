@@ -35,22 +35,27 @@ const TaskCard = ({ task }: TaskCardProps) => {
   };
 
   return (
-    <section className={classes.container}>
-      <div className={classes.container_row}>
-        <input type="checkbox" onClick={handleCheckbox} />
-        <h3 className={isCompleted ? classes.strike : ""}>{task.name}</h3>
+    <section className={classes.card}>
+      <div className={classes.title}>
+        <input
+          type="checkbox"
+          onClick={handleCheckbox}
+          className={classes.checkbox}
+        />
+        <h3 className={isCompleted ? classes.strike : classes.text}>
+          {task.name}
+        </h3>
       </div>
 
-      <div className={classes.taskData}>
-        {task.dueDate && (
-          <p>
-            Due on: {task.dueDate.toString().slice(0, 10).split("-").join("/")}
-          </p>
-        )}
+      {task.dueDate && (
+        <p>Due: {task.dueDate.toString().slice(0, 10).split("-").join("/")}</p>
+      )}
+      <div className={classes.row}>
+        <p>Category: </p>
         <CategoryTag category={task.categories[0]} />
       </div>
 
-      <div className={classes.container_row}>
+      <div className={classes.row}>
         <Button onClick={handleDuplicate}>Duplicate</Button>
         <Button onClick={handleDelete}>Delete</Button>
       </div>
