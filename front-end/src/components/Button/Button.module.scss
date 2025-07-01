@@ -1,7 +1,8 @@
 @use "../../scss/partials/colors" as C;
 
 .btn {
-  border: none;
+  background-color: C.$default;
+  border: 2px, solid, C.$border;
   padding: 10px;
   text-align: center;
   text-decoration: none;
@@ -10,14 +11,29 @@
   border-radius: 0.5em;
   margin: 1em;
   &:hover {
-    border: 2px, solid, C.$border;
+    box-shadow: 2px 2px;
+    transition: all 2ms ease-out;
   }
 }
 
+//category tags
+
 .tag {
-  padding: 0px 10px;
-  background-color: none;
   border: 2px, solid, C.$border;
+  padding: 2px 10px;
+  background-color: none;
   font-size: 14px;
   margin: 0.5em;
+}
+
+//variant colors
+
+.warning {
+  background-color: C.$warning;
+  color: whitesmoke;
+}
+
+.success {
+  background-color: C.$success;
+  color: whitesmoke;
 }

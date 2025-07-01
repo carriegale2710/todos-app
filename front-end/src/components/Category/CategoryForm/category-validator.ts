@@ -9,9 +9,6 @@ export const validateCategoryForm = (
     name: "",
   };
 
-  // console.log("categoryList" + JSON.stringify(categoryList));
-  // console.log("categoryValues" + JSON.stringify(categoryValues));
-
   if (categoryValues.name.trim() == "") {
     isValid = false;
     errors.name = "Category name must not be empty";

@@ -1,9 +1,10 @@
 @mixin page {
-  max-width: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   justify-self: center;
+  overflow-wrap: break-word;
 }
 
 @mixin message {
@@ -15,34 +16,12 @@
   margin: 50px;
 }
 
-@mixin wrapper {
+@mixin wrapper($direction: column) {
+  max-width: 100%;
   display: flex;
-  flex-direction: column;
-}
-
-@mixin wrapper_row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: $direction; //column by default, pass in row
+  align-items: center;
   justify-content: center;
-  gap: 15px;
-}
-
-@mixin modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-@mixin minimalBtn {
-  background-color: rgba(40, 148, 243, 0.294);
-  margin: 0px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
 }

@@ -24,8 +24,8 @@ $primary: $moss-green;
 $secondary: $penn-blue;
 
 //Text
-$text-light: #030303ff;
-$text-dark: #dddddd;
+$text-light-mode: $black;
+$text-dark-mode: $silver;
 $text-emphasis: $secondary;
 $text-warning: none;
 
@@ -38,4 +38,5 @@ $default: $soft-gray;
 $emphasis: $secondary;
 $border: #dddddd;
 $hover: #222222;
-$warning: rgb(235, 68, 68);
+$warning: red;
+$success: darkgreen;

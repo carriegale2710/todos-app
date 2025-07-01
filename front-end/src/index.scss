@@ -2,11 +2,12 @@
 @use "./scss/partials/colors" as C;
 
 :root {
+  width: 100%;
   font-family: T.$text;
   line-height: 1.5;
 
   color-scheme: light dark;
-  color: C.$text-dark;
+  color: C.$text-dark-mode;
   background-color: C.$bg-dark;
 
   box-sizing: border-box;
@@ -18,7 +19,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    color: C.$text-light;
+    color: C.$text-light-mode;
     background-color: C.$bg-light;
   }
 }

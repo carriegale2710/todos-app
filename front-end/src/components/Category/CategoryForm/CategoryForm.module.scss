@@ -8,11 +8,6 @@
   gap: 5px;
 }
 
-.btn {
-  @include mixins.minimalBtn;
-  font-size: smaller;
-}
-
 .input {
   border: 0px;
   padding: 5px;

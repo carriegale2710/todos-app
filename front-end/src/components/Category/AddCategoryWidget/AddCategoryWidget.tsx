@@ -1,5 +1,4 @@
 import { useState } from "react";
-import classes from "./AddCategoryWidget.module.scss";
 import CategoryForm from "../CategoryForm/CategoryForm";
 import Button from "../../Button/Button";
 
@@ -7,7 +6,7 @@ const AddCategoryWidget = () => {
   const [categoryFormVisible, setcategoryFormVisible] = useState(false);
 
   return (
-    <div className={classes.form}>
+    <div>
       {categoryFormVisible && (
         <CategoryForm setcategoryFormVisible={setcategoryFormVisible} />
       )}
