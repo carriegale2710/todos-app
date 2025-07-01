@@ -8,13 +8,11 @@ import Header from "./components/Header/Header";
 // import QuoteCard from "./components/QuoteCard/QuoteCard";
 
 function App() {
-  const userName = "Carrie";
-  const homeScreenHeading = "Adventure Awaits, ";
   return (
     <>
       <BrowserRouter>
-        <Header heading={homeScreenHeading} userName={userName} />
-        {/* <QuoteCard /> //FIXME - not fetching properly */}
+        <Header heading={"TODO APP"} />
+        {/* <QuoteCard /> */}
         <TaskListContextProvider>
           <CategoryListContextProvider>
             <CategoryFilterContextProvider>
