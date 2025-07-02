@@ -18,7 +18,7 @@ Goal: Create an application in React that allows you to track, add, and delete t
 - [x] Must be able to add new tasks tagged with a task category
 - [ ] Must be able to delete tasks
 - [ ] Must be able to update tasks automatically by changing the task name and the category
-- [ ] You must add your own styling (In Progress)
+- [x] You must add your own styling (In Progress)
 
 - [ ] (opt.) Create a summary section that lists how many of each type of task there are
 - [ ] (opt.) Come up with a feature that allows us to delete and update task categories
@@ -255,15 +255,48 @@ What are the immediate features you'd add given more time:
 
 ## Change logs
 
-- Write a paragraph labelled with the date every day you work on the project to discuss what you've done for the say. Be specific about the changes that have happened for that day.
+- Write a paragraph labelled with the date every day you work on the project
+- Discuss what you've done for the day.
+- Be specific about the changes that have happened for that day.
 
-### 13/02/2022 - {Theme of changes if applicable}
+### 01/07/2025 - UI Design assets
 
-- Extended the expiry time of JWT tokens on the backend
-- Added users to cohort response payload
-- Centralized API base URL on frontend using the proxy `package.json` property
+- Wireframe diagram to show component nesting on TaskPage.
+- Updated mockups of components in Figma.
+- Defined userflows by creating interactive Figma prototype to simulate basic functionality.
+- View assets in [ui-design](/ui-design) for more info.
 
----
+### 01/07/2025 - Styling imports (style2)
+
+- Cleaned up documentation in ui-design folder.
+- Updated color palette and typography for mixins variables and global styling in `index.scss`
+- Imported `normalize.css` for browser rendering consistency.
+- Conducted research on design patterns for React.
+
+### 02/07/2025 - Styling + Documentation Refactoring (style2)
+
+- Merged changes from `style2` to main branch
+
+Documentation:
+
+- Used a template to better structure both back-end [README.md](../README.md) and front-end file (this one).
+- Moved more UX/UI design related documentation to new [README.md](/ui-design/README.md).
+- Trying better naming convention for commit messages eg. docs: message
+
+Styling:
+
+- Refactored scss module files for : Button, TaskCard, TaskList, CategoryList, Header, CategoryTag and Form Modals.
+- Used mixins and partials to decouple style classes so for custom themes in future iterations (eg. game vs business theme)
+- Removed duplicated code/clutter and remove unused styling classes.
+- Fixed alignment and sizing issues with grids and flexboxes.
+
+Features:
+
+- QuotesCard: Deleted the quotes feature as planning to move to backend for security reasons.
+- DataSummary: Created this to separate context logic from TaskPage ('making it dumber') _new_
+- Button component: Fixed up hover bug for shadows. Refactored how callback functions are passed in.
+- CategoryTag: Conditional rendering: Changes to 'Edit' on hover.
+- TaskList: Created a `List vs Grid View` feature: Toggle Button changes display layout -> rows vs cards _new_
 
 ## What did you struggle with?
 
@@ -283,4 +316,4 @@ What are the immediate features you'd add given more time:
 
 ## Further details, related projects, reimplementations
 
-- Link to backend [Todos API](README.md).
+- Link to backend [Todos API](../README.md).
