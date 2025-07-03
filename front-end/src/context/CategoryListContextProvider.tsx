@@ -5,7 +5,9 @@ import {
   useContext,
   useEffect,
 } from "react";
-import { getAllCategories, type Category } from "../services/categories";
+import { fetchCategories, type Category } from "../services/categories";
+import { useCategories } from "../hooks/useCategories";
+import { wrapAsync } from "../utils/wrapAsync";
 
 interface CategoryListContextType {
   categoryList: Category[];
@@ -19,15 +21,12 @@ export const CategoryListContext = createContext<CategoryListContextType>({
 
 const CategoryListContextProvider = ({ children }: PropsWithChildren) => {
   const [categoryList, setCategoryList] = useState<Category[]>([]);
+  const [error, setError] = useState(null);
+  const [fetchStatus, setFetchStatus] = useState("PENDING");
 
+  // Fetch all Categories on mount
   useEffect(() => {
-    getAllCategories()
-      .then((result) => {
-        // console.log("All Categories from API: ", result);
-        setCategoryList(result);
-        console.log("categoryList updated");
-      })
-      .catch(console.warn);
+    wrapAsync(fetchCategories, setFetchStatus, setError).then(setCategoryList);
   }, []);
 
   return (

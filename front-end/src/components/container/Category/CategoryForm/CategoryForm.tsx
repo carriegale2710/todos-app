@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { type NewCategoryData } from "../../../services/categories";
-import { useCategories } from "../../../hooks/useCategories";
-import Button from "../../Button/Button";
+import { type NewCategoryData } from "../../../../services/categories";
+import { useCategories } from "../../../../hooks/useCategories";
+import Button from "../../../presentational/Button/Button";
 import { validateCategoryForm } from "./category-validator";
 import classes from "./CategoryForm.module.scss";
 import { useContext } from "react";
-import { CategoryListContext } from "../../../context/CategoryListContextProvider";
+import { CategoryListContext } from "../../../../context/CategoryListContextProvider";
 
 interface CategoryFormProps {
   setcategoryFormVisible?: (visible: boolean) => void;

@@ -17,7 +17,7 @@
   font-family: T.$heading;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     color: C.$text-light-mode;
     background-color: C.$bg-light;

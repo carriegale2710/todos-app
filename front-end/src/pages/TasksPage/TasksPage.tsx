@@ -1,11 +1,11 @@
 import { useState } from "react";
-import TaskList from "../../components/Task/TaskList/TaskList";
-import CategoryList from "../../components/Category/CategoryList/CategoryList";
+import TaskList from "../../components/container/Task/TaskList/TaskList";
+import CategoryList from "../../components/container/Category/CategoryList/CategoryList";
 import classes from "./TasksPage.module.scss";
-import TaskForm from "../../components/Task/TaskForm/TaskForm";
-import Button from "../../components/Button/Button";
-import DataSummary from "../../components/DataSummary/DataSummary";
-import Header from "../../components/Header/Header";
+import TaskForm from "../../components/container/Task/TaskForm/TaskForm";
+import Button from "../../components/presentational/Button/Button";
+import DataSummary from "../../components/presentational/DataSummary/DataSummary";
+import Header from "../../components/presentational/Header/Header";
 
 const TasksPage = () => {
   const [showModal, setShowModal] = useState(false);

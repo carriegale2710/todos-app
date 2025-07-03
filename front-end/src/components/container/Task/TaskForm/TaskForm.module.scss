@@ -1,4 +1,4 @@
-@use "../../../scss/partials/mixins" as mixins;
+@use "../../../../scss/partials/mixins" as M;
 
 .modal {
   gap: 2em;
@@ -26,7 +26,7 @@
 }
 
 .form {
-  @include mixins.wrapper;
+  @include M.wrapper;
   width: fit-content;
   justify-self: center;
   margin: 1em;

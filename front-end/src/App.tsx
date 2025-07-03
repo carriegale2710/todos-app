@@ -4,7 +4,7 @@ import TasksPage from "./pages/TasksPage/TasksPage";
 import TaskListContextProvider from "./context/TaskListContextProvider";
 import CategoryListContextProvider from "./context/CategoryListContextProvider";
 import CategoryFilterContextProvider from "./context/CategoryFilterContextProvider";
-import Header from "./components/Header/Header";
+import Header from "./components/presentational/Header/Header";
 
 function App() {
   return (

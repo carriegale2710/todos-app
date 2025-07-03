@@ -6,6 +6,7 @@ import {
   useEffect,
 } from "react";
 import { getAllTasks, type Task } from "../services/tasks";
+import { wrapAsync } from "../utils/wrapAsync";
 
 interface TaskListContextType {
   taskList: Task[];
@@ -19,14 +20,12 @@ export const TaskListContext = createContext<TaskListContextType>({
 
 const TaskListContextProvider = ({ children }: PropsWithChildren) => {
   const [taskList, setTaskList] = useState<Task[]>([]);
+  const [error, setError] = useState(null);
+  const [fetchStatus, setFetchStatus] = useState("PENDING");
 
+  // Fetch all Categories on mount
   useEffect(() => {
-    getAllTasks()
-      .then((result) => {
-        setTaskList(result);
-        console.log("taskList updated");
-      })
-      .catch(console.warn);
+    wrapAsync(getAllTasks, setFetchStatus, setError).then(setTaskList);
   }, []);
 
   return (

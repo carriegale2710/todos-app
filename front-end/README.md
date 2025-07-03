@@ -125,16 +125,15 @@ For more details on UX/UI design process, please refer to design this [document]
 - [x] `TaskForm`: Add task (name + category dropdown)
 - [x] `TaskList`: Displays tasks (supports filtering)
 - [] `Task`:
-
-  - [ ] Editable name & category
   - [ ] Complete checkbox
   - [ ] Buttons:
         [ ] **Duplicate**,
         [ ] **Delete**
+  - [ ] Editable name & category
 
 ### Bonus
 
-- [x] `CategoryFilter`: Dropdown to filter by category
+- [x] `CategoryFilter`: Dropdown to filter by category - to refactor: separate logic out
 - [ ] `SummaryBar`: Shows “Work: 3, Study: 2” etc.
 
 ## User Flows + Side Effects 🧭

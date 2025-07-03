@@ -1,8 +1,8 @@
-import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
-import type { Category } from "../../../services/categories";
+import { useCategoryListContext } from "../../../../context/CategoryListContextProvider";
+import type { Category } from "../../../../services/categories";
 
 import classes from "./CategoryList.module.scss";
-import { useCategoryFilterContext } from "../../../context/CategoryFilterContextProvider";
+import { useCategoryFilterContext } from "../../../../context/CategoryFilterContextProvider";
 import AddCategoryWidget from "../AddCategoryWidget/AddCategoryWidget";
 import { useEffect, useState } from "react";
 

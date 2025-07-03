@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CategoryForm from "../CategoryForm/CategoryForm";
-import Button from "../../Button/Button";
+import Button from "../../../presentational/Button/Button";
 
 const AddCategoryWidget = () => {
   const [categoryFormVisible, setcategoryFormVisible] = useState(false);

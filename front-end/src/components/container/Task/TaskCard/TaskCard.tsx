@@ -1,10 +1,10 @@
-import { type Task } from "../../../services/tasks";
-import Button from "../../Button/Button";
+import { type Task } from "../../../../services/tasks";
+import Button from "../../../presentational/Button/Button";
 import CategoryTag from "../../Category/CategoryTag/CategoryTag";
 import classes from "./TaskCard.module.scss";
 
 import { useState } from "react";
-import { useTasks } from "../../../hooks/useTasks";
+import { useTasks } from "../../../../hooks/useTasks";
 
 interface TaskCardProps {
   task: Task;

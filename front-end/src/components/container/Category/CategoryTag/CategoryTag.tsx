@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { Category } from "../../../services/categories";
-import Button from "../../Button/Button";
+import type { Category } from "../../../../services/categories";
+import Button from "../../../presentational/Button/Button";
 
 interface CategoryTagProps {
   category: Category;

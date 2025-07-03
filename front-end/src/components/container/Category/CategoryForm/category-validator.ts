@@ -1,4 +1,7 @@
-import type { Category, NewCategoryData } from "../../../services/categories";
+import type {
+  Category,
+  NewCategoryData,
+} from "../../../../services/categories";
 
 export const validateCategoryForm = (
   categoryValues: NewCategoryData,

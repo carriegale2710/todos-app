@@ -1,10 +1,10 @@
 import classes from "./TaskList.module.scss";
-import { useTaskListContext } from "../../../context/TaskListContextProvider";
-import type { Task } from "../../../services/tasks";
+import { useTaskListContext } from "../../../../context/TaskListContextProvider";
+import type { Task } from "../../../../services/tasks";
 import TaskCard from "../TaskCard/TaskCard";
-import { useCategoryFilterContext } from "../../../context/CategoryFilterContextProvider";
+import { useCategoryFilterContext } from "../../../../context/CategoryFilterContextProvider";
 import { useEffect, useState } from "react";
-import Button from "../../Button/Button";
+import Button from "../../../presentational/Button/Button";
 
 const TaskList = () => {
   const [layoutView, setlayoutView] = useState("Grid");

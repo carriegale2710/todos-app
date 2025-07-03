@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useCategoryListContext } from "../../../context/CategoryListContextProvider";
-import Header from "../../Header/Header";
-import Button from "../../Button/Button";
+import { useCategoryListContext } from "../../../../context/CategoryListContextProvider";
+import Header from "../../../presentational/Header/Header";
+import Button from "../../../presentational/Button/Button";
 import classes from "./TaskForm.module.scss";
-import { type NewTaskData } from "../../../services/tasks";
-import { useTasks } from "../../../hooks/useTasks";
+import { type NewTaskData } from "../../../../services/tasks";
+import { useTasks } from "../../../../hooks/useTasks";
 import { validateTaskForm } from "./task-validator";
 
 const TaskForm = ({ onClose }: { onClose?: () => void }) => {

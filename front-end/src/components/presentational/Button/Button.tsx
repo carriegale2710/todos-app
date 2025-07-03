@@ -2,7 +2,7 @@ import classes from "./Button.module.scss";
 
 interface ButtonProps {
   children: React.ReactNode; //allows any valid React content, including icons
-  //button events
+  //button functions
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
