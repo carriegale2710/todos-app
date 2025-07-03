@@ -4,6 +4,7 @@ import {
   create,
   duplicate,
   deleteTaskById,
+  updateTaskById,
 } from "../services/tasks";
 import type { Task, NewTaskData } from "../services/tasks";
 import { useTaskListContext } from "../context/TaskListContextProvider";
@@ -59,6 +60,11 @@ export function useTasks() {
 
   const removeTask = async (id: number) => {
     await deleteTaskById(id);
+    setTaskList((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const updateTask = async (id: number) => {
+    await updateTaskById(id);
     setTaskList((prev) => prev.filter((t) => t.id !== id));
   };
 

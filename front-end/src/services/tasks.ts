@@ -19,7 +19,7 @@ export interface NewTaskData {
 
 //SECTION - CRUD OPERATIONS
 
-//NOTE - READ
+//NOTE - (print all entries in DB)
 
 export const getAllTasks = async (): Promise<Task[]> => {
   const response = await fetch("http://localhost:8080/tasks");
@@ -30,6 +30,7 @@ export const getAllTasks = async (): Promise<Task[]> => {
   return tasks;
 };
 
+//NOTE - (print entry in DB)
 export const getTaskById = async (id: number): Promise<Task> => {
   const response = await fetch("http://localhost:8080/tasks/" + id);
   if (!response.ok) {
@@ -40,7 +41,7 @@ export const getTaskById = async (id: number): Promise<Task> => {
   return task;
 };
 
-//NOTE - CREATE
+//NOTE - CREATE (new entry in DB)
 
 export const create = async (newTaskData: NewTaskData): Promise<Task[]> => {
   console.log("taskData received in DB: ", newTaskData);
@@ -58,6 +59,8 @@ export const create = async (newTaskData: NewTaskData): Promise<Task[]> => {
   return task;
 };
 
+//NOTE - DUPLICATE (copy entry in DB)
+
 export const duplicate = async (taskDataCopy: Task) => {
   const t = taskDataCopy;
   const duplicateTaskData: NewTaskData = {
@@ -74,19 +77,9 @@ export const duplicate = async (taskDataCopy: Task) => {
   create(duplicateTaskData);
 };
 
-//NOTE - DELETE
-export const deleteTaskById = async (id: number): Promise<Task> => {
-  const response = await fetch("http://localhost:8080/tasks/" + id, {
-    method: "DELETE",
-  });
-  if (!response.ok) {
-    throw new Error("Could not delete task with id " + id);
-  }
-  const deletedTask = await response.json();
-  return deletedTask;
-};
-
-//NOTE - UPDATE
+//NOTE - UPDATE (custom edit entry in DB)
+//NOTE - COMPLETE (updates task prop isComplete = true)
+//NOTE - SOFT DELETE (updates task prop isArchived = true)
 
 export const updateTaskById = async (
   id: number,
@@ -104,4 +97,16 @@ export const updateTaskById = async (
   const updatedTask = await response.json();
   console.log("Task update in DB: ", updatedTask);
   return updatedTask;
+};
+
+//NOTE - HARD DELETE (permanent DB deletion)
+export const deleteTaskById = async (id: number): Promise<Task> => {
+  const response = await fetch("http://localhost:8080/tasks/" + id, {
+    method: "UPDATE",
+  });
+  if (!response.ok) {
+    throw new Error("Could not delete task with id " + id);
+  }
+  const deletedTask = await response.json();
+  return deletedTask;
 };

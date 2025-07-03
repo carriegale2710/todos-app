@@ -16,9 +16,8 @@ const Icon = ({ path }: { path: IconName }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
+      viewBox="0 -960 960 960"
+      fill="currentColor"
       width="24"
       height="24"
     >
