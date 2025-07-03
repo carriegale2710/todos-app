@@ -1,0 +1,5 @@
+@use "../../../../scss/partials/mixins" as M;
+
+.wrapper {
+  @include M.wrapper;
+}
