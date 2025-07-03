@@ -31,7 +31,6 @@ const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
         [name]: value.trim(), //dueDate isn't a string
       };
       const result = validateCategoryForm(newValues, categoryList);
-      console.log("result.isValid: " + JSON.stringify(result.isValid));
       setIsValidInput(result.isValid);
       return newValues;
     });

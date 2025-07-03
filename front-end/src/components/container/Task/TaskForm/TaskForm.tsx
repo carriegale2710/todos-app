@@ -33,7 +33,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
         [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
       };
       const result = validateTaskForm(newValues);
-      console.log("result.isValid: " + JSON.stringify(result.isValid));
+      // console.log("result.isValid: " + JSON.stringify(result.isValid));
       setIsValidInput(result.isValid);
       return newValues;
     });

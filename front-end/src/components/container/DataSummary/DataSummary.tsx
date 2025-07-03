@@ -4,7 +4,6 @@ import { CategoryListContext } from "../../../context/CategoryListContextProvide
 import classes from "./DataSummary.module.scss";
 
 const DataSummary = () => {
-  //TODO - move this context to parent and pass in as prop instead to make this UI only
   const { taskList } = useContext(TaskListContext);
   const { categoryList } = useContext(CategoryListContext);
   return (

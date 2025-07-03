@@ -4,11 +4,12 @@ import CategoryList from "../../components/container/Category/CategoryList/Categ
 import classes from "./TasksPage.module.scss";
 import TaskForm from "../../components/container/Task/TaskForm/TaskForm";
 import Button from "../../components/presentational/Button/Button";
-import DataSummary from "../../components/presentational/DataSummary/DataSummary";
+import DataSummary from "../../components/container/DataSummary/DataSummary";
 import Header from "../../components/presentational/Header/Header";
 
 const TasksPage = () => {
   const [showModal, setShowModal] = useState(false);
+
   const userName = "Carrie";
   const homeScreenHeading = "Good Morning, ";
 
