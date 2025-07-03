@@ -12,9 +12,14 @@ import CategoryForm from "../../components/container/Category/CategoryForm/Categ
 const TasksPage = () => {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
+  const [layoutView, setlayoutView] = useState("Grid");
 
   const userName = "Carrie";
   const homeScreenHeading = "Good Morning, ";
+
+  const onClick = () => {
+    layoutView === "Grid" ? setlayoutView("List") : setlayoutView("Grid");
+  };
 
   return (
     <section className={classes.page}>
@@ -37,11 +42,12 @@ const TasksPage = () => {
           <CategoryForm />
         </Modal>
       )}
+
+      <Header heading="Today's Tasks" />
       <br />
       <CategoryList />
-      <br />
-      <Header heading="Today's Tasks" />
-      <TaskList />
+      <Button onClick={onClick}>{layoutView}</Button>
+      <TaskList layoutView={layoutView} />
     </section>
   );
 };

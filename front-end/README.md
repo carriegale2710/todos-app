@@ -220,8 +220,7 @@ Enter new name/category change -> submit
 
   - [ ] Update button not functional yet + crashes app.
   - [ ] Delete button only functional in front-end filter, does not call backend yet.
-  - [ ] Custom hooks verbose, make DRY but reusing one useFetch hook.
-  -
+  - [ ] Adding a new task does not re-render the TaskList automatically, needs manual refresh to show added task
 
 - Features that are buggy / flimsy:
 
@@ -296,6 +295,12 @@ Features:
 - Button component: Fixed up hover bug for shadows. Refactored how callback functions are passed in.
 - CategoryTag: Conditional rendering: Changes to 'Edit' on hover.
 - TaskList: Created a `List vs Grid View` feature: Toggle Button changes display layout -> rows vs cards _new_
+
+### 03/07/2025 - Responsive Modal
+
+- Categorised components into presentational vs container folders.
+- Downloaded icon set from Google Material UI and updated favicon.
+- Created generic presentational Modal component with responsive close button thats reusable for both adding/editing either a task/category. Forms are passed in as children props.
 
 ## What did you struggle with?
 

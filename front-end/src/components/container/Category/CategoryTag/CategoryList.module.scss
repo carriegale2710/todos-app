@@ -1,0 +1,7 @@
+@use "../../../../scss/partials/mixins" as M;
+.category {
+  @include M.wrapper(row);
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  width: 100%;
+}

@@ -4,12 +4,20 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
   justify-content: center;
-  grid-gap: 6px;
+  align-self: center;
+  width: 100%;
+  align-content: center;
+  grid-gap: 2px;
+  background-color: rgba(0, 0, 0, 0.065);
 }
 
 .list {
   width: 100%;
-  display: list-item;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0.065);
 }
 
 //https://grid.malven.co/

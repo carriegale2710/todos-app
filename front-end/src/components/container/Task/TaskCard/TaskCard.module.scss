@@ -1,40 +1,46 @@
 @use "../../../../scss/partials/mixins" as M;
 
-.card {
-  @include M.wrapper(row);
+.cardStyle {
+  @include M.wrapper;
   flex-wrap: wrap;
-  justify-content: space-around;
+  align-content: flex-start;
+  justify-content: flex-start;
   padding: 0px;
-  border-radius: 0.5em;
-  background-color: rgba(151, 151, 151, 0.149);
+  border-radius: 20px;
   margin: 0.5em;
   width: 100%;
 }
 
-.title {
+.listStyle {
   @include M.wrapper(row);
-  max-width: 300px;
+  height: 80px;
   width: 100%;
-  padding: 0px;
-  margin: 0px;
-  justify-items: flex-start;
-  text-align: left;
-  text-wrap-mode: nowrap;
+  justify-content: space-between;
+  overflow-x: scroll;
+  scrollbar-width: none;
   text-overflow: ellipsis;
-  background-color: rgba(79, 170, 170, 0.445);
 }
 
-.row {
+.header {
   @include M.wrapper(row);
+  display: block;
+  width: 100%;
+  overflow: hidden;
 }
 
-.checkbox {
-  margin: 10px;
-  &:hover {
-    background-color: transparent;
-  }
+.taskData {
+  @include M.wrapper(row);
+
+  justify-content: space-around;
+  background-color: rgb(0, 255, 47);
 }
 
-.strike {
-  text-decoration: line-through;
+.dueDate {
+  @include M.wrapper(row);
+  flex-wrap: nowrap;
+  background-color: rgb(25, 0, 255);
+}
+
+.hidden {
+  visibility: visible;
 }

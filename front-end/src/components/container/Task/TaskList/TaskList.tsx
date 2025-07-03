@@ -4,11 +4,12 @@ import type { Task } from "../../../../services/tasks";
 import TaskCard from "../TaskCard/TaskCard";
 import { useCategoryFilterContext } from "../../../../context/CategoryFilterContextProvider";
 import { useEffect, useState } from "react";
-import Button from "../../../presentational/Button/Button";
 
-const TaskList = () => {
-  const [layoutView, setlayoutView] = useState("Grid");
+type TaskListProps = {
+  layoutView: string;
+};
 
+const TaskList = ({ layoutView }: TaskListProps) => {
   const { taskList } = useTaskListContext();
   const { categoryFilter } = useCategoryFilterContext();
   const [filterActive, setFilterActive] = useState(false);
@@ -41,22 +42,19 @@ const TaskList = () => {
     setFilteredTaskList(filtered);
   }, [categoryFilter]);
 
-  const onClick = () => {
-    layoutView === "Grid" ? setlayoutView("List") : setlayoutView("Grid");
-  };
-
   return (
-    <section>
-      <Button onClick={onClick}>{layoutView}</Button>
-      <div className={layoutView === "Grid" ? classes.grid : classes.list}>
-        {taskList.length === 0 ? (
-          <p>You have no tasks yet!</p>
-        ) : (
-          displayedTaskList.map((task: Task) => {
-            return !task.isArchived && <TaskCard task={task} key={task.id} />;
-          })
-        )}
-      </div>
+    <section className={layoutView === "Grid" ? classes.grid : classes.list}>
+      {taskList.length === 0 ? (
+        <p>You have no tasks yet!</p>
+      ) : (
+        displayedTaskList.map((task: Task) => {
+          return (
+            !task.isArchived && (
+              <TaskCard layoutView={layoutView} task={task} key={task.id} />
+            )
+          );
+        })
+      )}
     </section>
   );
 };

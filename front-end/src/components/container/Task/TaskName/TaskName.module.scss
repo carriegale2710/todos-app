@@ -1,0 +1,34 @@
+@use "../../../../scss/partials/mixins" as M;
+
+.title {
+  @include M.wrapper(row);
+  background-color: rgba(79, 170, 170, 0.445);
+  overflow: hidden;
+  min-width: 300px;
+  max-width: 100%;
+  justify-content: start;
+  margin: 0px;
+  padding-left: 1em;
+  padding-right: 1em;
+  gap: 1em;
+
+  &_checkbox {
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &_taskName {
+    max-width: 100%;
+    text-align: left;
+    align-self: flex-start;
+    text-wrap-mode: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    &_strike {
+      text-decoration: line-through;
+      text-overflow: ellipsis;
+    }
+  }
+}

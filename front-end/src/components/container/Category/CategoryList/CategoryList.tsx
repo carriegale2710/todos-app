@@ -54,7 +54,6 @@ const CategoryList = () => {
           </div>
         )}
       </div>
-      <AddCategoryWidget />
     </section>
   );
 };

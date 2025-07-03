@@ -1,64 +1,36 @@
 import { type Task } from "../../../../services/tasks";
 import Button from "../../../presentational/Button/Button";
-import CategoryTag from "../../Category/CategoryTag/CategoryTag";
+import EditBar from "../../EditBar/EditBar";
+import TaskData from "../TaskData/TaskData";
+import TaskName from "../TaskName/TaskName";
 import classes from "./TaskCard.module.scss";
-
 import { useState } from "react";
-import { useTasks } from "../../../../hooks/useTasks";
 
 interface TaskCardProps {
   task: Task;
+  layoutView: string;
 }
 
-const TaskCard = ({ task }: TaskCardProps) => {
-  const [isCompleted, setIsCompleted] = useState(false);
-  const { duplicateTask, removeTask } = useTasks();
-
-  //SECTION - BUTTON HANDLERS
-
-  const handleCheckbox = () => {
-    setIsCompleted(!isCompleted);
-    //todo  - call updateTask() from services to update boolean in DB (isCompleted = !isCompleted)
-    console.log(
-      `Successfully updated task: "${task.name}" to isCompleted: ${task.isCompleted}`
-    );
-  };
-
-  const handleDuplicate = () => {
-    duplicateTask(task);
-  };
-
-  const handleDelete = () => {
-    console.log("deleted button clicked");
-    removeTask(task.id);
-    //todo -  call updateTask() from services  - update isArchived boolean in DB (task.isArchived = true)
-  };
+const TaskCard = ({ task, layoutView }: TaskCardProps) => {
+  const [hover, setHover] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   return (
-    <section className={classes.card}>
-      <div className={classes.title}>
-        <input
-          type="checkbox"
-          onClick={handleCheckbox}
-          className={classes.checkbox}
-        />
-        <h3 className={isCompleted ? classes.strike : classes.text}>
-          {task.name}
-        </h3>
-      </div>
-
-      {task.dueDate && (
-        <p>Due: {task.dueDate.toString().slice(0, 10).split("-").join("/")}</p>
+    <section
+      className={layoutView === "Grid" ? classes.cardStyle : classes.listStyle}
+      onMouseEnter={() => setHover(!hover)}
+      onMouseLeave={() => setHover(!hover)}
+    >
+      <header className={classes.header}>
+        <TaskName task={task} />
+      </header>
+      {layoutView === "Grid" && (hover || clicked) && <TaskData task={task} />}
+      {clicked && <EditBar task={task} />}
+      {((hover && !clicked) || (!hover && clicked)) && (
+        <Button className="icon-btn" onClick={() => setClicked(!clicked)}>
+          {!clicked ? "Edit" : "X"}
+        </Button>
       )}
-      <div className={classes.row}>
-        <p>Category: </p>
-        <CategoryTag category={task.categories[0]} />
-      </div>
-
-      <div className={classes.row}>
-        <Button onClick={handleDuplicate}>Duplicate</Button>
-        <Button onClick={handleDelete}>Delete</Button>
-      </div>
     </section>
   );
 };

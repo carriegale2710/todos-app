@@ -1,0 +1,14 @@
+@use "../../../scss/partials/mixins" as M;
+.editBar {
+  @include M.wrapper(row);
+  width: fit-content;
+  max-width: 100%;
+  justify-content: right;
+  z-index: 2;
+  background-color: none;
+
+  right: 1em;
+  button {
+    margin: 0;
+  }
+}
