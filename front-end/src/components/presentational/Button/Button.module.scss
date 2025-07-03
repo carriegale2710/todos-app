@@ -10,15 +10,26 @@
   font-size: 16px;
   border-radius: 0.5em;
   margin: 1em;
-  &:hover {
-    box-shadow: 2px 2px;
-    transition: all 2ms ease-out;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  svg {
+    object-fit: contain;
   }
 }
 
-//category tags
-
 .tag {
+  //category tags
   border: 2px, solid, C.$border;
   padding: 2px 10px;
   background-color: none;
@@ -26,14 +37,30 @@
   margin: 0.5em;
 }
 
+//effects
+
+.hover {
+  &_shadow {
+    :hover {
+      box-shadow: 2px 2px;
+      transition: all 2ms ease-out;
+    }
+  }
+  &_highlight {
+    :hover {
+      color: C.$highlight;
+    }
+  }
+}
+
 //variant colors
 
 .warning {
   background-color: C.$warning;
-  color: whitesmoke;
+  color: C.$highlight;
 }
 
 .success {
   background-color: C.$success;
-  color: whitesmoke;
+  color: C.$highlight;
 }

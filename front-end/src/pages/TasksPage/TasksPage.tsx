@@ -2,13 +2,16 @@ import { useState } from "react";
 import TaskList from "../../components/container/Task/TaskList/TaskList";
 import CategoryList from "../../components/container/Category/CategoryList/CategoryList";
 import classes from "./TasksPage.module.scss";
-import TaskForm from "../../components/container/Task/TaskForm/TaskForm";
 import Button from "../../components/presentational/Button/Button";
 import DataSummary from "../../components/container/DataSummary/DataSummary";
 import Header from "../../components/presentational/Header/Header";
+import Modal from "../../components/presentational/Modal/Modal";
+import TaskForm from "../../components/container/Task/TaskForm/TaskForm";
+import CategoryForm from "../../components/container/Category/CategoryForm/CategoryForm";
 
 const TasksPage = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showTaskModal, setShowTaskModal] = useState(false);
+  const [showCategoryModal, setShowCategoryModal] = useState(false);
 
   const userName = "Carrie";
   const homeScreenHeading = "Good Morning, ";
@@ -17,9 +20,26 @@ const TasksPage = () => {
     <section className={classes.page}>
       <Header heading={homeScreenHeading} userName={userName} />
       <DataSummary />
-      <Button onClick={() => setShowModal(true)}>Add new Task</Button>
-      {showModal && <TaskForm onClose={() => setShowModal(false)} />}
+
+      <Button onClick={() => setShowTaskModal(true)}>New Task</Button>
+      {showTaskModal && (
+        <Modal heading="New Task" onClose={() => setShowTaskModal(false)}>
+          <TaskForm />
+        </Modal>
+      )}
+
+      <Button onClick={() => setShowCategoryModal(true)}>New Category</Button>
+      {showCategoryModal && (
+        <Modal
+          heading="New Category"
+          onClose={() => setShowCategoryModal(false)}
+        >
+          <CategoryForm />
+        </Modal>
+      )}
+      <br />
       <CategoryList />
+      <br />
       <Header heading="Today's Tasks" />
       <TaskList />
     </section>

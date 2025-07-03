@@ -1,14 +1,13 @@
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import classes from "./Button.module.scss";
 
-interface ButtonProps {
+interface ButtonProps
+  extends DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   children: React.ReactNode; //allows any valid React content, including icons
-  //button functions
-  onClick?: () => void;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
   variants?: string[]; //custom styling with CSS props
-  type?: "button" | "submit" | "reset"; //for forms
-  disabled?: boolean; //disabling button if form inputs invalid
 }
 
 const Button: React.FC<ButtonProps> = ({

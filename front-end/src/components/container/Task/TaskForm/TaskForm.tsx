@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useCategoryListContext } from "../../../../context/CategoryListContextProvider";
-import Header from "../../../presentational/Header/Header";
 import Button from "../../../presentational/Button/Button";
 import classes from "./TaskForm.module.scss";
 import { type NewTaskData } from "../../../../services/tasks";
 import { useTasks } from "../../../../hooks/useTasks";
 import { validateTaskForm } from "./task-validator";
 
-const TaskForm = ({ onClose }: { onClose?: () => void }) => {
+const TaskForm = () => {
   const { categoryList } = useCategoryListContext();
 
   const defaultTaskValues: NewTaskData = {
@@ -33,7 +32,6 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
         [name]: name === "dueDate" ? new Date(value) : value, //dueDate isn't a string
       };
       const result = validateTaskForm(newValues);
-      // console.log("result.isValid: " + JSON.stringify(result.isValid));
       setIsValidInput(result.isValid);
       return newValues;
     });
@@ -57,10 +55,8 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
   };
 
   return (
-    <section className={classes.modal}>
-      <div className={classes.modal_content}>
-        <Header heading="Create New Task" />
-
+    <section>
+      <div>
         <form className={classes.form} onSubmit={handleSubmit}>
           <label htmlFor="nameInput">Task Name</label>
           <input
@@ -70,10 +66,7 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
             placeholder="Task Name"
             onChange={onInputChange}
           />
-          <br />
-
           <label htmlFor="dueDateInput">Due Date</label>
-          {/* //todo - use date picker library later on? */}
           <input
             type="date"
             id="dueDateInput"
@@ -81,8 +74,6 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
             placeholder="DD-MM-YYYY"
             onChange={onInputChange}
           />
-          <br />
-
           <label htmlFor="categorySelect">Category</label>
           <select
             id="categorySelect"
@@ -99,10 +90,6 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
               </option>
             ))}
           </select>
-          <br />
-
-          {/* <AddCategoryWidget /> //FIXME - refreshes on saves depsite e.preventDefault()*/}
-
           {!isValidInput && <p className={classes.errors}>{errors.name}</p>}
           {showMessage && <p>Task added!</p>}
           <Button
@@ -111,9 +98,6 @@ const TaskForm = ({ onClose }: { onClose?: () => void }) => {
             onClick={() => setShowMessage(true)}
           >
             Create
-          </Button>
-          <Button type="button" onClick={onClose}>
-            Cancel
           </Button>
         </form>
       </div>

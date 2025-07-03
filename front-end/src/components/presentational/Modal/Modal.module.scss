@@ -1,0 +1,29 @@
+@use "../../../scss/partials/mixins" as M;
+@use "../../../scss/partials/colors" as C;
+
+.modal {
+  @include M.wrapper;
+  justify-content: flex-start;
+  gap: 2em;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px 1px #88767632;
+  background-color: C.$bg-light;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 2;
+  min-width: 50%;
+  width: 100%;
+  height: 100%;
+  padding: 2em;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+}

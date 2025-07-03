@@ -33,6 +33,9 @@ Tools: Figma
 ### Icons
 
 - [Google Material Symbols & Icons](https://fonts.google.com/icons)
+
 - [Material Icons Guide](https://developers.google.com/fonts/docs/material_icons)
 
-- [Ditto Icon](https://www.flaticon.com/free-icon/avatar_1752681?term=pokemon&page=1&position=1&origin=tag&related_id=1752681)
+### Favicon
+
+- [Pokeball](public\favicon\pokeball.svg) - [Source Link](https://svgcrown.com/download.php?category=pokemon&id=i)
