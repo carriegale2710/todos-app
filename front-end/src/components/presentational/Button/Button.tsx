@@ -8,11 +8,13 @@ interface ButtonProps
   > {
   children: React.ReactNode; //allows any valid React content, including icons
   variants?: string[]; //custom styling with CSS props
+  altText?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   variants,
   type = "button",
+  altText,
   children,
   ...rest
 }) => {
@@ -21,7 +23,12 @@ const Button: React.FC<ButtonProps> = ({
     variants.length > 0 &&
     variants.forEach((name) => classNames.push(classes[name] ?? ""));
   return (
-    <button className={classNames.join(" ")} type={type} {...rest}>
+    <button
+      aria-label={altText}
+      className={classNames.join(" ")}
+      type={type}
+      {...rest}
+    >
       {children}
     </button>
   );

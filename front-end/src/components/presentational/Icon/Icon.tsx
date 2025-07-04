@@ -1,4 +1,10 @@
-type IconName = "add" | "close" | "checkedBox" | "delete" | "duplicate";
+type IconName =
+  | "add"
+  | "close"
+  | "checkedBox"
+  | "delete"
+  | "duplicate"
+  | "edit";
 
 const paths: Record<IconName, string> = {
   add: "M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z",
@@ -10,6 +16,7 @@ const paths: Record<IconName, string> = {
     "M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z",
   duplicate:
     "M520-400h80v-120h120v-80H600v-120h-80v120H400v80h120v120ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z",
+  edit: "M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z",
 };
 
 const Icon = ({ path }: { path: IconName }) => {

@@ -1,24 +1,41 @@
 import Button from "../../presentational/Button/Button";
 import classes from "./EditBar.module.scss";
-import { useTasks } from "../../../hooks/useTasks";
-import type { Task } from "../../../services/tasks";
+import {
+  deleteTaskById,
+  duplicateTask,
+  type Task,
+} from "../../../services/tasks";
+import Icon from "../../presentational/Icon/Icon";
 
-const EditBar = ({ task }: { task: Task }) => {
-  const { duplicateTask, removeTask } = useTasks();
+type EditBarProps = {
+  task: Task;
+  onClose: () => void;
+};
+
+const EditBar = ({ task, onClose }: EditBarProps) => {
   const handleDuplicate = () => {
     duplicateTask(task);
+    onClose();
   };
 
+  //todo -  call updateTask() from services  - update isArchived boolean in DB (task.isArchived = true)
   const handleDelete = () => {
     console.log("deleted button clicked");
-    removeTask(task.id);
-    //todo -  call updateTask() from services  - update isArchived boolean in DB (task.isArchived = true)
+    deleteTaskById(task.id);
+    onClose();
   };
 
   return (
     <div className={classes.editBar}>
-      <Button onClick={handleDuplicate}>Duplicate</Button>
-      <Button onClick={handleDelete}>Delete</Button>
+      <Button altText="Duplicate" onClick={handleDuplicate}>
+        <Icon path="duplicate" />
+      </Button>
+      <Button altText="Delete" onClick={handleDelete}>
+        <Icon path="delete" />
+      </Button>
+      <Button altText="Close" className="icon-btn" onClick={onClose}>
+        <Icon path="close" />
+      </Button>
     </div>
   );
 };
