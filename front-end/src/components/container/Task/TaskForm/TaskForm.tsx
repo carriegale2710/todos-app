@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useCategoryListContext } from "../../../../context/CategoryListContextProvider";
 import Button from "../../../presentational/Button/Button";
 import classes from "./TaskForm.module.scss";
-import { type NewTaskData } from "../../../../services/tasks";
-import { useTasks } from "../../../../hooks/useTasks";
+import { createTask, type NewTaskData } from "../../../../services/tasks";
 import { validateTaskForm } from "./task-validator";
 
 const TaskForm = () => {
@@ -19,9 +18,9 @@ const TaskForm = () => {
 
   const [taskValues, setTaskValues] = useState<NewTaskData>(defaultTaskValues);
   const [selectedCategory, setSelectedCategory] = useState("");
+
   const [isValidInput, setIsValidInput] = useState(false);
   const { errors } = validateTaskForm(taskValues);
-  const { addTask } = useTasks();
   const [showMessage, setShowMessage] = useState(false);
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +46,7 @@ const TaskForm = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("taskValues: " + JSON.stringify(taskValues));
-    isValidInput && addTask(taskValues);
+    isValidInput && createTask(taskValues);
     //reset values after submission
     setTaskValues(defaultTaskValues);
     setSelectedCategory("");

@@ -1,4 +1,4 @@
-export const wrapAsync = async <T>(
+export const fetchHandler = async <T>(
   fn: () => Promise<T>,
   setStatus: any,
   setError: any

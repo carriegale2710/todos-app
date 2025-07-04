@@ -1,6 +1,6 @@
 import classes from "./TasksPage.module.scss";
 import { useState } from "react";
-import TaskList from "../../components/container/Task/TaskList/TaskList";
+import TaskList from "../../components/presentational/TaskList/TaskList";
 import Button from "../../components/presentational/Button/Button";
 import DataSummary from "../../components/container/DataSummary/DataSummary";
 import Header from "../../components/presentational/Header/Header";
@@ -9,11 +9,13 @@ import TaskForm from "../../components/container/Task/TaskForm/TaskForm";
 import CategoryForm from "../../components/container/Category/CategoryForm/CategoryForm";
 import ToolBar from "../../components/presentational/ToolBar/ToolBar";
 import CategoryFilter from "../../components/container/Category/CategoryFilter/CategoryFilter";
+import { useTaskListContext } from "../../context/TaskListContextProvider";
 
 const TasksPage = () => {
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [layoutView, setlayoutView] = useState("Grid");
+  const { taskList } = useTaskListContext();
 
   const userName = "Carrie";
   const homeScreenHeading = "Good Morning, ";
@@ -55,7 +57,7 @@ const TasksPage = () => {
       </ToolBar>
       <br />
 
-      <TaskList layoutView={layoutView} />
+      <TaskList taskList={taskList} layoutView={layoutView} />
     </section>
   );
 };

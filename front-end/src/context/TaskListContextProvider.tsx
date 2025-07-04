@@ -6,7 +6,7 @@ import {
   useEffect,
 } from "react";
 import { getAllTasks, type Task } from "../services/tasks";
-import { wrapAsync } from "../utils/wrapAsync";
+import { fetchHandler } from "../utils/fetchHandler";
 
 interface TaskListContextType {
   taskList: Task[];
@@ -25,7 +25,7 @@ const TaskListContextProvider = ({ children }: PropsWithChildren) => {
 
   // Fetch all Categories on mount
   useEffect(() => {
-    wrapAsync(getAllTasks, setFetchStatus, setError).then(setTaskList);
+    fetchHandler(getAllTasks, setFetchStatus, setError).then(setTaskList);
   }, []);
 
   return (

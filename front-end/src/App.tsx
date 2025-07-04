@@ -10,10 +10,10 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header heading={"TODO APP"} />
         <TaskListContextProvider>
           <CategoryListContextProvider>
             <CategoryFilterContextProvider>
+              <Header heading={"POKE TASKS"} />
               <Routes>
                 <Route path="/" element={<TasksPage />} />
               </Routes>

@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { type NewCategoryData } from "../../../../services/categories";
-import { useCategories } from "../../../../hooks/useCategories";
+import {
+  createCategory,
+  type NewCategoryData,
+} from "../../../../services/categories";
 import Button from "../../../presentational/Button/Button";
 import { validateCategoryForm } from "./category-validator";
 import classes from "./CategoryForm.module.scss";
@@ -13,7 +15,7 @@ interface CategoryFormProps {
 
 const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
   const { categoryList } = useContext(CategoryListContext);
-  const { addCategory } = useCategories();
+
   const defaultCategoryValues: NewCategoryData = {
     name: "",
   };
@@ -40,7 +42,7 @@ const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
     e.preventDefault();
     console.log("categoryValues: " + JSON.stringify(categoryValues));
 
-    isValidInput && addCategory(categoryValues);
+    isValidInput && createCategory(categoryValues);
     //reset values after submission
     setCategoryValues(defaultCategoryValues);
     setIsValidInput(false);

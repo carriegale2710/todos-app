@@ -6,8 +6,7 @@ import {
   useEffect,
 } from "react";
 import { fetchCategories, type Category } from "../services/categories";
-import { useCategories } from "../hooks/useCategories";
-import { wrapAsync } from "../utils/wrapAsync";
+import { fetchHandler } from "../utils/fetchHandler";
 
 interface CategoryListContextType {
   categoryList: Category[];
@@ -26,7 +25,9 @@ const CategoryListContextProvider = ({ children }: PropsWithChildren) => {
 
   // Fetch all Categories on mount
   useEffect(() => {
-    wrapAsync(fetchCategories, setFetchStatus, setError).then(setCategoryList);
+    fetchHandler(fetchCategories, setFetchStatus, setError).then(
+      setCategoryList
+    );
   }, []);
 
   return (

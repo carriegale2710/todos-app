@@ -1,3 +1,5 @@
+//SECTION - INTERFACES
+
 export interface Category {
   id: number;
   name: string;
@@ -7,8 +9,14 @@ export interface NewCategoryData {
   name: string;
 }
 
+const BASE_URL = "http://localhost:8080/categories";
+
+//SECTION - CRUD OPERATIONS
+
+//NOTE - FETCH
+
 export const fetchCategories = async (): Promise<Category[]> => {
-  const response = await fetch("http://localhost:8080/categories");
+  const response = await fetch(BASE_URL);
   if (!response.ok) {
     throw new Error("Could not fetch categories");
   }
@@ -16,8 +24,10 @@ export const fetchCategories = async (): Promise<Category[]> => {
   return categories;
 };
 
+//NOTE - FETCH BY ID
+
 export const fetchCategoryById = async (id: string): Promise<Category> => {
-  const response = await fetch("http://localhost:8080/categories/" + id);
+  const response = await fetch(BASE_URL + "/" + id);
   if (!response.ok) {
     throw new Error("Could not fetch category with id " + id);
   }
@@ -27,11 +37,10 @@ export const fetchCategoryById = async (id: string): Promise<Category> => {
 
 //NOTE - CREATE
 
-export const createNewCategory = async (
+export const createCategory = async (
   newCategoryData: NewCategoryData
 ): Promise<Category[]> => {
-  console.log("CategoryData received in DB: ", newCategoryData);
-  const response = await fetch("http://localhost:8080/categories", {
+  const response = await fetch(BASE_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newCategoryData),
