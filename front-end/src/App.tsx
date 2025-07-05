@@ -9,6 +9,8 @@ import TasksPage from "./pages/TasksPage/TasksPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 
 import Header from "./components/presentational/Header/Header";
+import "./App.scss";
+import NavBar from "./components/presentational/NavBar/NavBar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,6 +25,7 @@ function App() {
         <TaskListContextProvider>
           <CategoryListContextProvider>
             <CategoryFilterContextProvider>
+              <NavBar isLoggedIn={isLoggedIn} />
               <Header heading={"POKE TASKS"} />
               <Routes>
                 <Route

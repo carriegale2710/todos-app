@@ -1,0 +1,13 @@
+@use "../../../scss/partials/mixins" as M;
+
+.nav {
+  color: white;
+  @include M.wrapper(row);
+  border: red;
+  position: sticky;
+  top: 0;
+  background-color: grey;
+  width: 100%;
+  padding: 0.5em;
+  transition: top 0.3s;
+}
