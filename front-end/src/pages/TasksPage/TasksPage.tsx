@@ -10,19 +10,18 @@ import CategoryForm from "../../components/container/Category/CategoryForm/Categ
 import ToolBar from "../../components/presentational/ToolBar/ToolBar";
 import CategoryFilter from "../../components/container/Category/CategoryFilter/CategoryFilter";
 import { useTaskListContext } from "../../context/TaskListContextProvider";
+import { useCategoryListContext } from "../../context/CategoryListContextProvider";
 
 const TasksPage = () => {
+  const { taskList } = useTaskListContext();
+  const { categoryList } = useCategoryListContext();
+
   const [showTaskModal, setShowTaskModal] = useState(false);
   const [showCategoryModal, setShowCategoryModal] = useState(false);
   const [layoutView, setlayoutView] = useState("Grid");
-  const { taskList } = useTaskListContext();
 
   const userName = "Carrie";
   const homeScreenHeading = "Good Morning, ";
-
-  const onClick = () => {
-    layoutView === "Grid" ? setlayoutView("List") : setlayoutView("Grid");
-  };
 
   return (
     <section className={classes.page}>
@@ -48,11 +47,19 @@ const TasksPage = () => {
         )}
       </ToolBar>
 
-      <Header heading="Today's Tasks" />
+      <Header heading="Today's Tasks" className="subheading" />
 
       <br />
       <ToolBar>
-        <Button onClick={onClick}>{layoutView} View</Button>
+        <Button
+          onClick={() => {
+            return layoutView === "Grid"
+              ? setlayoutView("List")
+              : setlayoutView("Grid");
+          }}
+        >
+          {layoutView} View
+        </Button>
         <CategoryFilter />
       </ToolBar>
       <br />

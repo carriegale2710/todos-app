@@ -66,11 +66,11 @@ const CategoryForm = ({ setcategoryFormVisible }: CategoryFormProps) => {
             onChange={onInputChange}
           />
         </div>
+        {!isValidInput && <p>{errors.name}</p>}
         <Button type="submit" disabled={!isValidInput}>
-          Save
+          Create
         </Button>
       </form>
-      {!isValidInput && <p>{errors.name}</p>}
     </div>
   );
 };
