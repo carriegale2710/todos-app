@@ -1,15 +1,18 @@
-import { useContext } from "react";
-import { TaskListContext } from "../../../context/TaskListContextProvider";
-import { CategoryListContext } from "../../../context/CategoryListContextProvider";
 import classes from "./DataSummary.module.scss";
+import type { Task } from "../../../services/tasks";
+import type { Category } from "../../../services/categories";
+import Button from "../../presentational/Button/Button";
 
-const DataSummary = () => {
-  const { taskList } = useContext(TaskListContext);
-  const { categoryList } = useContext(CategoryListContext);
+type DataSummaryProps = {
+  taskList: Task[];
+  categoryList: Category[];
+};
+
+const DataSummary = ({ taskList, categoryList }: DataSummaryProps) => {
   return (
     <section className={classes.row}>
-      <p>Tasks: {taskList.length}</p>
-      <p>Categories: {categoryList.length}</p>
+      <Button>Tasks: {taskList.length}</Button>
+      <Button>Categories: {categoryList.length}</Button>
     </section>
   );
 };
