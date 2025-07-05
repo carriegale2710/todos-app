@@ -26,7 +26,7 @@ const TasksPage = () => {
   return (
     <section className={classes.page}>
       <Header heading={homeScreenHeading} userName={userName} />
-      <DataSummary />
+      <DataSummary {...{ categoryList, taskList }} />
 
       <ToolBar>
         <Button onClick={() => setShowTaskModal(true)}>New Task</Button>
