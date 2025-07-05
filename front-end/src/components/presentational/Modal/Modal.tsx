@@ -6,7 +6,7 @@ import classes from "./Modal.module.scss";
 interface ModalProps {
   heading: string;
   children: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({ heading, children, onClose }) => {
