@@ -43,3 +43,4 @@ axios.md
 /presentation/
 
 .gitignore
+application-secrets.properties
